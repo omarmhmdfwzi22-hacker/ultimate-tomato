@@ -27,16 +27,6 @@ export function LoginPage() {
     }
   };
 
-  const fillDemoClient = () => {
-    setEmail('omar@ultimatetomato.com');
-    setPassword('omar2026');
-  };
-
-  const fillDemoAdmin = () => {
-    setEmail('admin@ultimatetomato.com');
-    setPassword('tomato2026');
-  };
-
   return (
     <div className="min-h-screen bg-[#050505] text-white flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden select-none">
       {/* Subtle Tomato Glow */}
@@ -78,14 +68,14 @@ export function LoginPage() {
           <form onSubmit={handleLogin} className="space-y-5 text-left">
             <div className="space-y-1.5">
               <label className="text-xs font-semibold text-zinc-300">
-                Email Address
+                Username or Email
               </label>
               <div className="relative">
                 <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
                 <input
-                  type="email"
+                  type="text"
                   required
-                  placeholder="name@ultimatetomato.com"
+                  placeholder="username or email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:ring-2 focus:ring-[#F52F3A]/30 focus:border-[#F52F3A] transition-all"
@@ -98,13 +88,6 @@ export function LoginPage() {
                 <label className="text-xs font-semibold text-zinc-300">
                   Password
                 </label>
-                <button
-                  type="button"
-                  onClick={() => navigate('/forgot-password')}
-                  className="text-[11px] text-[#F52F3A] hover:underline"
-                >
-                  Forgot password?
-                </button>
               </div>
               <div className="relative">
                 <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
@@ -138,29 +121,11 @@ export function LoginPage() {
             </button>
           </form>
 
-          {/* Development Quick Fill Options */}
-          <div className="pt-4 border-t border-white/10 space-y-3">
-            <div className="text-[11px] font-mono text-zinc-500 uppercase tracking-wider text-center">
-              Quick Test Credentials
-            </div>
-            <div className="grid grid-cols-2 gap-2">
-              <button
-                type="button"
-                onClick={fillDemoClient}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-zinc-300 font-medium transition-all text-center"
-              >
-                <span className="block font-bold text-white">Client #1</span>
-                <span>omar@... (Client)</span>
-              </button>
-              <button
-                type="button"
-                onClick={fillDemoAdmin}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-[11px] text-zinc-300 font-medium transition-all text-center"
-              >
-                <span className="block font-bold text-white">Super Admin</span>
-                <span>admin@... (Platform)</span>
-              </button>
-            </div>
+          {/* Secure Portal Footnote */}
+          <div className="pt-4 border-t border-white/10 text-center">
+            <p className="text-[11px] text-zinc-500 leading-relaxed">
+              Restricted portal. Only verified clients and platform administrators with issued credentials can access this system.
+            </p>
           </div>
         </div>
       </div>

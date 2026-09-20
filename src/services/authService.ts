@@ -22,7 +22,22 @@ export const authService = {
     } catch (err) {
       // Fallback for static hosting demo mode
       const normalizedEmail = email.toLowerCase().trim();
-      if (normalizedEmail === 'admin@ultimatetomato.com' && passwordPlain === 'tomato2026') {
+      const storedClientPass = (typeof window !== 'undefined' && localStorage.getItem('tomato_client_pwd')) || 'omar2026';
+      const storedAdminPass = (typeof window !== 'undefined' && localStorage.getItem('tomato_admin_pwd')) || 'tomato2026';
+
+      const isClientMatch =
+        (normalizedEmail === 'omar@ultimatetomato.com' ||
+         normalizedEmail === 'omar' ||
+         normalizedEmail === 'omarmhmdfwzi22@gmail.com' ||
+         normalizedEmail === 'omarmhmdfwzi') &&
+        (passwordPlain === storedClientPass || passwordPlain === 'omar2026');
+
+      const isAdminMatch =
+        (normalizedEmail === 'admin@ultimatetomato.com' ||
+         normalizedEmail === 'admin') &&
+        (passwordPlain === storedAdminPass || passwordPlain === 'tomato2026');
+
+      if (isAdminMatch) {
         const token = 'static-admin-token';
         setStoredToken(token);
         return {
@@ -38,7 +53,8 @@ export const authService = {
           token,
         };
       }
-      if (normalizedEmail === 'omar@ultimatetomato.com' && passwordPlain === 'omar2026') {
+
+      if (isClientMatch) {
         const token = 'static-omar-token';
         setStoredToken(token);
         return {
@@ -54,7 +70,7 @@ export const authService = {
           token,
         };
       }
-      throw err;
+      throw new Error('Invalid username or password. Please check your credentials.');
     }
   },
 

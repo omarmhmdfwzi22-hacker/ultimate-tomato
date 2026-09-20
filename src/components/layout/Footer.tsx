@@ -91,16 +91,16 @@ export function Footer({
             </ul>
           </div>
 
-          {/* Col 3: Portal & Back to top */}
+          {/* Col 3: Navigation & Back to top */}
           <div className="flex flex-col justify-between">
             <div>
               <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-4">
-                Platform
+                Explore
               </h4>
               <ul className="space-y-2 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
                 <li>
-                  <button onClick={() => navigate('/login')} className="hover:text-[#F52F3A] transition-colors">
-                    Client Dashboard
+                  <button onClick={() => navigate('/projects')} className="hover:text-[#F52F3A] transition-colors">
+                    Featured Work
                   </button>
                 </li>
                 <li>
