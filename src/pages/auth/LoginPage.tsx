@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useRouter } from '../../lib/router';
+import { useRouter, getAssetUrl } from '../../lib/router';
 import { useAuth } from '../../context/AuthContext';
 import { Lock, Mail, ArrowRight, AlertCircle, Loader2, Sparkles } from 'lucide-react';
 
@@ -49,7 +48,7 @@ export function LoginPage() {
           className="inline-flex items-center gap-3 p-2 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md cursor-pointer hover:bg-white/10 transition-all mb-2"
         >
           <img
-            src="/assets/ultimate-tomato-logo.png"
+            src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
             alt="Ultimate Tomato Logo"
             className="w-9 h-9 object-contain"
           />

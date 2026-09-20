@@ -64,6 +64,17 @@
       "deleted_at": null,
       "created_at": "2026-09-20T12:46:28.358Z",
       "updated_at": "2026-09-20T12:46:28.363Z"
+    },
+    {
+      "id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "name": "Test Creative Studio",
+      "email": "studio-1789909012704@tomato.dev",
+      "status": "ACTIVE",
+      "onboarding_token": null,
+      "onboarding_completed": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:56:52.704Z",
+      "updated_at": "2026-09-20T12:56:52.709Z"
     }
   ],
   "portfolios": [
@@ -126,6 +137,18 @@
       "deleted_at": null,
       "created_at": "2026-09-20T12:46:28.358Z",
       "updated_at": "2026-09-20T12:46:28.369Z"
+    },
+    {
+      "id": "418b6c74-6ac0-4f12-bb8b-e89280fd78a1",
+      "client_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "slug": "test-studio-1789909012704",
+      "name": "Test Creative Studio Showcase",
+      "published": true,
+      "status": "PUBLISHED",
+      "custom_domain": null,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:56:52.704Z",
+      "updated_at": "2026-09-20T12:56:52.713Z"
     }
   ],
   "users": [
@@ -176,6 +199,14 @@
       "role": "CLIENT",
       "created_at": "2026-09-20T12:46:28.363Z",
       "updated_at": "2026-09-20T12:46:28.363Z"
+    },
+    {
+      "id": "c9c385ca-bea1-4273-bfe5-6004f8da5c09",
+      "client_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "email": "studio-1789909012704@tomato.dev",
+      "role": "CLIENT",
+      "created_at": "2026-09-20T12:56:52.709Z",
+      "updated_at": "2026-09-20T12:56:52.709Z"
     }
   ],
   "categories": [
@@ -667,6 +698,16 @@
   ],
   "messages": [
     {
+      "id": "58633515-dd62-4f03-af08-ee388fc104ac",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "sender": "Sarah Connor",
+      "email": "sarah@skynet-research.org",
+      "subject": "Senior Architecture Consulting",
+      "message": "Hello Omar, we reviewed your creative portfolio and would love to collaborate.",
+      "status": "UNREAD",
+      "date": "2026-09-20T12:56:52.733Z"
+    },
+    {
       "id": "5382bf45-3bef-4250-aec2-e9e9c2d44e1e",
       "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
       "sender": "Sarah Connor",
@@ -718,6 +759,24 @@
     }
   ],
   "notifications": [
+    {
+      "id": "a5a5cfd5-ff92-4c97-ad1a-f4eeefdb56f1",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "type": "MESSAGE",
+      "title": "Inquiry from Sarah Connor",
+      "message": "Senior Architecture Consulting",
+      "read": false,
+      "created_at": "2026-09-20T12:56:52.733Z"
+    },
+    {
+      "id": "dc6a9429-fc60-4951-a6a7-c87b6bb02264",
+      "portfolio_id": "418b6c74-6ac0-4f12-bb8b-e89280fd78a1",
+      "type": "SYSTEM",
+      "title": "Portfolio Published",
+      "message": "Your portfolio status has been updated to PUBLISHED.",
+      "read": false,
+      "created_at": "2026-09-20T12:56:52.713Z"
+    },
     {
       "id": "29a45b65-8fa5-4d0c-9e0e-e7a3ce077aab",
       "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
@@ -912,9 +971,103 @@
       },
       "created_at": "2026-09-20T12:46:28.358Z",
       "updated_at": "2026-09-20T12:46:28.381Z"
+    },
+    {
+      "id": "969a6f9b-7a48-4c09-9a2d-c554c4aa8292",
+      "portfolio_id": "418b6c74-6ac0-4f12-bb8b-e89280fd78a1",
+      "title": "Custom Showcase Title",
+      "description": "Welcome to the creative portfolio of Test Creative Studio.",
+      "primary_color": "#F52F3A",
+      "default_theme": "dark",
+      "bio": "Pioneering interactive design and creative software architectures.",
+      "professional_title": "Lead Design Technologist",
+      "stats": {
+        "projects": 0,
+        "experience_years": 0,
+        "clients": 0,
+        "technologies": 0
+      },
+      "created_at": "2026-09-20T12:56:52.704Z",
+      "updated_at": "2026-09-20T12:56:52.726Z"
     }
   ],
   "audit_logs": [
+    {
+      "id": "e9abc1d0-1f65-4dc0-a751-f9638635275b",
+      "user_email": "studio-1789909012704@tomato.dev",
+      "portfolio_id": "418b6c74-6ac0-4f12-bb8b-e89280fd78a1",
+      "action": "SITE_SETTINGS_UPDATED",
+      "entity_type": "SITE_SETTINGS",
+      "entity_id": "969a6f9b-7a48-4c09-9a2d-c554c4aa8292",
+      "details": {
+        "title": "Custom Showcase Title"
+      },
+      "created_at": "2026-09-20T12:56:52.726Z"
+    },
+    {
+      "id": "152ea25a-3a8b-4d79-8dc7-b8d340482c2e",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "action": "CLIENT_RESTORED",
+      "entity_type": "CLIENT",
+      "entity_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:56:52.719Z"
+    },
+    {
+      "id": "86321787-dc3f-489e-81fe-dbf80698ee91",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "action": "CLIENT_SOFT_DELETED",
+      "entity_type": "CLIENT",
+      "entity_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:56:52.716Z"
+    },
+    {
+      "id": "0ad0bcbb-7d6a-4e9d-bc22-e29e8298345e",
+      "user_email": "studio-1789909012704@tomato.dev",
+      "portfolio_id": "418b6c74-6ac0-4f12-bb8b-e89280fd78a1",
+      "action": "PORTFOLIO_PUBLISHED",
+      "entity_type": "PORTFOLIO",
+      "entity_id": "418b6c74-6ac0-4f12-bb8b-e89280fd78a1",
+      "details": {
+        "status": "PUBLISHED"
+      },
+      "created_at": "2026-09-20T12:56:52.713Z"
+    },
+    {
+      "id": "1df57bef-8e8d-482b-b23a-c8fca2d2714a",
+      "user_id": "c9c385ca-bea1-4273-bfe5-6004f8da5c09",
+      "user_email": "studio-1789909012704@tomato.dev",
+      "client_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "portfolio_id": "418b6c74-6ac0-4f12-bb8b-e89280fd78a1",
+      "action": "ONBOARDING_COMPLETED",
+      "entity_type": "CLIENT",
+      "entity_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "details": {
+        "email": "studio-1789909012704@tomato.dev"
+      },
+      "created_at": "2026-09-20T12:56:52.710Z"
+    },
+    {
+      "id": "0951e91c-3ae2-4014-bc11-fa6fe85cfc4b",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "portfolio_id": "418b6c74-6ac0-4f12-bb8b-e89280fd78a1",
+      "action": "CLIENT_INVITED",
+      "entity_type": "CLIENT",
+      "entity_id": "b9d2eb85-1d14-42bb-9780-68f61c9d063f",
+      "details": {
+        "email": "studio-1789909012704@tomato.dev",
+        "slug": "test-studio-1789909012704"
+      },
+      "created_at": "2026-09-20T12:56:52.705Z"
+    },
     {
       "id": "75cc8aed-affb-4201-acfc-8a442d7757ec",
       "user_email": "studio-1789908388358@tomato.dev",
@@ -1284,6 +1437,12 @@
       "email": "studio-1789908388358@tomato.dev",
       "passwordHash": "486f0a9839674a9dfcf52efbffe2469b01b87f5e5c967ec8f0ee3b7d9a308a8c",
       "userId": "103728ff-b593-4b19-b0c5-e3da34a5f601",
+      "role": "CLIENT"
+    },
+    {
+      "email": "studio-1789909012704@tomato.dev",
+      "passwordHash": "486f0a9839674a9dfcf52efbffe2469b01b87f5e5c967ec8f0ee3b7d9a308a8c",
+      "userId": "c9c385ca-bea1-4273-bfe5-6004f8da5c09",
       "role": "CLIENT"
     }
   ]

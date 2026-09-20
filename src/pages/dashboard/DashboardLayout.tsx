@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { useRouter } from '../../lib/router';
+import { useRouter, getAssetUrl } from '../../lib/router';
 import { useAuth } from '../../context/AuthContext';
 import { useTheme } from '../../context/ThemeContext';
 import {
@@ -105,7 +104,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             className="flex items-center gap-3 cursor-pointer group"
           >
             <img
-              src="/assets/ultimate-tomato-logo.png"
+              src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
               alt="Ultimate Tomato"
               className="w-8 h-8 object-contain"
             />

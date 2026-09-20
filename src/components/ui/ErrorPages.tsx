@@ -1,5 +1,4 @@
-import React from 'react';
-import { useRouter } from '../../lib/router';
+import { useRouter, getAssetUrl } from '../../lib/router';
 import { ArrowLeft, RefreshCw, ShieldAlert, AlertTriangle, WifiOff, FileQuestion } from 'lucide-react';
 
 interface ErrorPageProps {
@@ -56,7 +55,7 @@ export function ErrorPage({ type, title, message, onRetry }: ErrorPageProps) {
       <div className="max-w-md w-full relative z-10 text-center">
         {/* Logo & Badge */}
         <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8">
-          <img src="/assets/ultimate-tomato-logo.png" alt="Ultimate Tomato" className="w-5 h-5 object-contain" />
+          <img src={getAssetUrl('/assets/ultimate-tomato-logo.png')} alt="Ultimate Tomato" className="w-5 h-5 object-contain" />
           <span className="text-xs font-semibold tracking-wider uppercase text-zinc-400">Ultimate Tomato</span>
           <span className="w-1 h-1 rounded-full bg-[#F52F3A]" />
           <span className="text-xs font-mono font-bold text-[#F52F3A]">{current.code}</span>

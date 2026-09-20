@@ -1,6 +1,7 @@
 import React, { Component, ReactNode, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
+import { getAssetUrl } from './lib/router';
 import './index.css';
 
 interface ErrorBoundaryProps {
@@ -68,7 +69,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
               }}
             >
               <img
-                src="/assets/ultimate-tomato-logo.png"
+                src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
                 alt="Ultimate Tomato"
                 style={{ width: '40px', height: '40px', objectFit: 'contain' }}
               />

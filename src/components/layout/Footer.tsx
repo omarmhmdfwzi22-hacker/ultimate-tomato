@@ -1,5 +1,4 @@
-import React from 'react';
-import { useRouter } from '../../lib/router';
+import { useRouter, getAssetUrl } from '../../lib/router';
 import { ArrowUp, Facebook, Github } from 'lucide-react';
 import { SocialLink } from '../../types/portfolio';
 
@@ -128,7 +127,7 @@ export function Footer({
 
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.08] shadow-sm">
             <img
-              src="/assets/ultimate-tomato-logo.png"
+              src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
               alt="Ultimate Tomato"
               className="w-4 h-4 object-contain"
             />

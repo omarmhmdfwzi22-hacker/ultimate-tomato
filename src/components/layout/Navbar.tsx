@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useRouter } from '../../lib/router';
+import { useRouter, getAssetUrl } from '../../lib/router';
 import { useTheme } from '../../context/ThemeContext';
 import { Sun, Moon, Menu, X, ArrowUpRight, Eye } from 'lucide-react';
 import { Portfolio } from '../../types/portfolio';
@@ -70,7 +69,7 @@ export function Navbar({ portfolio, clientName = 'Omar Mohamed Fawzi', isPreview
           >
             <div className="relative">
               <img
-                src="/assets/ultimate-tomato-logo.png"
+                src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
                 alt="Ultimate Tomato Logo"
                 className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform duration-300 group-hover:scale-105"
               />

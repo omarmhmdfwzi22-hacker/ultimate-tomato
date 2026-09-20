@@ -17,7 +17,7 @@ export function useRouter(): RouterContextType {
   return context;
 }
 
-function getBasePath(): string {
+export function getBasePath(): string {
   try {
     const pathname = window.location.pathname || '/';
     // If hosted under /quickdrop on GitHub Pages
@@ -26,6 +26,16 @@ function getBasePath(): string {
     }
   } catch {}
   return '';
+}
+
+export function getAssetUrl(path: string): string {
+  if (!path) return '';
+  if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:') || path.startsWith('blob:')) {
+    return path;
+  }
+  const base = getBasePath();
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return base ? `${base}${cleanPath}` : cleanPath;
 }
 
 function resolvePath(): string {

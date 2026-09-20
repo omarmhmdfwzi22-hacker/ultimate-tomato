@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { RouterProvider, useRouter, matchRoute } from './lib/router';
+import { RouterProvider, useRouter, matchRoute, getAssetUrl } from './lib/router';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { ToastProvider } from './components/ui/Toast';
@@ -244,7 +243,7 @@ function AppContent() {
       <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-6 text-center">
         <div className="w-16 h-16 rounded-2xl bg-[#F52F3A]/10 border border-[#F52F3A]/25 flex items-center justify-center mb-4 shadow-lg shadow-[#F52F3A]/20 animate-pulse">
           <img
-            src="/assets/ultimate-tomato-logo.png"
+            src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
             alt="Ultimate Tomato"
             className="w-10 h-10 object-contain"
           />
