@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultimate Tomato</title>
+    <script>
+      // Universal Single Page App Deep Link Redirection for GitHub Pages
+      (function() {
+        var l = window.location;
+        var pathname = l.pathname;
+        var hostname = l.hostname;
+        
+        var repoName = 'ultimate-tomato';
+        if (hostname.indexOf('github.io') !== -1) {
+          var segments = pathname.split('/').filter(Boolean);
+          if (segments.length > 0) {
+            repoName = segments[0];
+          }
+        }
+        
+        var targetRoute = '/';
+        if (repoName && pathname.indexOf('/' + repoName) === 0) {
+          targetRoute = pathname.slice(repoName.length + 1) || '/';
+          var searchStr = l.search ? l.search : '';
+          var redirectUrl = '/' + repoName + '/?p=' + encodeURIComponent(targetRoute + searchStr + l.hash);
+          l.replace(redirectUrl);
+        } else {
+          var redirectUrl = '/?p=' + encodeURIComponent(pathname + (l.search || '') + l.hash);
+          l.replace(redirectUrl);
+        }
+      })();
+    </script>
+  </head>
+  <body style="background:#050505;color:#ffffff;display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;">
+    <p>Redirecting to Ultimate Tomato portfolio...</p>
+  </body>
+</html>
