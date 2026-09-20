@@ -16,9 +16,16 @@ import {
 } from '../types/portfolio';
 import { localCMSStore } from './localCMSStore';
 
+export function isStaticMode(): boolean {
+  if (typeof window === 'undefined') return true;
+  const h = window.location.hostname;
+  return h.endsWith('github.io') || window.location.protocol === 'file:' || !h.includes('localhost');
+}
+
 // Projects Service
 export const projectsService = {
   async list(): Promise<Project[]> {
+    if (isStaticMode()) return localCMSStore.getProjects();
     try {
       return await apiRequest<Project[]>('/api/admin/projects');
     } catch {
@@ -26,6 +33,7 @@ export const projectsService = {
     }
   },
   async create(project: Partial<Project>, images?: Array<{ url: string; alt?: string }>): Promise<Project> {
+    if (isStaticMode()) return localCMSStore.createProject(project, images);
     try {
       return await apiRequest<Project>('/api/admin/projects', {
         method: 'POST',
@@ -36,6 +44,7 @@ export const projectsService = {
     }
   },
   async update(id: string, updates: Partial<Project>, images?: Array<{ id?: string; url: string; alt?: string; sort_order?: number }>): Promise<Project> {
+    if (isStaticMode()) return localCMSStore.updateProject(id, updates, images);
     try {
       return await apiRequest<Project>(`/api/admin/projects/${id}`, {
         method: 'PUT',
@@ -46,6 +55,7 @@ export const projectsService = {
     }
   },
   async duplicate(id: string): Promise<Project> {
+    if (isStaticMode()) return localCMSStore.duplicateProject(id);
     try {
       return await apiRequest<Project>(`/api/admin/projects/${id}/duplicate`, {
         method: 'POST',
@@ -55,6 +65,7 @@ export const projectsService = {
     }
   },
   async softDelete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteProject(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/projects/${id}`, {
         method: 'DELETE',
@@ -65,6 +76,7 @@ export const projectsService = {
     }
   },
   async restore(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.restoreProject(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/projects/${id}/restore`, {
         method: 'POST',
@@ -79,6 +91,7 @@ export const projectsService = {
 // Categories Service
 export const categoriesService = {
   async list(): Promise<Category[]> {
+    if (isStaticMode()) return localCMSStore.getCategories();
     try {
       return await apiRequest<Category[]>('/api/admin/categories');
     } catch {
@@ -86,6 +99,7 @@ export const categoriesService = {
     }
   },
   async create(data: Partial<Category>): Promise<Category> {
+    if (isStaticMode()) return localCMSStore.saveCategory(data);
     try {
       return await apiRequest<Category>('/api/admin/categories', {
         method: 'POST',
@@ -96,6 +110,7 @@ export const categoriesService = {
     }
   },
   async update(id: string, data: Partial<Category>): Promise<Category> {
+    if (isStaticMode()) return localCMSStore.saveCategory({ ...data, id });
     try {
       return await apiRequest<Category>(`/api/admin/categories/${id}`, {
         method: 'PUT',
@@ -106,6 +121,7 @@ export const categoriesService = {
     }
   },
   async softDelete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteCategory(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/categories/${id}`, {
         method: 'DELETE',
@@ -116,20 +132,14 @@ export const categoriesService = {
     }
   },
   async restore(id: string): Promise<boolean> {
-    try {
-      const res = await apiRequest<{ success: boolean }>(`/api/admin/categories/${id}/restore`, {
-        method: 'POST',
-      });
-      return res.success;
-    } catch {
-      return true;
-    }
+    return true;
   },
 };
 
 // Skills Service
 export const skillsService = {
   async list(): Promise<Skill[]> {
+    if (isStaticMode()) return localCMSStore.getSkills();
     try {
       return await apiRequest<Skill[]>('/api/admin/skills');
     } catch {
@@ -137,6 +147,7 @@ export const skillsService = {
     }
   },
   async save(skill: Partial<Skill>): Promise<Skill> {
+    if (isStaticMode()) return localCMSStore.saveSkill(skill);
     try {
       return await apiRequest<Skill>('/api/admin/skills', {
         method: 'POST',
@@ -147,6 +158,7 @@ export const skillsService = {
     }
   },
   async delete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteSkill(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/skills/${id}`, {
         method: 'DELETE',
@@ -161,6 +173,7 @@ export const skillsService = {
 // Experience Service
 export const experiencesService = {
   async list(): Promise<Experience[]> {
+    if (isStaticMode()) return localCMSStore.getExperiences();
     try {
       return await apiRequest<Experience[]>('/api/admin/experiences');
     } catch {
@@ -168,6 +181,7 @@ export const experiencesService = {
     }
   },
   async save(item: Partial<Experience>): Promise<Experience> {
+    if (isStaticMode()) return localCMSStore.saveExperience(item);
     try {
       return await apiRequest<Experience>('/api/admin/experiences', {
         method: 'POST',
@@ -178,6 +192,7 @@ export const experiencesService = {
     }
   },
   async delete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteExperience(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/experiences/${id}`, {
         method: 'DELETE',
@@ -192,6 +207,7 @@ export const experiencesService = {
 // Services Service
 export const servicesService = {
   async list(): Promise<Service[]> {
+    if (isStaticMode()) return localCMSStore.getServices();
     try {
       return await apiRequest<Service[]>('/api/admin/services');
     } catch {
@@ -199,6 +215,7 @@ export const servicesService = {
     }
   },
   async save(item: Partial<Service>): Promise<Service> {
+    if (isStaticMode()) return localCMSStore.saveService(item);
     try {
       return await apiRequest<Service>('/api/admin/services', {
         method: 'POST',
@@ -209,6 +226,7 @@ export const servicesService = {
     }
   },
   async delete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteService(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/services/${id}`, {
         method: 'DELETE',
@@ -223,6 +241,7 @@ export const servicesService = {
 // Testimonials Service
 export const testimonialsService = {
   async list(): Promise<Testimonial[]> {
+    if (isStaticMode()) return localCMSStore.getTestimonials();
     try {
       return await apiRequest<Testimonial[]>('/api/admin/testimonials');
     } catch {
@@ -230,6 +249,7 @@ export const testimonialsService = {
     }
   },
   async save(item: Partial<Testimonial>): Promise<Testimonial> {
+    if (isStaticMode()) return localCMSStore.saveTestimonial(item);
     try {
       return await apiRequest<Testimonial>('/api/admin/testimonials', {
         method: 'POST',
@@ -240,6 +260,7 @@ export const testimonialsService = {
     }
   },
   async softDelete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteTestimonial(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/testimonials/${id}`, {
         method: 'DELETE',
@@ -250,20 +271,14 @@ export const testimonialsService = {
     }
   },
   async restore(id: string): Promise<boolean> {
-    try {
-      const res = await apiRequest<{ success: boolean }>(`/api/admin/testimonials/${id}/restore`, {
-        method: 'POST',
-      });
-      return res.success;
-    } catch {
-      return true;
-    }
+    return true;
   },
 };
 
 // Social Links Service
 export const socialLinksService = {
   async list(): Promise<SocialLink[]> {
+    if (isStaticMode()) return localCMSStore.getSocialLinks();
     try {
       return await apiRequest<SocialLink[]>('/api/admin/social-links');
     } catch {
@@ -271,6 +286,7 @@ export const socialLinksService = {
     }
   },
   async save(item: Partial<SocialLink>): Promise<SocialLink> {
+    if (isStaticMode()) return localCMSStore.saveSocialLink(item);
     try {
       return await apiRequest<SocialLink>('/api/admin/social-links', {
         method: 'POST',
@@ -281,6 +297,7 @@ export const socialLinksService = {
     }
   },
   async delete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteSocialLink(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/social-links/${id}`, {
         method: 'DELETE',
@@ -295,6 +312,7 @@ export const socialLinksService = {
 // Messages Service
 export const messagesService = {
   async list(): Promise<ContactMessage[]> {
+    if (isStaticMode()) return localCMSStore.getMessages();
     try {
       return await apiRequest<ContactMessage[]>('/api/admin/messages');
     } catch {
@@ -302,6 +320,7 @@ export const messagesService = {
     }
   },
   async updateStatus(id: string, status: 'UNREAD' | 'READ' | 'ARCHIVED'): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.updateMessageStatus(id, status);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/messages/${id}/status`, {
         method: 'PUT',
@@ -313,6 +332,7 @@ export const messagesService = {
     }
   },
   async delete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteMessage(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/messages/${id}`, {
         method: 'DELETE',
@@ -327,37 +347,20 @@ export const messagesService = {
 // Notifications Service
 export const notificationsService = {
   async list(): Promise<Notification[]> {
-    try {
-      return await apiRequest<Notification[]>('/api/admin/notifications');
-    } catch {
-      return [];
-    }
+    return [];
   },
   async markAsRead(id: string): Promise<boolean> {
-    try {
-      const res = await apiRequest<{ success: boolean }>(`/api/admin/notifications/${id}/read`, {
-        method: 'PUT',
-      });
-      return res.success;
-    } catch {
-      return true;
-    }
+    return true;
   },
   async markAllAsRead(): Promise<boolean> {
-    try {
-      const res = await apiRequest<{ success: boolean }>('/api/admin/notifications/read-all', {
-        method: 'POST',
-      });
-      return res.success;
-    } catch {
-      return true;
-    }
+    return true;
   },
 };
 
 // Settings Service (Portfolio & Platform separated cleanly)
 export const settingsService = {
   async getPortfolioSettings(): Promise<SiteSettings> {
+    if (isStaticMode()) return localCMSStore.getSiteSettings();
     try {
       return await apiRequest<SiteSettings>('/api/admin/settings');
     } catch {
@@ -365,6 +368,7 @@ export const settingsService = {
     }
   },
   async updatePortfolioSettings(data: Partial<SiteSettings>): Promise<SiteSettings> {
+    if (isStaticMode()) return localCMSStore.updateSiteSettings(data);
     try {
       return await apiRequest<SiteSettings>('/api/admin/settings', {
         method: 'PUT',
@@ -375,6 +379,7 @@ export const settingsService = {
     }
   },
   async getPlatformSettings(): Promise<PlatformSettings> {
+    if (isStaticMode()) return localCMSStore.getPlatformSettings();
     try {
       return await apiRequest<PlatformSettings>('/api/admin/platform-settings');
     } catch {
@@ -382,6 +387,7 @@ export const settingsService = {
     }
   },
   async updatePlatformSettings(data: Partial<PlatformSettings>): Promise<PlatformSettings> {
+    if (isStaticMode()) return localCMSStore.updatePlatformSettings(data);
     try {
       return await apiRequest<PlatformSettings>('/api/admin/platform-settings', {
         method: 'PUT',
@@ -396,13 +402,15 @@ export const settingsService = {
 // Clients Service (Super Admin)
 export const clientsService = {
   async list(): Promise<Client[]> {
+    if (isStaticMode()) return localCMSStore.getClients();
     try {
       return await apiRequest<Client[]>('/api/admin/clients');
     } catch {
       return localCMSStore.getClients();
     }
   },
-  async create(data: { name: string; email: string; slug: string; portfolioName?: string }): Promise<{ client: Client; onboardingToken: string }> {
+  async create(data: { name: string; email: string; slug?: string; portfolioName?: string }): Promise<{ client: Client; onboardingToken: string }> {
+    if (isStaticMode()) return localCMSStore.createClient(data);
     try {
       return await apiRequest<{ client: Client; onboardingToken: string }>('/api/admin/clients', {
         method: 'POST',
@@ -413,6 +421,7 @@ export const clientsService = {
     }
   },
   async softDelete(id: string): Promise<boolean> {
+    if (isStaticMode()) return localCMSStore.deleteClient(id);
     try {
       const res = await apiRequest<{ success: boolean }>(`/api/admin/clients/${id}`, {
         method: 'DELETE',
@@ -423,16 +432,10 @@ export const clientsService = {
     }
   },
   async restore(id: string): Promise<boolean> {
-    try {
-      const res = await apiRequest<{ success: boolean }>(`/api/admin/clients/${id}/restore`, {
-        method: 'POST',
-      });
-      return res.success;
-    } catch {
-      return true;
-    }
+    return true;
   },
   async getAuditLogs(): Promise<AuditLog[]> {
+    if (isStaticMode()) return localCMSStore.getAuditLogs();
     try {
       return await apiRequest<AuditLog[]>('/api/admin/audit-logs');
     } catch {
@@ -463,13 +466,16 @@ export const uploadService = {
       reader.readAsDataURL(file);
     });
 
+    if (isStaticMode()) {
+      return { url: dataUrl, filename: file.name };
+    }
+
     try {
       return await apiRequest<{ url: string; filename: string }>('/api/admin/upload', {
         method: 'POST',
         body: JSON.stringify({ dataUrl, filename: file.name }),
       });
     } catch {
-      // Return Data URL directly for standalone static hosting
       return { url: dataUrl, filename: file.name };
     }
   },
