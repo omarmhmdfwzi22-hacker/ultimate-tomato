@@ -1,0 +1,1290 @@
+{
+  "platform_settings": {
+    "id": "00e0959c-3ce0-4067-a19d-83100eefb3ae",
+    "platform_name": "ULTIMATE TOMATO",
+    "logo_url": "/assets/ultimate-tomato-logo.png",
+    "primary_color": "#F52F3A",
+    "support_email": "support@ultimatetomato.com",
+    "maintenance_mode": false,
+    "created_at": "2026-09-20T12:27:36.984Z",
+    "updated_at": "2026-09-20T12:27:36.984Z"
+  },
+  "clients": [
+    {
+      "id": "e26c9e5e-0d9d-4028-be1e-a3f888effae1",
+      "name": "Omar Mohamed Fawzi",
+      "email": "omar@ultimatetomato.com",
+      "status": "ACTIVE",
+      "onboarding_token": null,
+      "onboarding_completed": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "name": "Test Creative Studio",
+      "email": "teststudio@tomato.dev",
+      "status": "ACTIVE",
+      "onboarding_token": null,
+      "onboarding_completed": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.993Z",
+      "updated_at": "2026-09-20T12:27:36.996Z"
+    },
+    {
+      "id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "name": "Test Creative Studio",
+      "email": "teststudio@tomato.dev",
+      "status": "ACTIVE",
+      "onboarding_token": null,
+      "onboarding_completed": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:28:15.404Z",
+      "updated_at": "2026-09-20T12:28:15.409Z"
+    },
+    {
+      "id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "name": "Test Creative Studio",
+      "email": "studio-1789907332729@tomato.dev",
+      "status": "ACTIVE",
+      "onboarding_token": null,
+      "onboarding_completed": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:28:52.730Z",
+      "updated_at": "2026-09-20T12:28:52.734Z"
+    },
+    {
+      "id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "name": "Test Creative Studio",
+      "email": "studio-1789908388358@tomato.dev",
+      "status": "ACTIVE",
+      "onboarding_token": null,
+      "onboarding_completed": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:46:28.358Z",
+      "updated_at": "2026-09-20T12:46:28.363Z"
+    }
+  ],
+  "portfolios": [
+    {
+      "id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "client_id": "e26c9e5e-0d9d-4028-be1e-a3f888effae1",
+      "slug": "omar-mohamed-fawzi",
+      "name": "Omar Mohamed Fawzi Portfolio",
+      "published": true,
+      "status": "PUBLISHED",
+      "custom_domain": null,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "316e2d3d-1296-4a8f-813e-19070cf33c4d",
+      "client_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "slug": "test-creative-studio",
+      "name": "Test Creative Studio Showcase",
+      "published": true,
+      "status": "PUBLISHED",
+      "custom_domain": null,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.993Z",
+      "updated_at": "2026-09-20T12:27:36.999Z"
+    },
+    {
+      "id": "b5a91684-6c65-4292-aa40-1660bbd79484",
+      "client_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "slug": "test-creative-studio",
+      "name": "Test Creative Studio Showcase",
+      "published": true,
+      "status": "PUBLISHED",
+      "custom_domain": null,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:28:15.404Z",
+      "updated_at": "2026-09-20T12:28:15.415Z"
+    },
+    {
+      "id": "3e69c32c-b0cf-4377-b80b-90fade3185e0",
+      "client_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "slug": "test-studio-1789907332729",
+      "name": "Test Creative Studio Showcase",
+      "published": true,
+      "status": "PUBLISHED",
+      "custom_domain": null,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:28:52.730Z",
+      "updated_at": "2026-09-20T12:28:52.740Z"
+    },
+    {
+      "id": "1c72d9c7-40b6-4fa3-9708-68e3d0fb4678",
+      "client_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "slug": "test-studio-1789908388358",
+      "name": "Test Creative Studio Showcase",
+      "published": true,
+      "status": "PUBLISHED",
+      "custom_domain": null,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:46:28.358Z",
+      "updated_at": "2026-09-20T12:46:28.369Z"
+    }
+  ],
+  "users": [
+    {
+      "id": "a2fa3c86-5e32-4fac-a554-b2f2c2740e62",
+      "client_id": null,
+      "email": "admin@ultimatetomato.com",
+      "role": "SUPER_ADMIN",
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "cd26106e-e9fb-4c81-a206-117e173369f5",
+      "client_id": "e26c9e5e-0d9d-4028-be1e-a3f888effae1",
+      "email": "omar@ultimatetomato.com",
+      "role": "CLIENT",
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "687d1531-bd2e-4a3d-88d7-3c4805963f4d",
+      "client_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "email": "teststudio@tomato.dev",
+      "role": "CLIENT",
+      "created_at": "2026-09-20T12:27:36.996Z",
+      "updated_at": "2026-09-20T12:27:36.996Z"
+    },
+    {
+      "id": "c83e5207-e347-468b-8392-1a4655ef0cf0",
+      "client_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "email": "teststudio@tomato.dev",
+      "role": "CLIENT",
+      "created_at": "2026-09-20T12:28:15.409Z",
+      "updated_at": "2026-09-20T12:28:15.409Z"
+    },
+    {
+      "id": "a09ba456-85bd-465c-99c7-2031cc39c3fa",
+      "client_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "email": "studio-1789907332729@tomato.dev",
+      "role": "CLIENT",
+      "created_at": "2026-09-20T12:28:52.734Z",
+      "updated_at": "2026-09-20T12:28:52.734Z"
+    },
+    {
+      "id": "103728ff-b593-4b19-b0c5-e3da34a5f601",
+      "client_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "email": "studio-1789908388358@tomato.dev",
+      "role": "CLIENT",
+      "created_at": "2026-09-20T12:46:28.363Z",
+      "updated_at": "2026-09-20T12:46:28.363Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "5b8f505f-d75a-40be-817a-be9564e0ca9f",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "Web Applications",
+      "slug": "web-applications",
+      "description": "High-performance modern web apps and scalable SaaS frontends.",
+      "sort_order": 1,
+      "visible": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "642aa8be-f040-4793-b654-b7a23e435444",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "Creative Engineering",
+      "slug": "creative-engineering",
+      "description": "Interactive 3D visuals, micro-interactions, and glassmorphic designs.",
+      "sort_order": 2,
+      "visible": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "6746d53e-cf7b-4e21-a7c0-dbdf9336c0e7",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "UI/UX & Design Systems",
+      "slug": "ui-ux-design-systems",
+      "description": "Design token architecture, accessible components, and editorial styling.",
+      "sort_order": 3,
+      "visible": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "597a4f64-1605-404e-9d43-66d0515ddeea",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "Mobile Experiences",
+      "slug": "mobile-experiences",
+      "description": "Progressive mobile-first web applications and touch-optimized interfaces.",
+      "sort_order": 4,
+      "visible": true,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "09f71574-e39a-45f3-8190-4051f635c7ad",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "category_id": "642aa8be-f040-4793-b654-b7a23e435444",
+      "title": "Ultimate Tomato Creative Studio",
+      "slug": "ultimate-tomato-creative-studio",
+      "short_description": "Next-generation creative agency platform with real-time glassmorphism and tomato-red accents.",
+      "full_description": "An expansive creative showcase combining subtle depth, tactile micro-interactions, and high-performance WebGL glow effects designed for modern design agencies.",
+      "client": "Ultimate Tomato Labs",
+      "date": "2026",
+      "technologies": [
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "Motion",
+        "Vite"
+      ],
+      "tags": [
+        "Featured",
+        "Glassmorphism",
+        "Design System"
+      ],
+      "featured": true,
+      "published": true,
+      "hero_image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1600&q=80",
+      "project_url": "https://ultimatetomato.com",
+      "github_url": "https://github.com/omar-3moor/ultimate-tomato",
+      "challenge": "Constructing a design system that feels futuristic and tactile without compromising on Core Web Vitals or accessibility.",
+      "solution": "Built a 90/10 minimal-to-glass ratio, offloading blur filters to GPU compositor layers and utilizing CSS color-scheme adaptors.",
+      "results": "Achieved 98+ Lighthouse scores, sub-50ms interaction response, and unified design token parity across themes.",
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "80e1e5cc-667c-44ec-91ce-ebe2540bdbcc",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "category_id": "5b8f505f-d75a-40be-817a-be9564e0ca9f",
+      "title": "Linear-Inspired SaaS Control Hub",
+      "slug": "linear-inspired-saas-control-hub",
+      "short_description": "Minimalist command center with instant keyboard-first workflows and real-time synchronization.",
+      "full_description": "A dark-mode first enterprise management dashboard engineered for lightning-speed task triaging, inline editing, and multi-tenant data visualization.",
+      "client": "Fintech Core Inc.",
+      "date": "2025",
+      "technologies": [
+        "Next.js",
+        "PostgreSQL",
+        "TypeScript",
+        "Tailwind CSS",
+        "WebSockets"
+      ],
+      "tags": [
+        "SaaS",
+        "Dark Mode",
+        "Productivity"
+      ],
+      "featured": true,
+      "published": true,
+      "hero_image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=80",
+      "project_url": "https://example.com/saas-hub",
+      "github_url": "https://github.com/omar-3moor/saas-control",
+      "challenge": "Handling dense data tables with complex nested relational data while maintaining fluid 60fps scrolling.",
+      "solution": "Implemented virtualized list rendering, debounced server updates, and optimistic client-side mutation caches.",
+      "results": "Supported 10,000+ simultaneous live rows with zero frame drops.",
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "7305cb3b-101b-49cc-8eb5-937690400dd5",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "category_id": "6746d53e-cf7b-4e21-a7c0-dbdf9336c0e7",
+      "title": "Aether Editorial Portfolio Architecture",
+      "slug": "aether-editorial-portfolio-architecture",
+      "short_description": "Editorial-grade typography system and masonry showcase tailored for digital creators.",
+      "full_description": "Explores high-end typography hierarchy, large display typefaces, and asymmetrical masonry layouts designed for creative directors and senior developers.",
+      "client": "Studio Aether",
+      "date": "2025",
+      "technologies": [
+        "React",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Figma"
+      ],
+      "tags": [
+        "Editorial",
+        "Typography",
+        "Creative"
+      ],
+      "featured": false,
+      "published": true,
+      "hero_image": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1600&q=80",
+      "project_url": "https://example.com/aether",
+      "github_url": "https://github.com/omar-3moor/aether",
+      "challenge": "Bridging print typography sensibilities with fluid responsive web viewports across mobile and desktop.",
+      "solution": "Created fluid clamp() typography calculations and balanced grid systems that adjust dynamically.",
+      "results": "Awarded site of the day honors and benchmarked by hundreds of creative developers.",
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "d20d0e67-c16f-4c0e-b73a-d5006178c8f3",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "category_id": "597a4f64-1605-404e-9d43-66d0515ddeea",
+      "title": "Nova Touch-First Mobile Workspace",
+      "slug": "nova-touch-first-mobile-workspace",
+      "short_description": "[Draft Case Study] Upcoming gesture-driven mobile workspace for distributed teams.",
+      "full_description": "An innovative draft project testing native-like bottom sheets, haptic feedback hooks, and offline-first client storage.",
+      "client": "Internal R&D",
+      "date": "2026",
+      "technologies": [
+        "React Native Web",
+        "PWA",
+        "IndexedDB",
+        "Tailwind CSS"
+      ],
+      "tags": [
+        "Draft",
+        "Mobile",
+        "Experimental"
+      ],
+      "featured": false,
+      "published": false,
+      "hero_image": "https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=1600&q=80",
+      "project_url": "",
+      "github_url": "",
+      "challenge": "Achieving sub-16ms touch gesture response inside web containers.",
+      "solution": "Used CSS touch-action manipulation and passive wheel listeners with Web Workers.",
+      "results": "Early internal alpha shows 99% gesture parity with native apps.",
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "project_images": [
+    {
+      "id": "3cbe2f8b-338b-492c-8b09-488b58fb2480",
+      "project_id": "09f71574-e39a-45f3-8190-4051f635c7ad",
+      "image_url": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+      "alt_text": "Ultimate Tomato Studio Main Hero View",
+      "sort_order": 1,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "58d32a53-da65-46a8-81ea-79cebf04b287",
+      "project_id": "09f71574-e39a-45f3-8190-4051f635c7ad",
+      "image_url": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      "alt_text": "Glassmorphism Design Tokens & Elevation",
+      "sort_order": 2,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "74d368fb-a87b-4941-85fb-ddc3804bcb7e",
+      "project_id": "09f71574-e39a-45f3-8190-4051f635c7ad",
+      "image_url": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=1200&q=80",
+      "alt_text": "Micro-Interactions and Hover Dynamics",
+      "sort_order": 3,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "20429a15-5942-464a-8fca-1c380e55b156",
+      "project_id": "80e1e5cc-667c-44ec-91ce-ebe2540bdbcc",
+      "image_url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+      "alt_text": "Control Hub Overview & Analytics Dashboard",
+      "sort_order": 1,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "60a27e63-c7fe-4f37-b87e-55e945045d48",
+      "project_id": "80e1e5cc-667c-44ec-91ce-ebe2540bdbcc",
+      "image_url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "alt_text": "Multi-Tenant Permissions Matrix",
+      "sort_order": 2,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "381e047f-8e4b-4b38-91ae-4c12275fb089",
+      "project_id": "7305cb3b-101b-49cc-8eb5-937690400dd5",
+      "image_url": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
+      "alt_text": "Editorial Typography Spreads and Visual Grid",
+      "sort_order": 1,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "skills": [
+    {
+      "id": "853fc4f2-a7ba-44ec-a254-15651565c061",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "Modern React & TypeScript",
+      "category": "Development",
+      "level": 96,
+      "icon": "Code2",
+      "years": 6,
+      "sort_order": 1,
+      "visible": true,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "d7546b83-fe05-4a2d-9885-932ce49283e2",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "Design Systems & Tailwind CSS",
+      "category": "Design",
+      "level": 95,
+      "icon": "Palette",
+      "years": 5,
+      "sort_order": 2,
+      "visible": true,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "496e3ae1-0c2f-499c-bb14-f81f17c0b1bf",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "High-Performance UI & Animations",
+      "category": "Development",
+      "level": 92,
+      "icon": "Sparkles",
+      "years": 4,
+      "sort_order": 3,
+      "visible": true,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "1fef5b2e-2e0e-465c-a799-c3127953ec45",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "SaaS Architecture & Multi-Tenancy",
+      "category": "Architecture",
+      "level": 89,
+      "icon": "Server",
+      "years": 4,
+      "sort_order": 4,
+      "visible": true,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "c39936da-d8ef-4a29-a8b7-0098d18c553a",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "PostgreSQL & Database Design",
+      "category": "Architecture",
+      "level": 88,
+      "icon": "Database",
+      "years": 4,
+      "sort_order": 5,
+      "visible": true,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "eaa57c89-e3f8-4306-974f-c160be6d004b",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "UI/UX Prototyping & Glassmorphism",
+      "category": "Design",
+      "level": 90,
+      "icon": "Layout",
+      "years": 5,
+      "sort_order": 6,
+      "visible": true,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "experiences": [
+    {
+      "id": "46731533-60d1-47fb-bffb-7bf5923ae9fc",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "company": "Ultimate Tomato Studio",
+      "position": "Lead Creative Developer & Digital Architect",
+      "location": "Remote",
+      "start_date": "2024",
+      "end_date": "",
+      "current_position": true,
+      "description": "Architecting multi-tenant portfolio ecosystems, developing high-end interactive client web applications, and maintaining the Ultimate Tomato design system. [Editable placeholder]",
+      "technologies": [
+        "React 19",
+        "TypeScript",
+        "PostgreSQL",
+        "Tailwind CSS",
+        "Vite"
+      ],
+      "company_logo": "/assets/ultimate-tomato-logo.png",
+      "sort_order": 1,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "95a87ff0-8314-473e-a4df-040ceb6b0f92",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "company": "Independent Digital Craftsman",
+      "position": "Senior Frontend Engineer & UI Consultant",
+      "location": "Global / Remote",
+      "start_date": "2022",
+      "end_date": "2024",
+      "current_position": false,
+      "description": "Delivered bespoke web applications, design systems, and client portfolio experiences with focus on performance, accessibility, and modern aesthetics. [Editable placeholder]",
+      "technologies": [
+        "Next.js",
+        "Framer Motion",
+        "Tailwind CSS",
+        "Node.js"
+      ],
+      "company_logo": "",
+      "sort_order": 2,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "services": [
+    {
+      "id": "6dfd1b8e-f6ab-4710-a220-b8c7460fe9b1",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "title": "Full-Stack Web Development",
+      "description": "Building blazing-fast, responsive web applications engineered with React, TypeScript, and robust API architectures.",
+      "icon": "Code",
+      "features": [
+        "React 19 & TypeScript",
+        "PostgreSQL / Supabase Integration",
+        "Sub-second page speeds",
+        "Responsive across all devices"
+      ],
+      "price": "From $1,500",
+      "currency": "USD",
+      "cta": "Start Project",
+      "active": true,
+      "sort_order": 1,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "781518a8-98cf-4085-bfb0-48d53469afc6",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "title": "UI/UX & Design Systems",
+      "description": "Designing high-impact, cohesive visual languages, glassmorphic accents, and accessible component libraries.",
+      "icon": "Palette",
+      "features": [
+        "Bespoke Design Tokens",
+        "Dark & Light Mode Parity",
+        "Tactile Micro-Interactions",
+        "Figma to Production Code"
+      ],
+      "price": "From $1,200",
+      "currency": "USD",
+      "cta": "Request Design",
+      "active": true,
+      "sort_order": 2,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "1f649e5f-3881-4fc5-bf2b-32b977a90c40",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "title": "SaaS Platform Architecture",
+      "description": "Multi-tenant database modeling, secure authentication, role-based permissions, and high-volume data control hubs.",
+      "icon": "Layers",
+      "features": [
+        "Multi-Tenancy from Day 1",
+        "Row Level Security (RLS)",
+        "Automated Audit Logging",
+        "Scalable Cloud Storage"
+      ],
+      "price": "Custom",
+      "currency": "USD",
+      "cta": "Consult Architecture",
+      "active": true,
+      "sort_order": 3,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "2cb1604c-ff06-4e47-ad89-590e588727fe",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "Elena Rostova",
+      "role": "Design Director",
+      "company": "Studio Lumina",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+      "content": "Omar translated our most ambitious visual concepts into silky-smooth web interactions. His attention to typography and subtle glass depth is world-class.",
+      "rating": 5,
+      "published": true,
+      "sort_order": 1,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "5c5c49ca-f8f1-4ceb-9f52-365257d3e58c",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "name": "Marc Vance",
+      "role": "Founder & CEO",
+      "company": "HyperShift Labs",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+      "content": "Working with Omar on our SaaS dashboard set a whole new bar for our engineering team. Rapid delivery, flawless architecture, and zero technical debt.",
+      "rating": 5,
+      "published": true,
+      "sort_order": 2,
+      "deleted_at": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "social_links": [
+    {
+      "id": "ce1db1ad-2d08-4c9c-8904-cd0a5505da27",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "platform": "Facebook",
+      "url": "https://www.facebook.com/omar.mhmdfwzi",
+      "label": "Facebook Profile",
+      "icon": "Facebook",
+      "sort_order": 1,
+      "visible": true,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "f21a2476-f0a5-42f8-a4dc-90a4886cf30b",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "platform": "GitHub",
+      "url": "https://github.com/omar-3moor",
+      "label": "GitHub Repositories",
+      "icon": "Github",
+      "sort_order": 2,
+      "visible": true,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "5382bf45-3bef-4250-aec2-e9e9c2d44e1e",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "sender": "Sarah Connor",
+      "email": "sarah@skynet-research.org",
+      "subject": "Senior Architecture Consulting",
+      "message": "Hello Omar, we reviewed your creative portfolio and would love to collaborate.",
+      "status": "UNREAD",
+      "date": "2026-09-20T12:46:28.385Z"
+    },
+    {
+      "id": "a301b3b8-3fa4-4fad-9ca2-646fe821903c",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "sender": "Sarah Connor",
+      "email": "sarah@skynet-research.org",
+      "subject": "Senior Architecture Consulting",
+      "message": "Hello Omar, we reviewed your creative portfolio and would love to collaborate.",
+      "status": "UNREAD",
+      "date": "2026-09-20T12:28:52.756Z"
+    },
+    {
+      "id": "33ab21c3-ec30-4568-bd1e-a0bc34c835db",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "sender": "Sarah Connor",
+      "email": "sarah@skynet-research.org",
+      "subject": "Senior Architecture Consulting",
+      "message": "Hello Omar, we reviewed your creative portfolio and would love to collaborate.",
+      "status": "UNREAD",
+      "date": "2026-09-20T12:28:15.432Z"
+    },
+    {
+      "id": "4f84685a-1777-4751-aa80-9e34713f3689",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "sender": "Sarah Connor",
+      "email": "sarah@skynet-research.org",
+      "subject": "Senior Architecture Consulting",
+      "message": "Hello Omar, we reviewed your creative portfolio and would love to collaborate.",
+      "status": "UNREAD",
+      "date": "2026-09-20T12:27:37.011Z"
+    },
+    {
+      "id": "94b378b4-9908-4cec-b5ed-a621b2a91267",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "sender": "Sarah Jenkins",
+      "email": "sarah.jenkins@designcorp.io",
+      "subject": "Collaboration on Next-Gen SaaS Platform",
+      "message": "Hi Omar! We came across your creative work and would love to discuss a potential partnership on our upcoming design system and dashboard overhaul. Looking forward to connecting!",
+      "status": "UNREAD",
+      "date": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "29a45b65-8fa5-4d0c-9e0e-e7a3ce077aab",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "type": "MESSAGE",
+      "title": "Inquiry from Sarah Connor",
+      "message": "Senior Architecture Consulting",
+      "read": false,
+      "created_at": "2026-09-20T12:46:28.385Z"
+    },
+    {
+      "id": "94163cbc-795f-4f09-831e-7f4d46ce1eea",
+      "portfolio_id": "1c72d9c7-40b6-4fa3-9708-68e3d0fb4678",
+      "type": "SYSTEM",
+      "title": "Portfolio Published",
+      "message": "Your portfolio status has been updated to PUBLISHED.",
+      "read": false,
+      "created_at": "2026-09-20T12:46:28.369Z"
+    },
+    {
+      "id": "46d66d05-0568-45a2-b839-5c5f6e5998c4",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "type": "MESSAGE",
+      "title": "Inquiry from Sarah Connor",
+      "message": "Senior Architecture Consulting",
+      "read": false,
+      "created_at": "2026-09-20T12:28:52.756Z"
+    },
+    {
+      "id": "0b9c7de2-31f9-4091-b249-2cc5243222e7",
+      "portfolio_id": "3e69c32c-b0cf-4377-b80b-90fade3185e0",
+      "type": "SYSTEM",
+      "title": "Portfolio Published",
+      "message": "Your portfolio status has been updated to PUBLISHED.",
+      "read": false,
+      "created_at": "2026-09-20T12:28:52.741Z"
+    },
+    {
+      "id": "532de5a1-dc06-45c0-a96a-881655b87059",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "type": "MESSAGE",
+      "title": "Inquiry from Sarah Connor",
+      "message": "Senior Architecture Consulting",
+      "read": false,
+      "created_at": "2026-09-20T12:28:15.432Z"
+    },
+    {
+      "id": "7d783190-7c15-494d-8d5a-e5080fbd4014",
+      "portfolio_id": "b5a91684-6c65-4292-aa40-1660bbd79484",
+      "type": "SYSTEM",
+      "title": "Portfolio Published",
+      "message": "Your portfolio status has been updated to PUBLISHED.",
+      "read": false,
+      "created_at": "2026-09-20T12:28:15.415Z"
+    },
+    {
+      "id": "392dcfbd-6367-4bf7-b8a0-a097512fe5b1",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "type": "MESSAGE",
+      "title": "Inquiry from Sarah Connor",
+      "message": "Senior Architecture Consulting",
+      "read": false,
+      "created_at": "2026-09-20T12:27:37.011Z"
+    },
+    {
+      "id": "2fcae68b-b048-455f-9ba1-caa8aa9e5a01",
+      "portfolio_id": "316e2d3d-1296-4a8f-813e-19070cf33c4d",
+      "type": "SYSTEM",
+      "title": "Portfolio Published",
+      "message": "Your portfolio status has been updated to PUBLISHED.",
+      "read": false,
+      "created_at": "2026-09-20T12:27:37.000Z"
+    },
+    {
+      "id": "e325ea5a-f485-4ce2-a6c9-931a8b443b32",
+      "user_id": "cd26106e-e9fb-4c81-a206-117e173369f5",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "type": "MESSAGE",
+      "title": "New Contact Inquiry",
+      "message": "Sarah Jenkins sent you a message regarding Collaboration on Next-Gen SaaS Platform.",
+      "read": false,
+      "created_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "f18ab42a-3952-4fd0-90fd-8907c8e3b11b",
+      "user_id": "cd26106e-e9fb-4c81-a206-117e173369f5",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "type": "SYSTEM",
+      "title": "Welcome to Ultimate Tomato",
+      "message": "Your multi-tenant portfolio is live. You can edit all content, projects, and themes directly from your dashboard.",
+      "read": true,
+      "created_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "site_settings": [
+    {
+      "id": "9462b7ea-19a6-4084-ad47-1ab6f5d19ba1",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "title": "Omar Mohamed Fawzi — Creative Developer & Digital Builder",
+      "description": "Official portfolio of Omar Mohamed Fawzi, engineered by Ultimate Tomato. Specialized in high-performance web applications, modern SaaS interfaces, and creative engineering.",
+      "logo": "/assets/ultimate-tomato-logo.png",
+      "favicon": "/assets/ultimate-tomato-logo.png",
+      "primary_color": "#F52F3A",
+      "default_theme": "dark",
+      "seo_title": "Omar Mohamed Fawzi — Creative Developer & Digital Builder",
+      "seo_description": "Portfolio of Omar Mohamed Fawzi. Explore case studies, skills, experience, and creative projects built with modern web technologies.",
+      "og_image": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+      "contact_email": "omar@ultimatetomato.com",
+      "phone": "+20 100 000 0000",
+      "location": "Cairo, Egypt",
+      "professional_title": "Creative Developer & Digital Builder",
+      "bio": "Creative software engineer and digital builder passionate about building high-fidelity web experiences, fluid micro-interactions, and resilient SaaS architectures. Verified reference: facebook.com/omar.mhmdfwzi.",
+      "portrait_url": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
+      "resume_url": "",
+      "stats": {
+        "projects": 18,
+        "experience_years": 5,
+        "clients": 14,
+        "technologies": 24
+      },
+      "custom_domain": null,
+      "created_at": "2026-09-20T12:27:36.984Z",
+      "updated_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "e0342c41-9940-4e0f-8871-49222109ea41",
+      "portfolio_id": "316e2d3d-1296-4a8f-813e-19070cf33c4d",
+      "title": "Custom Showcase Title",
+      "description": "Welcome to the creative portfolio of Test Creative Studio.",
+      "primary_color": "#F52F3A",
+      "default_theme": "dark",
+      "bio": "Pioneering interactive design and creative software architectures.",
+      "professional_title": "Lead Design Technologist",
+      "stats": {
+        "projects": 0,
+        "experience_years": 0,
+        "clients": 0,
+        "technologies": 0
+      },
+      "created_at": "2026-09-20T12:27:36.993Z",
+      "updated_at": "2026-09-20T12:27:37.007Z"
+    },
+    {
+      "id": "b0dc5ec1-ecfd-439a-ad4b-354495310b1c",
+      "portfolio_id": "b5a91684-6c65-4292-aa40-1660bbd79484",
+      "title": "Custom Showcase Title",
+      "description": "Welcome to the creative portfolio of Test Creative Studio.",
+      "primary_color": "#F52F3A",
+      "default_theme": "dark",
+      "bio": "Pioneering interactive design and creative software architectures.",
+      "professional_title": "Lead Design Technologist",
+      "stats": {
+        "projects": 0,
+        "experience_years": 0,
+        "clients": 0,
+        "technologies": 0
+      },
+      "created_at": "2026-09-20T12:28:15.404Z",
+      "updated_at": "2026-09-20T12:28:15.429Z"
+    },
+    {
+      "id": "e909f652-cd77-45cd-834a-970a0c7d6a13",
+      "portfolio_id": "3e69c32c-b0cf-4377-b80b-90fade3185e0",
+      "title": "Custom Showcase Title",
+      "description": "Welcome to the creative portfolio of Test Creative Studio.",
+      "primary_color": "#F52F3A",
+      "default_theme": "dark",
+      "bio": "Pioneering interactive design and creative software architectures.",
+      "professional_title": "Lead Design Technologist",
+      "stats": {
+        "projects": 0,
+        "experience_years": 0,
+        "clients": 0,
+        "technologies": 0
+      },
+      "created_at": "2026-09-20T12:28:52.730Z",
+      "updated_at": "2026-09-20T12:28:52.753Z"
+    },
+    {
+      "id": "0b80dcb2-0688-4a13-905e-e072f642b6b6",
+      "portfolio_id": "1c72d9c7-40b6-4fa3-9708-68e3d0fb4678",
+      "title": "Custom Showcase Title",
+      "description": "Welcome to the creative portfolio of Test Creative Studio.",
+      "primary_color": "#F52F3A",
+      "default_theme": "dark",
+      "bio": "Pioneering interactive design and creative software architectures.",
+      "professional_title": "Lead Design Technologist",
+      "stats": {
+        "projects": 0,
+        "experience_years": 0,
+        "clients": 0,
+        "technologies": 0
+      },
+      "created_at": "2026-09-20T12:46:28.358Z",
+      "updated_at": "2026-09-20T12:46:28.381Z"
+    }
+  ],
+  "audit_logs": [
+    {
+      "id": "75cc8aed-affb-4201-acfc-8a442d7757ec",
+      "user_email": "studio-1789908388358@tomato.dev",
+      "portfolio_id": "1c72d9c7-40b6-4fa3-9708-68e3d0fb4678",
+      "action": "SITE_SETTINGS_UPDATED",
+      "entity_type": "SITE_SETTINGS",
+      "entity_id": "0b80dcb2-0688-4a13-905e-e072f642b6b6",
+      "details": {
+        "title": "Custom Showcase Title"
+      },
+      "created_at": "2026-09-20T12:46:28.381Z"
+    },
+    {
+      "id": "62beb8a0-7de1-4a61-9085-2961453f3dfb",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "action": "CLIENT_RESTORED",
+      "entity_type": "CLIENT",
+      "entity_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:46:28.376Z"
+    },
+    {
+      "id": "9f006ba3-52d7-431f-be63-fdc97193c467",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "action": "CLIENT_SOFT_DELETED",
+      "entity_type": "CLIENT",
+      "entity_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:46:28.373Z"
+    },
+    {
+      "id": "41c484a1-f4c6-4db3-a058-af27d272366d",
+      "user_email": "studio-1789908388358@tomato.dev",
+      "portfolio_id": "1c72d9c7-40b6-4fa3-9708-68e3d0fb4678",
+      "action": "PORTFOLIO_PUBLISHED",
+      "entity_type": "PORTFOLIO",
+      "entity_id": "1c72d9c7-40b6-4fa3-9708-68e3d0fb4678",
+      "details": {
+        "status": "PUBLISHED"
+      },
+      "created_at": "2026-09-20T12:46:28.369Z"
+    },
+    {
+      "id": "fd6d002f-4f03-4115-9873-47381b004e06",
+      "user_id": "103728ff-b593-4b19-b0c5-e3da34a5f601",
+      "user_email": "studio-1789908388358@tomato.dev",
+      "client_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "portfolio_id": "1c72d9c7-40b6-4fa3-9708-68e3d0fb4678",
+      "action": "ONBOARDING_COMPLETED",
+      "entity_type": "CLIENT",
+      "entity_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "details": {
+        "email": "studio-1789908388358@tomato.dev"
+      },
+      "created_at": "2026-09-20T12:46:28.365Z"
+    },
+    {
+      "id": "2ad8e422-1403-45c3-ae2b-218cb3658c4f",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "portfolio_id": "1c72d9c7-40b6-4fa3-9708-68e3d0fb4678",
+      "action": "CLIENT_INVITED",
+      "entity_type": "CLIENT",
+      "entity_id": "b8840542-ffa8-41d9-a2b5-652befb7f06a",
+      "details": {
+        "email": "studio-1789908388358@tomato.dev",
+        "slug": "test-studio-1789908388358"
+      },
+      "created_at": "2026-09-20T12:46:28.359Z"
+    },
+    {
+      "id": "ff4ea942-7aab-4789-89f4-7cba4f8bdfb4",
+      "user_email": "studio-1789907332729@tomato.dev",
+      "portfolio_id": "3e69c32c-b0cf-4377-b80b-90fade3185e0",
+      "action": "SITE_SETTINGS_UPDATED",
+      "entity_type": "SITE_SETTINGS",
+      "entity_id": "e909f652-cd77-45cd-834a-970a0c7d6a13",
+      "details": {
+        "title": "Custom Showcase Title"
+      },
+      "created_at": "2026-09-20T12:28:52.753Z"
+    },
+    {
+      "id": "d718d4ac-4443-404b-9dac-ef9ff3a91fe7",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "action": "CLIENT_RESTORED",
+      "entity_type": "CLIENT",
+      "entity_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:28:52.749Z"
+    },
+    {
+      "id": "fa166324-ff37-4a86-934e-cdd6ce58cf35",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "action": "CLIENT_SOFT_DELETED",
+      "entity_type": "CLIENT",
+      "entity_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:28:52.744Z"
+    },
+    {
+      "id": "42e4bd17-e41c-4131-a5e2-6312f627f1a9",
+      "user_email": "studio-1789907332729@tomato.dev",
+      "portfolio_id": "3e69c32c-b0cf-4377-b80b-90fade3185e0",
+      "action": "PORTFOLIO_PUBLISHED",
+      "entity_type": "PORTFOLIO",
+      "entity_id": "3e69c32c-b0cf-4377-b80b-90fade3185e0",
+      "details": {
+        "status": "PUBLISHED"
+      },
+      "created_at": "2026-09-20T12:28:52.740Z"
+    },
+    {
+      "id": "7ee94c72-206a-4331-be82-09409a19b102",
+      "user_id": "a09ba456-85bd-465c-99c7-2031cc39c3fa",
+      "user_email": "studio-1789907332729@tomato.dev",
+      "client_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "portfolio_id": "3e69c32c-b0cf-4377-b80b-90fade3185e0",
+      "action": "ONBOARDING_COMPLETED",
+      "entity_type": "CLIENT",
+      "entity_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "details": {
+        "email": "studio-1789907332729@tomato.dev"
+      },
+      "created_at": "2026-09-20T12:28:52.737Z"
+    },
+    {
+      "id": "54caf365-f62a-40e2-b343-296d728cc15b",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "portfolio_id": "3e69c32c-b0cf-4377-b80b-90fade3185e0",
+      "action": "CLIENT_INVITED",
+      "entity_type": "CLIENT",
+      "entity_id": "88c4adf3-2a02-470c-9d7c-02b1c505c2d3",
+      "details": {
+        "email": "studio-1789907332729@tomato.dev",
+        "slug": "test-studio-1789907332729"
+      },
+      "created_at": "2026-09-20T12:28:52.731Z"
+    },
+    {
+      "id": "c008673f-665d-4004-93d4-e0330b527709",
+      "user_email": "teststudio@tomato.dev",
+      "portfolio_id": "b5a91684-6c65-4292-aa40-1660bbd79484",
+      "action": "SITE_SETTINGS_UPDATED",
+      "entity_type": "SITE_SETTINGS",
+      "entity_id": "b0dc5ec1-ecfd-439a-ad4b-354495310b1c",
+      "details": {
+        "title": "Custom Showcase Title"
+      },
+      "created_at": "2026-09-20T12:28:15.429Z"
+    },
+    {
+      "id": "50dce87a-2382-4ec1-b2e3-b198c92d6ba1",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "action": "CLIENT_RESTORED",
+      "entity_type": "CLIENT",
+      "entity_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:28:15.421Z"
+    },
+    {
+      "id": "f467cdb8-f15a-479f-9b86-49cc94662d2a",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "action": "CLIENT_SOFT_DELETED",
+      "entity_type": "CLIENT",
+      "entity_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:28:15.418Z"
+    },
+    {
+      "id": "0de36977-f4c5-4dd8-9388-bfd6968c2733",
+      "user_email": "teststudio@tomato.dev",
+      "portfolio_id": "b5a91684-6c65-4292-aa40-1660bbd79484",
+      "action": "PORTFOLIO_PUBLISHED",
+      "entity_type": "PORTFOLIO",
+      "entity_id": "b5a91684-6c65-4292-aa40-1660bbd79484",
+      "details": {
+        "status": "PUBLISHED"
+      },
+      "created_at": "2026-09-20T12:28:15.415Z"
+    },
+    {
+      "id": "64d07256-90f9-403a-9f31-b9c2fd42907e",
+      "user_id": "c83e5207-e347-468b-8392-1a4655ef0cf0",
+      "user_email": "teststudio@tomato.dev",
+      "client_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "portfolio_id": "b5a91684-6c65-4292-aa40-1660bbd79484",
+      "action": "ONBOARDING_COMPLETED",
+      "entity_type": "CLIENT",
+      "entity_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "details": {
+        "email": "teststudio@tomato.dev"
+      },
+      "created_at": "2026-09-20T12:28:15.410Z"
+    },
+    {
+      "id": "1626884c-d932-401d-a5c1-6ee285aec2ca",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "portfolio_id": "b5a91684-6c65-4292-aa40-1660bbd79484",
+      "action": "CLIENT_INVITED",
+      "entity_type": "CLIENT",
+      "entity_id": "745f33f4-bb69-46d0-a381-ad9b08f7a347",
+      "details": {
+        "email": "teststudio@tomato.dev",
+        "slug": "test-creative-studio"
+      },
+      "created_at": "2026-09-20T12:28:15.405Z"
+    },
+    {
+      "id": "df11ae71-e4c1-4001-ab3a-0a37004a3f7b",
+      "user_email": "teststudio@tomato.dev",
+      "portfolio_id": "316e2d3d-1296-4a8f-813e-19070cf33c4d",
+      "action": "SITE_SETTINGS_UPDATED",
+      "entity_type": "SITE_SETTINGS",
+      "entity_id": "e0342c41-9940-4e0f-8871-49222109ea41",
+      "details": {
+        "title": "Custom Showcase Title"
+      },
+      "created_at": "2026-09-20T12:27:37.007Z"
+    },
+    {
+      "id": "6773012e-cb48-4c49-a2b5-42a36b2e0561",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "action": "CLIENT_RESTORED",
+      "entity_type": "CLIENT",
+      "entity_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:27:37.005Z"
+    },
+    {
+      "id": "cead197a-f2ab-4f91-9b0f-51c6facff900",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "action": "CLIENT_SOFT_DELETED",
+      "entity_type": "CLIENT",
+      "entity_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "details": {
+        "client_name": "Test Creative Studio"
+      },
+      "created_at": "2026-09-20T12:27:37.003Z"
+    },
+    {
+      "id": "09bafd31-85ae-44e7-b33f-1e1a5baed60b",
+      "user_email": "teststudio@tomato.dev",
+      "portfolio_id": "316e2d3d-1296-4a8f-813e-19070cf33c4d",
+      "action": "PORTFOLIO_PUBLISHED",
+      "entity_type": "PORTFOLIO",
+      "entity_id": "316e2d3d-1296-4a8f-813e-19070cf33c4d",
+      "details": {
+        "status": "PUBLISHED"
+      },
+      "created_at": "2026-09-20T12:27:37.000Z"
+    },
+    {
+      "id": "40c91809-0677-4fad-b683-b21156536bcf",
+      "user_id": "687d1531-bd2e-4a3d-88d7-3c4805963f4d",
+      "user_email": "teststudio@tomato.dev",
+      "client_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "portfolio_id": "316e2d3d-1296-4a8f-813e-19070cf33c4d",
+      "action": "ONBOARDING_COMPLETED",
+      "entity_type": "CLIENT",
+      "entity_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "details": {
+        "email": "teststudio@tomato.dev"
+      },
+      "created_at": "2026-09-20T12:27:36.996Z"
+    },
+    {
+      "id": "e7356e33-c6ba-476d-b13a-371e13a327e3",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "portfolio_id": "316e2d3d-1296-4a8f-813e-19070cf33c4d",
+      "action": "CLIENT_INVITED",
+      "entity_type": "CLIENT",
+      "entity_id": "7f125108-566e-42d0-90e3-f210725780c8",
+      "details": {
+        "email": "teststudio@tomato.dev",
+        "slug": "test-creative-studio"
+      },
+      "created_at": "2026-09-20T12:27:36.993Z"
+    },
+    {
+      "id": "79b4967a-12ca-4cbc-8a47-c411265abddf",
+      "user_id": "a2fa3c86-5e32-4fac-a554-b2f2c2740e62",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "e26c9e5e-0d9d-4028-be1e-a3f888effae1",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "action": "PLATFORM_INITIALIZED",
+      "entity_type": "PLATFORM",
+      "entity_id": "00e0959c-3ce0-4067-a19d-83100eefb3ae",
+      "details": {
+        "message": "Ultimate Tomato multi-tenant engine initialized."
+      },
+      "created_at": "2026-09-20T12:27:36.984Z"
+    },
+    {
+      "id": "d3bcd4c3-ad0c-47da-9e39-d47fd90561fe",
+      "user_id": "a2fa3c86-5e32-4fac-a554-b2f2c2740e62",
+      "user_email": "admin@ultimatetomato.com",
+      "client_id": "e26c9e5e-0d9d-4028-be1e-a3f888effae1",
+      "portfolio_id": "9ff3691c-3674-4543-bf36-5f0c142b0bf9",
+      "action": "CLIENT_CREATED",
+      "entity_type": "CLIENT",
+      "entity_id": "e26c9e5e-0d9d-4028-be1e-a3f888effae1",
+      "details": {
+        "client_name": "Omar Mohamed Fawzi",
+        "slug": "omar"
+      },
+      "created_at": "2026-09-20T12:27:36.984Z"
+    }
+  ],
+  "auth_credentials": [
+    {
+      "email": "admin@ultimatetomato.com",
+      "passwordHash": "2fd41e1f7b0c66042472d871f0d416cfd2d7fb61c41dda0672e2a370e7ffb93c",
+      "userId": "a2fa3c86-5e32-4fac-a554-b2f2c2740e62",
+      "role": "SUPER_ADMIN"
+    },
+    {
+      "email": "omar@ultimatetomato.com",
+      "passwordHash": "7b7375b4105cb1cce0cec22d4254d96ac195775616fa148417f145e36f9d0988",
+      "userId": "cd26106e-e9fb-4c81-a206-117e173369f5",
+      "role": "CLIENT"
+    },
+    {
+      "email": "teststudio@tomato.dev",
+      "passwordHash": "486f0a9839674a9dfcf52efbffe2469b01b87f5e5c967ec8f0ee3b7d9a308a8c",
+      "userId": "687d1531-bd2e-4a3d-88d7-3c4805963f4d",
+      "role": "CLIENT"
+    },
+    {
+      "email": "teststudio@tomato.dev",
+      "passwordHash": "486f0a9839674a9dfcf52efbffe2469b01b87f5e5c967ec8f0ee3b7d9a308a8c",
+      "userId": "c83e5207-e347-468b-8392-1a4655ef0cf0",
+      "role": "CLIENT"
+    },
+    {
+      "email": "studio-1789907332729@tomato.dev",
+      "passwordHash": "486f0a9839674a9dfcf52efbffe2469b01b87f5e5c967ec8f0ee3b7d9a308a8c",
+      "userId": "a09ba456-85bd-465c-99c7-2031cc39c3fa",
+      "role": "CLIENT"
+    },
+    {
+      "email": "studio-1789908388358@tomato.dev",
+      "passwordHash": "486f0a9839674a9dfcf52efbffe2469b01b87f5e5c967ec8f0ee3b7d9a308a8c",
+      "userId": "103728ff-b593-4b19-b0c5-e3da34a5f601",
+      "role": "CLIENT"
+    }
+  ]
+}

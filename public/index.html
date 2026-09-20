@@ -3,29 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>QuickDrop — Cross-Device File & Text Transfer</title>
-    <meta name="description" content="Fast, private cross-device peer-to-peer file and text transfer powered by WebRTC." />
-    <meta property="og:title" content="QuickDrop — Cross-Device File & Text Transfer" />
-    <meta property="og:description" content="Fast, private cross-device peer-to-peer file and text transfer powered by WebRTC." />
+    <title>Ultimate Tomato — Creative Portfolio Platform</title>
+    <meta name="description" content="Ultimate Tomato is a multi-tenant creative portfolio CMS and hosting platform. Crafted with precision, minimalist aesthetics, and soft depth." />
+    <meta property="og:title" content="Ultimate Tomato — Creative Portfolio Platform" />
+    <meta property="og:description" content="Discover creative client portfolios, case studies, and engineering craft." />
+    <meta property="og:image" content="/assets/ultimate-tomato-logo.png" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="theme-color" content="#09090b" />
-    <link rel="manifest" href="./public/manifest.json" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {}
-        }
-      };
-    </script>
+    <meta name="theme-color" content="#050505" />
+    <link rel="icon" type="image/png" href="/assets/ultimate-tomato-logo.png" />
+    <link rel="apple-touch-icon" href="/assets/ultimate-tomato-logo.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
     <style>
       *, *::before, *::after {
         box-sizing: border-box;
       }
       html, body {
-        background-color: #09090b;
+        background-color: #050505;
+        color: #FFFFFF;
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         margin: 0;
         padding: 0;
         min-height: 100%;
@@ -36,7 +37,8 @@
         -webkit-text-size-adjust: 100%;
       }
       html.light, html.light body {
-        background-color: #fafafa;
+        background-color: #FAFAFA;
+        color: #09090B;
       }
       #root {
         min-height: 100%;
@@ -50,15 +52,16 @@
       }
     </style>
   </head>
-  <body class="bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 min-h-screen transition-colors duration-200">
+  <body class="bg-zinc-50 text-zinc-900 dark:bg-[#050505] dark:text-white min-h-screen transition-colors duration-200 antialiased selection:bg-[#F52F3A]/20 selection:text-[#F52F3A]">
     <div id="root">
-      <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#09090b;color:#f4f4f5;font-family:system-ui,-apple-system,sans-serif;padding:20px;text-align:center;">
-        <div style="width:48px;height:48px;border-radius:14px;background:linear-gradient(135deg,#0284c7,#2563eb);margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 8px 24px rgba(37,99,235,0.4);">⚡</div>
-        <div style="font-size:18px;font-weight:800;letter-spacing:-0.5px;color:#f4f4f5;margin-bottom:6px;">QuickDrop</div>
-        <div style="font-size:12px;color:#71717a;">جاري تحميل التطبيق...</div>
+      <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050505;color:#ffffff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:24px;text-align:center;">
+        <div style="width:64px;height:64px;border-radius:20px;background:rgba(245,47,58,0.1);border:1px solid rgba(245,47,58,0.25);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 32px rgba(245,47,58,0.25);">
+          <img src="/assets/ultimate-tomato-logo.png" alt="Ultimate Tomato" style="width:40px;height:40px;object-contain:contain;" />
+        </div>
+        <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#ffffff;margin-bottom:8px;">ULTIMATE TOMATO</div>
+        <div style="font-size:13px;color:#71717a;font-weight:500;">Loading portfolio experience...</div>
       </div>
     </div>
-    <script type="module" src="./app.js?v=2.2.0"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>
-
