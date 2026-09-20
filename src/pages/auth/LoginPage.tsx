@@ -5,12 +5,18 @@ import { Lock, Mail, ArrowRight, AlertCircle, Loader2, Sparkles } from 'lucide-r
 
 export function LoginPage() {
   const { navigate } = useRouter();
-  const { login } = useAuth();
+  const { login, user, isLoading: isAuthLoading } = useAuth();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  React.useEffect(() => {
+    if (!isAuthLoading && user) {
+      navigate('/dashboard');
+    }
+  }, [isAuthLoading, user, navigate]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();

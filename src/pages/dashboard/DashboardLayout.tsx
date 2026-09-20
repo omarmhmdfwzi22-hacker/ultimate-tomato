@@ -88,6 +88,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     navigate(href);
   };
 
+  const handleLogout = async () => {
+    navigate('/');
+    await logout();
+  };
+
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-[#070707] text-zinc-900 dark:text-white flex flex-col md:flex-row transition-colors">
       {/* ==========================================
@@ -193,7 +198,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             </div>
 
             <button
-              onClick={logout}
+              onClick={handleLogout}
               className="p-1.5 text-zinc-400 hover:text-[#F52F3A] transition-colors rounded-lg"
               title="Sign Out"
             >

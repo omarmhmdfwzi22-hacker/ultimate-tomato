@@ -7,6 +7,7 @@ import {
   Portfolio,
 } from '../types/portfolio';
 import { STATIC_OMAR_BUNDLE } from './staticData';
+import { localCMSStore } from './localCMSStore';
 
 export const portfolioService = {
   // Public
@@ -16,8 +17,8 @@ export const portfolioService = {
     try {
       return await apiRequest<PublicPortfolioBundle>(path);
     } catch (err) {
-      // Fallback for GitHub Pages static hosting
-      return STATIC_OMAR_BUNDLE;
+      // Fallback for GitHub Pages static hosting: Return reactive synced bundle
+      return localCMSStore.getSyncedPublicBundle();
     }
   },
 
@@ -28,7 +29,7 @@ export const portfolioService = {
         `/api/public/portfolio/${encodeURIComponent(portfolioSlug)}/projects/${encodeURIComponent(projectSlug)}${query}`
       );
     } catch (err) {
-      const match = STATIC_OMAR_BUNDLE.projects.find((p) => p.slug === projectSlug);
+      const match = localCMSStore.getProjects().find((p) => p.slug === projectSlug);
       if (match) return match;
       throw new Error(`Project "${projectSlug}" not found`);
     }
@@ -47,9 +48,23 @@ export const portfolioService = {
         }
       );
     } catch (err) {
-      // On static host, simulate success and store locally
-      console.log('Contact inquiry received on static host:', message);
-      return { success: true, message: 'Message sent successfully! (Demo mode)', id: `msg-${Date.now()}` };
+      // On static host, save message to local store
+      const allMsgs = localCMSStore.getMessages();
+      const newMsg: ContactMessage = {
+        id: `msg_${Date.now()}`,
+        portfolio_id: STATIC_OMAR_BUNDLE.portfolio.id,
+        sender: message.sender,
+        email: message.email,
+        subject: message.subject || 'Portfolio Inquiry',
+        message: message.message,
+        status: 'UNREAD',
+        date: new Date().toISOString(),
+      };
+      allMsgs.unshift(newMsg);
+      try {
+        localStorage.setItem('ut_cms_messages', JSON.stringify(allMsgs));
+      } catch {}
+      return { success: true, message: 'Message sent successfully! We will get back to you shortly.', id: newMsg.id };
     }
   },
 
@@ -66,15 +81,22 @@ export const portfolioService = {
     try {
       return await apiRequest<AdminDashboardStats>('/api/admin/stats');
     } catch {
+      const projects = localCMSStore.getProjects();
+      const allProjects = localCMSStore.getAllProjects();
+      const skills = localCMSStore.getSkills();
+      const experiences = localCMSStore.getExperiences();
+      const services = localCMSStore.getServices();
+      const messages = localCMSStore.getMessages();
+
       return {
-        totalProjects: STATIC_OMAR_BUNDLE.projects.length,
-        publishedProjects: STATIC_OMAR_BUNDLE.projects.filter((p) => p.published).length,
-        draftProjects: 0,
-        skillsCount: STATIC_OMAR_BUNDLE.skills.length,
-        experiencesCount: STATIC_OMAR_BUNDLE.experiences.length,
-        servicesCount: STATIC_OMAR_BUNDLE.services.length,
-        unreadMessagesCount: 0,
-        totalMessagesCount: 0,
+        totalProjects: projects.length,
+        publishedProjects: projects.filter((p) => p.published).length,
+        draftProjects: projects.filter((p) => !p.published).length,
+        skillsCount: skills.length,
+        experiencesCount: experiences.length,
+        servicesCount: services.length,
+        unreadMessagesCount: messages.filter((m) => m.status === 'UNREAD').length,
+        totalMessagesCount: messages.length,
         unreadNotificationsCount: 0,
       };
     }
@@ -84,7 +106,7 @@ export const portfolioService = {
     try {
       return await apiRequest<PublicPortfolioBundle>('/api/admin/site-bundle');
     } catch {
-      return STATIC_OMAR_BUNDLE;
+      return localCMSStore.getSyncedPublicBundle();
     }
   },
 

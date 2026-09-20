@@ -75,48 +75,53 @@ export const authService = {
   },
 
   async logout(): Promise<void> {
-    try {
-      await apiRequest('/api/auth/logout', { method: 'POST' });
-    } catch {
-      // Ignore on static host
-    } finally {
-      setStoredToken(null);
+    const token = getStoredToken();
+    if (token && !token.startsWith('static-')) {
+      try {
+        await apiRequest('/api/auth/logout', { method: 'POST' });
+      } catch {
+        // Ignore on static host
+      }
     }
+    setStoredToken(null);
   },
 
   async getCurrentUser(): Promise<{ user: User; portfolio?: Portfolio } | null> {
     const token = getStoredToken();
     if (!token) return null;
+
+    // Instant resolution for static tokens without waiting for failing API call
+    if (token === 'static-admin-token') {
+      return {
+        user: {
+          id: 'super-admin-001',
+          client_id: null,
+          email: 'admin@ultimatetomato.com',
+          role: 'SUPER_ADMIN',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        portfolio: STATIC_OMAR_BUNDLE.portfolio,
+      };
+    }
+
+    if (token === 'static-omar-token' || token === 'static-onboarded-token') {
+      return {
+        user: {
+          id: STATIC_OMAR_BUNDLE.client.id,
+          client_id: STATIC_OMAR_BUNDLE.client.id,
+          email: 'omar@ultimatetomato.com',
+          role: 'CLIENT',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        portfolio: STATIC_OMAR_BUNDLE.portfolio,
+      };
+    }
+
     try {
       return await apiRequest<{ user: User; portfolio?: Portfolio }>('/api/auth/me');
     } catch {
-      // Static fallback check
-      if (token === 'static-admin-token') {
-        return {
-          user: {
-            id: 'super-admin-001',
-            client_id: null,
-            email: 'admin@ultimatetomato.com',
-            role: 'SUPER_ADMIN',
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-          },
-          portfolio: STATIC_OMAR_BUNDLE.portfolio,
-        };
-      }
-      if (token === 'static-omar-token') {
-        return {
-          user: {
-            id: STATIC_OMAR_BUNDLE.client.id,
-            client_id: STATIC_OMAR_BUNDLE.client.id,
-            email: 'omar@ultimatetomato.com',
-            role: 'CLIENT',
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-          },
-          portfolio: STATIC_OMAR_BUNDLE.portfolio,
-        };
-      }
       setStoredToken(null);
       return null;
     }

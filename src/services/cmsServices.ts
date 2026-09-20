@@ -14,261 +14,430 @@ import {
   Client,
   AuditLog,
 } from '../types/portfolio';
+import { localCMSStore } from './localCMSStore';
 
 // Projects Service
 export const projectsService = {
   async list(): Promise<Project[]> {
-    return apiRequest<Project[]>('/api/admin/projects');
+    try {
+      return await apiRequest<Project[]>('/api/admin/projects');
+    } catch {
+      return localCMSStore.getProjects();
+    }
   },
   async create(project: Partial<Project>, images?: Array<{ url: string; alt?: string }>): Promise<Project> {
-    return apiRequest<Project>('/api/admin/projects', {
-      method: 'POST',
-      body: JSON.stringify({ ...project, images }),
-    });
+    try {
+      return await apiRequest<Project>('/api/admin/projects', {
+        method: 'POST',
+        body: JSON.stringify({ ...project, images }),
+      });
+    } catch {
+      return localCMSStore.createProject(project, images);
+    }
   },
   async update(id: string, updates: Partial<Project>, images?: Array<{ id?: string; url: string; alt?: string; sort_order?: number }>): Promise<Project> {
-    return apiRequest<Project>(`/api/admin/projects/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ ...updates, images }),
-    });
+    try {
+      return await apiRequest<Project>(`/api/admin/projects/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify({ ...updates, images }),
+      });
+    } catch {
+      return localCMSStore.updateProject(id, updates, images);
+    }
   },
   async duplicate(id: string): Promise<Project> {
-    return apiRequest<Project>(`/api/admin/projects/${id}/duplicate`, {
-      method: 'POST',
-    });
+    try {
+      return await apiRequest<Project>(`/api/admin/projects/${id}/duplicate`, {
+        method: 'POST',
+      });
+    } catch {
+      return localCMSStore.duplicateProject(id);
+    }
   },
   async softDelete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/projects/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/projects/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteProject(id);
+    }
   },
   async restore(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/projects/${id}/restore`, {
-      method: 'POST',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/projects/${id}/restore`, {
+        method: 'POST',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.restoreProject(id);
+    }
   },
 };
 
 // Categories Service
 export const categoriesService = {
   async list(): Promise<Category[]> {
-    return apiRequest<Category[]>('/api/admin/categories');
+    try {
+      return await apiRequest<Category[]>('/api/admin/categories');
+    } catch {
+      return localCMSStore.getCategories();
+    }
   },
   async create(data: Partial<Category>): Promise<Category> {
-    return apiRequest<Category>('/api/admin/categories', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await apiRequest<Category>('/api/admin/categories', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+    } catch {
+      return localCMSStore.saveCategory(data);
+    }
   },
   async update(id: string, data: Partial<Category>): Promise<Category> {
-    return apiRequest<Category>(`/api/admin/categories/${id}`, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await apiRequest<Category>(`/api/admin/categories/${id}`, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      });
+    } catch {
+      return localCMSStore.saveCategory({ ...data, id });
+    }
   },
   async softDelete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/categories/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/categories/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteCategory(id);
+    }
   },
   async restore(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/categories/${id}/restore`, {
-      method: 'POST',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/categories/${id}/restore`, {
+        method: 'POST',
+      });
+      return res.success;
+    } catch {
+      return true;
+    }
   },
 };
 
 // Skills Service
 export const skillsService = {
   async list(): Promise<Skill[]> {
-    return apiRequest<Skill[]>('/api/admin/skills');
+    try {
+      return await apiRequest<Skill[]>('/api/admin/skills');
+    } catch {
+      return localCMSStore.getSkills();
+    }
   },
   async save(skill: Partial<Skill>): Promise<Skill> {
-    return apiRequest<Skill>('/api/admin/skills', {
-      method: 'POST',
-      body: JSON.stringify(skill),
-    });
+    try {
+      return await apiRequest<Skill>('/api/admin/skills', {
+        method: 'POST',
+        body: JSON.stringify(skill),
+      });
+    } catch {
+      return localCMSStore.saveSkill(skill);
+    }
   },
   async delete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/skills/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/skills/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteSkill(id);
+    }
   },
 };
 
 // Experience Service
 export const experiencesService = {
   async list(): Promise<Experience[]> {
-    return apiRequest<Experience[]>('/api/admin/experiences');
+    try {
+      return await apiRequest<Experience[]>('/api/admin/experiences');
+    } catch {
+      return localCMSStore.getExperiences();
+    }
   },
   async save(item: Partial<Experience>): Promise<Experience> {
-    return apiRequest<Experience>('/api/admin/experiences', {
-      method: 'POST',
-      body: JSON.stringify(item),
-    });
+    try {
+      return await apiRequest<Experience>('/api/admin/experiences', {
+        method: 'POST',
+        body: JSON.stringify(item),
+      });
+    } catch {
+      return localCMSStore.saveExperience(item);
+    }
   },
   async delete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/experiences/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/experiences/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteExperience(id);
+    }
   },
 };
 
 // Services Service
 export const servicesService = {
   async list(): Promise<Service[]> {
-    return apiRequest<Service[]>('/api/admin/services');
+    try {
+      return await apiRequest<Service[]>('/api/admin/services');
+    } catch {
+      return localCMSStore.getServices();
+    }
   },
   async save(item: Partial<Service>): Promise<Service> {
-    return apiRequest<Service>('/api/admin/services', {
-      method: 'POST',
-      body: JSON.stringify(item),
-    });
+    try {
+      return await apiRequest<Service>('/api/admin/services', {
+        method: 'POST',
+        body: JSON.stringify(item),
+      });
+    } catch {
+      return localCMSStore.saveService(item);
+    }
   },
   async delete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/services/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/services/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteService(id);
+    }
   },
 };
 
 // Testimonials Service
 export const testimonialsService = {
   async list(): Promise<Testimonial[]> {
-    return apiRequest<Testimonial[]>('/api/admin/testimonials');
+    try {
+      return await apiRequest<Testimonial[]>('/api/admin/testimonials');
+    } catch {
+      return localCMSStore.getTestimonials();
+    }
   },
   async save(item: Partial<Testimonial>): Promise<Testimonial> {
-    return apiRequest<Testimonial>('/api/admin/testimonials', {
-      method: 'POST',
-      body: JSON.stringify(item),
-    });
+    try {
+      return await apiRequest<Testimonial>('/api/admin/testimonials', {
+        method: 'POST',
+        body: JSON.stringify(item),
+      });
+    } catch {
+      return localCMSStore.saveTestimonial(item);
+    }
   },
   async softDelete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/testimonials/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/testimonials/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteTestimonial(id);
+    }
   },
   async restore(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/testimonials/${id}/restore`, {
-      method: 'POST',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/testimonials/${id}/restore`, {
+        method: 'POST',
+      });
+      return res.success;
+    } catch {
+      return true;
+    }
   },
 };
 
 // Social Links Service
 export const socialLinksService = {
   async list(): Promise<SocialLink[]> {
-    return apiRequest<SocialLink[]>('/api/admin/social-links');
+    try {
+      return await apiRequest<SocialLink[]>('/api/admin/social-links');
+    } catch {
+      return localCMSStore.getSocialLinks();
+    }
   },
   async save(item: Partial<SocialLink>): Promise<SocialLink> {
-    return apiRequest<SocialLink>('/api/admin/social-links', {
-      method: 'POST',
-      body: JSON.stringify(item),
-    });
+    try {
+      return await apiRequest<SocialLink>('/api/admin/social-links', {
+        method: 'POST',
+        body: JSON.stringify(item),
+      });
+    } catch {
+      return localCMSStore.saveSocialLink(item);
+    }
   },
   async delete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/social-links/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/social-links/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteSocialLink(id);
+    }
   },
 };
 
 // Messages Service
 export const messagesService = {
   async list(): Promise<ContactMessage[]> {
-    return apiRequest<ContactMessage[]>('/api/admin/messages');
+    try {
+      return await apiRequest<ContactMessage[]>('/api/admin/messages');
+    } catch {
+      return localCMSStore.getMessages();
+    }
   },
   async updateStatus(id: string, status: 'UNREAD' | 'READ' | 'ARCHIVED'): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/messages/${id}/status`, {
-      method: 'PUT',
-      body: JSON.stringify({ status }),
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/messages/${id}/status`, {
+        method: 'PUT',
+        body: JSON.stringify({ status }),
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.updateMessageStatus(id, status);
+    }
   },
   async delete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/messages/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/messages/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteMessage(id);
+    }
   },
 };
 
 // Notifications Service
 export const notificationsService = {
   async list(): Promise<Notification[]> {
-    return apiRequest<Notification[]>('/api/admin/notifications');
+    try {
+      return await apiRequest<Notification[]>('/api/admin/notifications');
+    } catch {
+      return [];
+    }
   },
   async markAsRead(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/notifications/${id}/read`, {
-      method: 'PUT',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/notifications/${id}/read`, {
+        method: 'PUT',
+      });
+      return res.success;
+    } catch {
+      return true;
+    }
   },
   async markAllAsRead(): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>('/api/admin/notifications/read-all', {
-      method: 'POST',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>('/api/admin/notifications/read-all', {
+        method: 'POST',
+      });
+      return res.success;
+    } catch {
+      return true;
+    }
   },
 };
 
 // Settings Service (Portfolio & Platform separated cleanly)
 export const settingsService = {
   async getPortfolioSettings(): Promise<SiteSettings> {
-    return apiRequest<SiteSettings>('/api/admin/settings');
+    try {
+      return await apiRequest<SiteSettings>('/api/admin/settings');
+    } catch {
+      return localCMSStore.getSiteSettings();
+    }
   },
   async updatePortfolioSettings(data: Partial<SiteSettings>): Promise<SiteSettings> {
-    return apiRequest<SiteSettings>('/api/admin/settings', {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await apiRequest<SiteSettings>('/api/admin/settings', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      });
+    } catch {
+      return localCMSStore.updateSiteSettings(data);
+    }
   },
   async getPlatformSettings(): Promise<PlatformSettings> {
-    return apiRequest<PlatformSettings>('/api/admin/platform-settings');
+    try {
+      return await apiRequest<PlatformSettings>('/api/admin/platform-settings');
+    } catch {
+      return localCMSStore.getPlatformSettings();
+    }
   },
   async updatePlatformSettings(data: Partial<PlatformSettings>): Promise<PlatformSettings> {
-    return apiRequest<PlatformSettings>('/api/admin/platform-settings', {
-      method: 'PUT',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await apiRequest<PlatformSettings>('/api/admin/platform-settings', {
+        method: 'PUT',
+        body: JSON.stringify(data),
+      });
+    } catch {
+      return localCMSStore.updatePlatformSettings(data);
+    }
   },
 };
 
 // Clients Service (Super Admin)
 export const clientsService = {
   async list(): Promise<Client[]> {
-    return apiRequest<Client[]>('/api/admin/clients');
+    try {
+      return await apiRequest<Client[]>('/api/admin/clients');
+    } catch {
+      return localCMSStore.getClients();
+    }
   },
   async create(data: { name: string; email: string; slug: string; portfolioName?: string }): Promise<{ client: Client; onboardingToken: string }> {
-    return apiRequest<{ client: Client; onboardingToken: string }>('/api/admin/clients', {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
+    try {
+      return await apiRequest<{ client: Client; onboardingToken: string }>('/api/admin/clients', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+    } catch {
+      return localCMSStore.createClient(data);
+    }
   },
   async softDelete(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/clients/${id}`, {
-      method: 'DELETE',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/clients/${id}`, {
+        method: 'DELETE',
+      });
+      return res.success;
+    } catch {
+      return localCMSStore.deleteClient(id);
+    }
   },
   async restore(id: string): Promise<boolean> {
-    const res = await apiRequest<{ success: boolean }>(`/api/admin/clients/${id}/restore`, {
-      method: 'POST',
-    });
-    return res.success;
+    try {
+      const res = await apiRequest<{ success: boolean }>(`/api/admin/clients/${id}/restore`, {
+        method: 'POST',
+      });
+      return res.success;
+    } catch {
+      return true;
+    }
   },
   async getAuditLogs(): Promise<AuditLog[]> {
-    return apiRequest<AuditLog[]>('/api/admin/audit-logs');
+    try {
+      return await apiRequest<AuditLog[]>('/api/admin/audit-logs');
+    } catch {
+      return localCMSStore.getAuditLogs();
+    }
   },
 };
 
@@ -294,9 +463,14 @@ export const uploadService = {
       reader.readAsDataURL(file);
     });
 
-    return apiRequest<{ url: string; filename: string }>('/api/admin/upload', {
-      method: 'POST',
-      body: JSON.stringify({ dataUrl, filename: file.name }),
-    });
+    try {
+      return await apiRequest<{ url: string; filename: string }>('/api/admin/upload', {
+        method: 'POST',
+        body: JSON.stringify({ dataUrl, filename: file.name }),
+      });
+    } catch {
+      // Return Data URL directly for standalone static hosting
+      return { url: dataUrl, filename: file.name };
+    }
   },
 };

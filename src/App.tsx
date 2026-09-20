@@ -13,6 +13,7 @@ import { PageSkeleton } from './components/ui/Skeletons';
 // Types & Services
 import { PublicPortfolioBundle } from './types/portfolio';
 import { portfolioService } from './services/portfolioService';
+import { localCMSStore } from './services/localCMSStore';
 
 // Public Pages
 import { HomePage } from './pages/public/HomePage';
@@ -49,12 +50,43 @@ import { SuperAdminClients } from './pages/dashboard/SuperAdminClients';
 import { SuperAdminAuditLogs } from './pages/dashboard/SuperAdminAuditLogs';
 import { SuperAdminPlatformSettings } from './pages/dashboard/SuperAdminPlatformSettings';
 
+function ProtectedDashboard({ children }: { children: React.ReactNode }) {
+  const { user, isLoading } = useAuth();
+  const { navigate } = useRouter();
+
+  useEffect(() => {
+    if (!isLoading && !user) {
+      navigate('/login');
+    }
+  }, [isLoading, user, navigate]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-zinc-50 dark:bg-[#070707] p-8">
+        <PageSkeleton />
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
+  return <>{children}</>;
+}
+
 function AppContent() {
   const { currentPath, searchParams } = useRouter();
   const { user, isLoading: isAuthLoading } = useAuth();
 
-  // Public bundle state
-  const [bundle, setBundle] = useState<PublicPortfolioBundle | null>(null);
+  // Public bundle state - initialized with localCMSStore for instant render
+  const [bundle, setBundle] = useState<PublicPortfolioBundle | null>(() => {
+    try {
+      return localCMSStore.getSyncedPublicBundle();
+    } catch {
+      return null;
+    }
+  });
   const [isBundleLoading, setIsBundleLoading] = useState(false);
   const [bundleError, setBundleError] = useState<string | null>(null);
   const [lastLoadedSlug, setLastLoadedSlug] = useState<string | undefined>(undefined);
@@ -81,38 +113,22 @@ function AppContent() {
   // 2. DASHBOARD ROUTES (Protected)
   // ==========================================
   if (currentPath.startsWith('/dashboard')) {
-    if (isAuthLoading) {
-      return (
-        <div className="min-h-screen bg-zinc-50 dark:bg-[#070707] p-8">
-          <PageSkeleton />
-        </div>
-      );
-    }
-
-    if (!user) {
-      return (
-        <ErrorPage
-          type="401"
-          title="Authentication Required"
-          message="You must be signed into your Ultimate Tomato dashboard to access this area."
-        />
-      );
-    }
-
     // Super Admin Only Route Guard
-    const isSuperAdmin = user.role === 'SUPER_ADMIN';
+    const isSuperAdmin = user?.role === 'SUPER_ADMIN';
     const isSuperAdminPath =
       currentPath === '/dashboard/clients' ||
       currentPath === '/dashboard/audit-logs' ||
       currentPath === '/dashboard/platform-settings';
 
-    if (isSuperAdminPath && !isSuperAdmin) {
+    if (isSuperAdminPath && !isSuperAdmin && !isAuthLoading && user) {
       return (
-        <ErrorPage
-          type="403"
-          title="Super Admin Required"
-          message="Strict access policy: You do not have Super Admin agency privileges to access platform settings or client management."
-        />
+        <ProtectedDashboard>
+          <ErrorPage
+            type="403"
+            title="Super Admin Required"
+            message="Strict access policy: You do not have Super Admin agency privileges to access platform settings or client management."
+          />
+        </ProtectedDashboard>
       );
     }
 
@@ -130,9 +146,11 @@ function AppContent() {
     } else if (matchRoute('/dashboard/projects/:id/preview', currentPath).match) {
       const { params } = matchRoute('/dashboard/projects/:id/preview', currentPath);
       return (
-        <DashboardLayout>
-          <DraftProjectPreview projectId={params.id} />
-        </DashboardLayout>
+        <ProtectedDashboard>
+          <DashboardLayout>
+            <DraftProjectPreview projectId={params.id} />
+          </DashboardLayout>
+        </ProtectedDashboard>
       );
     } else if (matchRoute('/dashboard/projects/:id', currentPath).match) {
       const { params } = matchRoute('/dashboard/projects/:id', currentPath);
@@ -158,10 +176,18 @@ function AppContent() {
     } else if (currentPath === '/dashboard/platform-settings') {
       dashboardView = <SuperAdminPlatformSettings />;
     } else {
-      return <ErrorPage type="404" title="Dashboard Page Not Found" />;
+      return (
+        <ProtectedDashboard>
+          <ErrorPage type="404" title="Dashboard Page Not Found" />
+        </ProtectedDashboard>
+      );
     }
 
-    return <DashboardLayout>{dashboardView}</DashboardLayout>;
+    return (
+      <ProtectedDashboard>
+        <DashboardLayout>{dashboardView}</DashboardLayout>
+      </ProtectedDashboard>
+    );
   }
 
   // ==========================================
