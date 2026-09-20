@@ -5,14 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ultimate Tomato</title>
     <script>
-      // Single Page App Deep Link Redirection for GitHub Pages
+      // Universal Single Page App Deep Link Redirection for GitHub Pages
       (function() {
         var l = window.location;
         var pathname = l.pathname;
-        var repoName = 'quickdrop';
+        var hostname = l.hostname;
+        
+        var repoName = 'ultimate-tomato';
+        if (hostname.indexOf('github.io') !== -1) {
+          var segments = pathname.split('/').filter(Boolean);
+          if (segments.length > 0) {
+            repoName = segments[0];
+          }
+        }
         
         var targetRoute = '/';
-        if (pathname.indexOf('/' + repoName) === 0) {
+        if (repoName && pathname.indexOf('/' + repoName) === 0) {
           targetRoute = pathname.slice(repoName.length + 1) || '/';
           var searchStr = l.search ? l.search : '';
           var redirectUrl = '/' + repoName + '/?p=' + encodeURIComponent(targetRoute + searchStr + l.hash);

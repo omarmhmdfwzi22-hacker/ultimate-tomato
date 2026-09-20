@@ -20,7 +20,19 @@ export function useRouter(): RouterContextType {
 export function getBasePath(): string {
   try {
     const pathname = window.location.pathname || '/';
-    // If hosted under /quickdrop on GitHub Pages
+    const hostname = window.location.hostname || '';
+    
+    // Automatically detect repo name on GitHub Pages (*.github.io/<repo-name>)
+    if (hostname.endsWith('github.io')) {
+      const parts = pathname.split('/').filter(Boolean);
+      if (parts.length > 0) {
+        return `/${parts[0]}`;
+      }
+    }
+    
+    if (pathname.startsWith('/ultimate-tomato')) {
+      return '/ultimate-tomato';
+    }
     if (pathname.startsWith('/quickdrop')) {
       return '/quickdrop';
     }
