@@ -20,33 +20,44 @@ import {
   Star,
 } from 'lucide-react';
 
+import { localCMSStore } from '../../services/localCMSStore';
+
 export function ProjectsManager() {
   const { navigate } = useRouter();
   const { showToast } = useToast();
 
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [projects, setProjects] = useState<Project[]>(() => {
+    try {
+      return localCMSStore.getProjects();
+    } catch {
+      return [];
+    }
+  });
+  const [categories, setCategories] = useState<Category[]>(() => {
+    try {
+      return localCMSStore.getCategories();
+    } catch {
+      return [];
+    }
+  });
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Deletion modal state
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchProjects = async () => {
-    setIsLoading(true);
     try {
       const [projList, catList] = await Promise.all([
         projectsService.list(),
         categoriesService.list(),
       ]);
-      setProjects(projList);
-      setCategories(catList);
+      if (projList) setProjects(projList);
+      if (catList) setCategories(catList);
     } catch (err) {
-      showToast('Failed to load projects', 'error');
-    } finally {
-      setIsLoading(false);
+      console.warn('Projects load notice:', err);
     }
   };
 

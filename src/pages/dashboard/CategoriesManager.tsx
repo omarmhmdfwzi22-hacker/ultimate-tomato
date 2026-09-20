@@ -7,11 +7,12 @@ import { Modal } from '../../components/ui/Modal';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../components/ui/Toast';
 import { Plus, Edit2, Trash2, Tag, Eye, EyeOff } from 'lucide-react';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function CategoriesManager() {
   const { showToast } = useToast();
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [categories, setCategories] = useState<Category[]>(() => localCMSStore.getCategories());
+  const [isLoading, setIsLoading] = useState(false);
 
   // Modal State
   const [modalOpen, setModalOpen] = useState(false);
@@ -26,14 +27,11 @@ export function CategoriesManager() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
 
   const fetchCategories = async () => {
-    setIsLoading(true);
     try {
       const data = await categoriesService.list();
-      setCategories(data);
+      if (data) setCategories(data);
     } catch {
-      showToast('Failed to load categories', 'error');
-    } finally {
-      setIsLoading(false);
+      // Silently fall back to local store
     }
   };
 

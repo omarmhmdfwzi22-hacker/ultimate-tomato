@@ -6,11 +6,18 @@ import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
 import { useToast } from '../../components/ui/Toast';
 import { Plus, Edit2, Trash2, Briefcase } from 'lucide-react';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function ExperienceManager() {
   const { showToast } = useToast();
-  const [experiences, setExperiences] = useState<Experience[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [experiences, setExperiences] = useState<Experience[]>(() => {
+    try {
+      return localCMSStore.getExperiences();
+    } catch {
+      return [];
+    }
+  });
+  const [isLoading, setIsLoading] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Experience | null>(null);
@@ -26,14 +33,11 @@ export function ExperienceManager() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchItems = async () => {
-    setIsLoading(true);
     try {
       const data = await experiencesService.list();
-      setExperiences(data);
-    } catch {
-      showToast('Failed to load career history', 'error');
-    } finally {
-      setIsLoading(false);
+      if (data) setExperiences(data);
+    } catch (err) {
+      console.warn('Experience load notice:', err);
     }
   };
 

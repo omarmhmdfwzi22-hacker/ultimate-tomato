@@ -6,11 +6,18 @@ import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
 import { useToast } from '../../components/ui/Toast';
 import { Plus, Edit2, Trash2, Code2 } from 'lucide-react';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function SkillsManager() {
   const { showToast } = useToast();
-  const [skills, setSkills] = useState<Skill[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [skills, setSkills] = useState<Skill[]>(() => {
+    try {
+      return localCMSStore.getSkills();
+    } catch {
+      return [];
+    }
+  });
+  const [isLoading, setIsLoading] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingSkill, setEditingSkill] = useState<Skill | null>(null);
@@ -21,14 +28,11 @@ export function SkillsManager() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchSkills = async () => {
-    setIsLoading(true);
     try {
       const data = await skillsService.list();
-      setSkills(data);
-    } catch {
-      showToast('Failed to load skills', 'error');
-    } finally {
-      setIsLoading(false);
+      if (data) setSkills(data);
+    } catch (err) {
+      console.warn('Skills load notice:', err);
     }
   };
 

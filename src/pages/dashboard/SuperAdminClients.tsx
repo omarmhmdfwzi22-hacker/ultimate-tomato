@@ -23,12 +23,13 @@ import { Modal } from '../../components/ui/Modal';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../components/ui/Toast';
 import { Skeleton } from '../../components/ui/Skeletons';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function SuperAdminClients() {
   const { switchPortfolio } = useAuth();
   const { showToast } = useToast();
-  const [clients, setClients] = useState<Client[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [clients, setClients] = useState<Client[]>(() => localCMSStore.getClients());
+  const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   
   // Modal State for New Client
@@ -56,14 +57,11 @@ export function SuperAdminClients() {
   const [isRestoring, setIsRestoring] = useState(false);
 
   const fetchClients = async () => {
-    setIsLoading(true);
     try {
       const data = await clientsService.list();
-      setClients(data || []);
-    } catch (err: any) {
-      showToast(err.message || 'Failed to fetch clients', 'error');
-    } finally {
-      setIsLoading(false);
+      if (data) setClients(data);
+    } catch {
+      // Silently fall back to local store
     }
   };
 

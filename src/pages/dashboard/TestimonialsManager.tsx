@@ -6,11 +6,12 @@ import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
 import { useToast } from '../../components/ui/Toast';
 import { Plus, Edit2, Trash2, Star, Quote } from 'lucide-react';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function TestimonialsManager() {
   const { showToast } = useToast();
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>(() => localCMSStore.getTestimonials());
+  const [isLoading, setIsLoading] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Testimonial | null>(null);
@@ -24,14 +25,11 @@ export function TestimonialsManager() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchItems = async () => {
-    setIsLoading(true);
     try {
       const data = await testimonialsService.list();
-      setTestimonials(data);
+      if (data) setTestimonials(data);
     } catch {
-      showToast('Failed to load testimonials', 'error');
-    } finally {
-      setIsLoading(false);
+      // Silently fall back to local store
     }
   };
 

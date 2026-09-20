@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from '../../lib/router';
 import { projectsService, categoriesService } from '../../services/cmsServices';
 import { Project, Category } from '../../types/portfolio';
+import { localCMSStore } from '../../services/localCMSStore';
 import { Button } from '../../components/ui/Button';
 import { GlassCard } from '../../components/ui/GlassCard';
 import { ImageUploader, UploadedImageItem } from '../../components/ui/ImageUploader';
@@ -25,35 +26,55 @@ export function ProjectEditor({ projectId }: ProjectEditorProps) {
   const { navigate } = useRouter();
   const { showToast } = useToast();
 
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [isLoading, setIsLoading] = useState(Boolean(projectId));
+  const initialProject = projectId ? localCMSStore.getProjects().find((p) => p.id === projectId) : undefined;
+  const initialCategories = localCMSStore.getCategories();
+
+  const [categories, setCategories] = useState<Category[]>(() => initialCategories);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
 
   // Form State
-  const [title, setTitle] = useState('');
-  const [slug, setSlug] = useState('');
-  const [categoryId, setCategoryId] = useState('');
-  const [client, setClient] = useState('');
-  const [date, setDate] = useState(new Date().getFullYear().toString());
-  const [shortDescription, setShortDescription] = useState('');
-  const [fullDescription, setFullDescription] = useState('');
-  const [challenge, setChallenge] = useState('');
-  const [solution, setSolution] = useState('');
-  const [results, setResults] = useState('');
-  const [technologiesText, setTechnologiesText] = useState('React, TypeScript, Tailwind CSS');
-  const [tagsText, setTagsText] = useState('Featured, Creative');
-  const [heroImage, setHeroImage] = useState<UploadedImageItem[]>([
-    { url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80', alt: 'Hero' },
-  ]);
-  const [galleryImages, setGalleryImages] = useState<UploadedImageItem[]>([]);
-  const [projectUrl, setProjectUrl] = useState('');
-  const [githubUrl, setGithubUrl] = useState('');
-  const [featured, setFeatured] = useState(false);
-  const [published, setPublished] = useState(false);
+  const [title, setTitle] = useState(() => initialProject?.title || '');
+  const [slug, setSlug] = useState(() => initialProject?.slug || '');
+  const [categoryId, setCategoryId] = useState(() => initialProject?.category_id || initialCategories[0]?.id || '');
+  const [client, setClient] = useState(() => initialProject?.client || '');
+  const [date, setDate] = useState(() => initialProject?.date || new Date().getFullYear().toString());
+  const [shortDescription, setShortDescription] = useState(() => initialProject?.short_description || '');
+  const [fullDescription, setFullDescription] = useState(() => initialProject?.full_description || '');
+  const [challenge, setChallenge] = useState(() => initialProject?.challenge || '');
+  const [solution, setSolution] = useState(() => initialProject?.solution || '');
+  const [results, setResults] = useState(() => initialProject?.results || '');
+  const [technologiesText, setTechnologiesText] = useState(() =>
+    initialProject ? initialProject.technologies.join(', ') : 'React, TypeScript, Tailwind CSS'
+  );
+  const [tagsText, setTagsText] = useState(() =>
+    initialProject ? initialProject.tags.join(', ') : 'Featured, Creative'
+  );
+  const [heroImage, setHeroImage] = useState<UploadedImageItem[]>(() =>
+    initialProject
+      ? [{ url: initialProject.hero_image, alt: initialProject.title }]
+      : [{ url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80', alt: 'Hero' }]
+  );
+  const [galleryImages, setGalleryImages] = useState<UploadedImageItem[]>(() =>
+    initialProject
+      ? (initialProject.images || []).map((img) => ({
+          id: img.id,
+          url: img.image_url,
+          alt: img.alt_text,
+          sort_order: img.sort_order,
+        }))
+      : []
+  );
+  const [projectUrl, setProjectUrl] = useState(() => initialProject?.project_url || '');
+  const [githubUrl, setGithubUrl] = useState(() => initialProject?.github_url || '');
+  const [featured, setFeatured] = useState(() => initialProject?.featured || false);
+  const [published, setPublished] = useState(() => initialProject?.published || false);
 
   // Autosave & Dirty Tracking
   const [isDirty, setIsDirty] = useState(false);
-  const [lastSavedTime, setLastSavedTime] = useState<string | null>(null);
+  const [lastSavedTime, setLastSavedTime] = useState<string | null>(() =>
+    initialProject ? new Date(initialProject.updated_at).toLocaleTimeString() : null
+  );
   const isInitialLoad = useRef(true);
 
   // Auto-slug generation from title
@@ -75,9 +96,11 @@ export function ProjectEditor({ projectId }: ProjectEditorProps) {
     async function load() {
       try {
         const catList = await categoriesService.list();
-        setCategories(catList);
-        if (catList.length > 0 && !categoryId) {
-          setCategoryId(catList[0].id);
+        if (catList && catList.length > 0) {
+          setCategories(catList);
+          if (!categoryId) {
+            setCategoryId(catList[0].id);
+          }
         }
 
         if (projectId) {
@@ -112,8 +135,8 @@ export function ProjectEditor({ projectId }: ProjectEditorProps) {
             setLastSavedTime(new Date(target.updated_at).toLocaleTimeString());
           }
         }
-      } catch (err) {
-        showToast('Failed to load project details', 'error');
+      } catch {
+        // Silently fall back to cached initial state
       } finally {
         setIsLoading(false);
         isInitialLoad.current = false;

@@ -19,17 +19,36 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function DashboardOverview() {
   const { navigate } = useRouter();
   const { portfolio, activePortfolioId } = useAuth();
-  const [stats, setStats] = useState<AdminDashboardStats | null>(null);
-  const [recentProjects, setRecentProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [stats, setStats] = useState<AdminDashboardStats>(() => {
+    const projects = localCMSStore.getProjects();
+    const skills = localCMSStore.getSkills();
+    const experiences = localCMSStore.getExperiences();
+    const services = localCMSStore.getServices();
+    const messages = localCMSStore.getMessages();
+    return {
+      totalProjects: projects.length,
+      publishedProjects: projects.filter((p) => p.published).length,
+      draftProjects: projects.filter((p) => !p.published).length,
+      skillsCount: skills.length,
+      experiencesCount: experiences.length,
+      servicesCount: services.length,
+      unreadMessagesCount: messages.filter((m) => m.status === 'UNREAD').length,
+      totalMessagesCount: messages.length,
+      unreadNotificationsCount: 0,
+    };
+  });
+  const [recentProjects, setRecentProjects] = useState<Project[]>(() =>
+    localCMSStore.getProjects().slice(0, 5)
+  );
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function loadData() {
-      setIsLoading(true);
       try {
         const [statsData, projectsData] = await Promise.all([
           portfolioService.getDashboardStats(),
@@ -39,8 +58,6 @@ export function DashboardOverview() {
         setRecentProjects(projectsData.slice(0, 5));
       } catch (err) {
         console.error('Failed to load overview metrics:', err);
-      } finally {
-        setIsLoading(false);
       }
     }
     loadData();

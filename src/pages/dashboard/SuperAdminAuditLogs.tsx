@@ -19,25 +19,23 @@ import { Modal } from '../../components/ui/Modal';
 import { Button } from '../../components/ui/Button';
 import { useToast } from '../../components/ui/Toast';
 import { Skeleton } from '../../components/ui/Skeletons';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function SuperAdminAuditLogs() {
   const { showToast } = useToast();
-  const [logs, setLogs] = useState<AuditLog[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [logs, setLogs] = useState<AuditLog[]>(() => localCMSStore.getAuditLogs());
+  const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [actionFilter, setActionFilter] = useState<string>('ALL');
 
   const [selectedLog, setSelectedLog] = useState<AuditLog | null>(null);
 
   const fetchLogs = async () => {
-    setIsLoading(true);
     try {
       const data = await clientsService.getAuditLogs();
-      setLogs(data || []);
-    } catch (err: any) {
-      showToast(err.message || 'Failed to load audit trail', 'error');
-    } finally {
-      setIsLoading(false);
+      if (data) setLogs(data);
+    } catch {
+      // Silently fall back to local store
     }
   };
 

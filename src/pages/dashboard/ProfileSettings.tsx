@@ -23,18 +23,31 @@ import { Modal } from '../../components/ui/Modal';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../components/ui/Toast';
 import { Skeleton } from '../../components/ui/Skeletons';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function ProfileSettings() {
   const { showToast } = useToast();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
-  // Settings State
-  const [settings, setSettings] = useState<SiteSettings | null>(null);
+  // Settings State - initialized synchronously
+  const [settings, setSettings] = useState<SiteSettings | null>(() => {
+    try {
+      return localCMSStore.getSiteSettings();
+    } catch {
+      return null;
+    }
+  });
 
-  // Social Links State
-  const [socialLinks, setSocialLinks] = useState<SocialLink[]>([]);
+  // Social Links State - initialized synchronously
+  const [socialLinks, setSocialLinks] = useState<SocialLink[]>(() => {
+    try {
+      return localCMSStore.getSocialLinks();
+    } catch {
+      return [];
+    }
+  });
   const [isSocialModalOpen, setIsSocialModalOpen] = useState(false);
   const [editingSocial, setEditingSocial] = useState<Partial<SocialLink>>({
     platform: 'github',
@@ -45,19 +58,16 @@ export function ProfileSettings() {
   const [deleteSocialTarget, setDeleteSocialTarget] = useState<SocialLink | null>(null);
 
   const loadData = async () => {
-    setIsLoading(true);
     try {
       const [siteSettings, links] = await Promise.all([
         settingsService.getPortfolioSettings(),
         socialLinksService.list(),
       ]);
-      setSettings(siteSettings);
-      setSocialLinks(links || []);
+      if (siteSettings) setSettings(siteSettings);
+      if (links) setSocialLinks(links);
       setHasUnsavedChanges(false);
     } catch (err: any) {
-      showToast(err.message || 'Failed to load profile data', 'error');
-    } finally {
-      setIsLoading(false);
+      console.warn('Profile load notice:', err?.message);
     }
   };
 

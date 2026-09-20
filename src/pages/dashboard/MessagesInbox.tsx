@@ -22,11 +22,12 @@ import { Modal } from '../../components/ui/Modal';
 import { ConfirmDialog } from '../../components/ui/ConfirmDialog';
 import { useToast } from '../../components/ui/Toast';
 import { Skeleton } from '../../components/ui/Skeletons';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function MessagesInbox() {
   const { showToast } = useToast();
-  const [messages, setMessages] = useState<ContactMessage[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [messages, setMessages] = useState<ContactMessage[]>(() => localCMSStore.getMessages());
+  const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<'ALL' | 'UNREAD' | 'READ' | 'ARCHIVED'>('ALL');
   
@@ -38,14 +39,11 @@ export function MessagesInbox() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const fetchMessages = async () => {
-    setIsLoading(true);
     try {
       const data = await messagesService.list();
-      setMessages(data || []);
-    } catch (err: any) {
-      showToast(err.message || 'Failed to load inquiries', 'error');
-    } finally {
-      setIsLoading(false);
+      if (data) setMessages(data);
+    } catch {
+      // Silently fall back to local store
     }
   };
 

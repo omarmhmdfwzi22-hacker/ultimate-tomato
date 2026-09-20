@@ -56,7 +56,12 @@ function resolvePath(): string {
     // Support spa-github-pages ?p=/route parameter
     const redirectParam = search.get('p');
     if (redirectParam) {
-      return redirectParam.startsWith('/') ? redirectParam : `/${redirectParam}`;
+      const cleanTarget = redirectParam.startsWith('/') ? redirectParam : `/${redirectParam}`;
+      const base = getBasePath();
+      try {
+        window.history.replaceState(null, '', base ? `${base}${cleanTarget}` : cleanTarget);
+      } catch {}
+      return cleanTarget;
     }
 
     let pathname = window.location.pathname || '/';

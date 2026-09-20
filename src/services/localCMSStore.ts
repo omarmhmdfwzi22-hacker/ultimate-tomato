@@ -27,7 +27,21 @@ function getStored<T>(key: string, defaultValue: T): T {
   try {
     if (typeof window === 'undefined') return defaultValue;
     const raw = localStorage.getItem(PREFIX + key);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed !== null && parsed !== undefined) {
+        if (typeof defaultValue === 'object' && defaultValue !== null && !Array.isArray(defaultValue)) {
+          return { ...defaultValue, ...parsed };
+        }
+        if (Array.isArray(defaultValue)) {
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed as T;
+          }
+          return defaultValue;
+        }
+        return parsed;
+      }
+    }
   } catch {}
   return defaultValue;
 }

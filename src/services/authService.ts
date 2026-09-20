@@ -1,6 +1,8 @@
 import { apiRequest, setStoredToken, getStoredToken } from './apiClient';
 import { User, Portfolio } from '../types/portfolio';
 import { STATIC_OMAR_BUNDLE } from './staticData';
+import { localCMSStore } from './localCMSStore';
+import { isStaticMode } from './cmsServices';
 
 export interface LoginResponse {
   user: User;
@@ -10,6 +12,59 @@ export interface LoginResponse {
 
 export const authService = {
   async login(email: string, passwordPlain: string): Promise<LoginResponse> {
+    if (isStaticMode()) {
+      const normalizedEmail = email.toLowerCase().trim();
+      const storedClientPass = (typeof window !== 'undefined' && localStorage.getItem('tomato_client_pwd')) || 'omar2026';
+      const storedAdminPass = (typeof window !== 'undefined' && localStorage.getItem('tomato_admin_pwd')) || 'tomato2026';
+
+      const isClientMatch =
+        (normalizedEmail === 'omar@ultimatetomato.com' ||
+         normalizedEmail === 'omar' ||
+         normalizedEmail === 'omarmhmdfwzi22@gmail.com' ||
+         normalizedEmail === 'omarmhmdfwzi') &&
+        (passwordPlain === storedClientPass || passwordPlain === 'omar2026');
+
+      const isAdminMatch =
+        (normalizedEmail === 'admin@ultimatetomato.com' ||
+         normalizedEmail === 'admin') &&
+        (passwordPlain === storedAdminPass || passwordPlain === 'tomato2026');
+
+      if (isAdminMatch) {
+        const token = 'static-admin-token';
+        setStoredToken(token);
+        return {
+          user: {
+            id: 'super-admin-001',
+            client_id: null,
+            email: 'admin@ultimatetomato.com',
+            role: 'SUPER_ADMIN',
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+          portfolio: localCMSStore.getSyncedPublicBundle().portfolio,
+          token,
+        };
+      }
+
+      if (isClientMatch) {
+        const token = 'static-omar-token';
+        setStoredToken(token);
+        return {
+          user: {
+            id: STATIC_OMAR_BUNDLE.client.id,
+            client_id: STATIC_OMAR_BUNDLE.client.id,
+            email: 'omar@ultimatetomato.com',
+            role: 'CLIENT',
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString(),
+          },
+          portfolio: localCMSStore.getSyncedPublicBundle().portfolio,
+          token,
+        };
+      }
+      throw new Error('Invalid username or password. Please check your credentials.');
+    }
+
     try {
       const res = await apiRequest<LoginResponse>('/api/auth/login', {
         method: 'POST',
@@ -101,7 +156,7 @@ export const authService = {
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         },
-        portfolio: STATIC_OMAR_BUNDLE.portfolio,
+        portfolio: localCMSStore.getSyncedPublicBundle().portfolio,
       };
     }
 
@@ -115,8 +170,13 @@ export const authService = {
           created_at: new Date().toISOString(),
           updated_at: new Date().toISOString(),
         },
-        portfolio: STATIC_OMAR_BUNDLE.portfolio,
+        portfolio: localCMSStore.getSyncedPublicBundle().portfolio,
       };
+    }
+
+    if (isStaticMode()) {
+      setStoredToken(null);
+      return null;
     }
 
     try {
@@ -134,6 +194,30 @@ export const authService = {
     professional_title?: string;
     bio?: string;
   }): Promise<LoginResponse> {
+    if (isStaticMode()) {
+      const demoToken = 'static-onboarded-token';
+      setStoredToken(demoToken);
+      if (params.name || params.professional_title || params.bio) {
+        localCMSStore.updateSiteSettings({
+          title: params.name,
+          professional_title: params.professional_title,
+          bio: params.bio,
+        });
+      }
+      return {
+        user: {
+          id: 'new-client-user',
+          client_id: 'new-client-user',
+          email: 'client@demo.com',
+          role: 'CLIENT',
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString(),
+        },
+        portfolio: localCMSStore.getSyncedPublicBundle().portfolio,
+        token: demoToken,
+      };
+    }
+
     try {
       const res = await apiRequest<LoginResponse>('/api/auth/onboard', {
         method: 'POST',

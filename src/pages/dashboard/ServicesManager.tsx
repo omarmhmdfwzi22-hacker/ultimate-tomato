@@ -6,11 +6,12 @@ import { Button } from '../../components/ui/Button';
 import { Modal } from '../../components/ui/Modal';
 import { useToast } from '../../components/ui/Toast';
 import { Plus, Edit2, Trash2, Layers, Check } from 'lucide-react';
+import { localCMSStore } from '../../services/localCMSStore';
 
 export function ServicesManager() {
   const { showToast } = useToast();
-  const [services, setServices] = useState<Service[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [services, setServices] = useState<Service[]>(() => localCMSStore.getServices());
+  const [isLoading, setIsLoading] = useState(false);
 
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Service | null>(null);
@@ -24,14 +25,11 @@ export function ServicesManager() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const fetchItems = async () => {
-    setIsLoading(true);
     try {
       const data = await servicesService.list();
-      setServices(data);
+      if (data) setServices(data);
     } catch {
-      showToast('Failed to load services', 'error');
-    } finally {
-      setIsLoading(false);
+      // Silently fall back to cached local store
     }
   };
 

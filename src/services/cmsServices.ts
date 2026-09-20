@@ -19,7 +19,16 @@ import { localCMSStore } from './localCMSStore';
 export function isStaticMode(): boolean {
   if (typeof window === 'undefined') return true;
   const h = window.location.hostname;
-  return h.endsWith('github.io') || window.location.protocol === 'file:' || !h.includes('localhost');
+  const p = window.location.port;
+  return (
+    h.endsWith('github.io') ||
+    window.location.protocol === 'file:' ||
+    !h.includes('localhost') ||
+    p === '5173' ||
+    p === '4173' ||
+    p === '8080' ||
+    p === '8000'
+  );
 }
 
 // Projects Service

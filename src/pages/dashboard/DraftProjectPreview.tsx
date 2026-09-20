@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from '../../lib/router';
 import { projectsService, portfolioService } from '../../services';
 import { Project, PublicPortfolioBundle } from '../../types/portfolio';
+import { localCMSStore } from '../../services/localCMSStore';
 import { ProjectDetailPage } from '../public/ProjectDetailPage';
 import { PageSkeleton } from '../../components/ui/Skeletons';
 import { ArrowLeft, CheckCircle, Eye, Sparkles } from 'lucide-react';
@@ -14,26 +15,29 @@ interface DraftProjectPreviewProps {
 export function DraftProjectPreview({ projectId }: DraftProjectPreviewProps) {
   const { navigate } = useRouter();
   const { showToast } = useToast();
-  const [project, setProject] = useState<Project | null>(null);
-  const [bundle, setBundle] = useState<PublicPortfolioBundle | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [project, setProject] = useState<Project | null>(() => {
+    return localCMSStore.getProjects().find((p) => p.id === projectId) || null;
+  });
+  const [bundle, setBundle] = useState<PublicPortfolioBundle | null>(() => {
+    return localCMSStore.getSyncedPublicBundle();
+  });
+  const [isLoading, setIsLoading] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
 
   useEffect(() => {
     async function load() {
-      setIsLoading(true);
       try {
         const [bundleData, projectsList] = await Promise.all([
           portfolioService.getAdminSiteBundle(),
           projectsService.list(),
         ]);
-        setBundle(bundleData);
-        const target = projectsList.find((p) => p.id === projectId);
-        setProject(target || null);
-      } catch (err) {
-        showToast('Failed to load draft preview', 'error');
-      } finally {
-        setIsLoading(false);
+        if (bundleData) setBundle(bundleData);
+        if (projectsList) {
+          const target = projectsList.find((p) => p.id === projectId);
+          if (target) setProject(target);
+        }
+      } catch {
+        // Silently fall back to cached local state
       }
     }
     load();

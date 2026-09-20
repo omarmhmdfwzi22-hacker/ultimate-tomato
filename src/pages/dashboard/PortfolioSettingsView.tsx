@@ -18,6 +18,7 @@ import { Button } from '../../components/ui/Button';
 import { ImageUploader } from '../../components/ui/ImageUploader';
 import { useToast } from '../../components/ui/Toast';
 import { Skeleton } from '../../components/ui/Skeletons';
+import { localCMSStore } from '../../services/localCMSStore';
 
 const COLOR_PRESETS = [
   { name: 'Tomato Red (Official)', hex: '#F52F3A' },
@@ -31,22 +32,26 @@ const COLOR_PRESETS = [
 export function PortfolioSettingsView() {
   const { portfolio } = useAuth();
   const { showToast } = useToast();
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
 
-  const [settings, setSettings] = useState<SiteSettings | null>(null);
+  // Settings State - initialized synchronously
+  const [settings, setSettings] = useState<SiteSettings | null>(() => {
+    try {
+      return localCMSStore.getSiteSettings();
+    } catch {
+      return null;
+    }
+  });
 
   const loadSettings = async () => {
-    setIsLoading(true);
     try {
       const data = await settingsService.getPortfolioSettings();
-      setSettings(data);
+      if (data) setSettings(data);
       setHasUnsavedChanges(false);
     } catch (err: any) {
-      showToast(err.message || 'Failed to load portfolio settings', 'error');
-    } finally {
-      setIsLoading(false);
+      console.warn('Settings load notice:', err?.message);
     }
   };
 
