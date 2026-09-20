@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useRouter, getAssetUrl } from '../../lib/router';
 import { useAuth } from '../../context/AuthContext';
 import { Lock, Mail, ArrowRight, AlertCircle, Loader2, Sparkles } from 'lucide-react';

@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { useRouter, getAssetUrl } from '../../lib/router';
 import { useTheme } from '../../context/ThemeContext';
 import { Sun, Moon, Menu, X, ArrowUpRight, Eye } from 'lucide-react';

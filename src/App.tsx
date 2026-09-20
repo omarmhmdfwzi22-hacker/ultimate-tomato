@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import { RouterProvider, useRouter, matchRoute, getAssetUrl } from './lib/router';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
@@ -280,7 +281,7 @@ function AppContent() {
   // Render Public Subpage Content
   const renderSubpageContent = () => {
     if (subpage === 'project-detail') {
-      const matchedProject = bundle.projects.find((p) => p.slug === detailProjectSlug);
+      const matchedProject = bundle.projects.find((p: any) => p.slug === detailProjectSlug);
       if (!matchedProject) {
         return (
           <ErrorPage

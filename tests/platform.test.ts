@@ -158,16 +158,16 @@ async function runTests() {
   // ----------------------------------------------------
   console.log('\n7. Testing Point 7: Strict Platform vs Site Settings Separation...');
   const siteSettings = db.getSiteSettings(testPortfolio.id);
-  assert(!!siteSettings.portfolio_id, 'SiteSettings belongs strictly to portfolio_id');
-  assert(typeof siteSettings.bio === 'string', 'SiteSettings stores client-specific bio');
-  assert(typeof siteSettings.professional_title === 'string', 'SiteSettings stores client professional title');
+  assert(!!siteSettings && !!siteSettings.portfolio_id, 'SiteSettings belongs strictly to portfolio_id');
+  assert(Boolean(siteSettings && typeof siteSettings.bio === 'string'), 'SiteSettings stores client-specific bio');
+  assert(Boolean(siteSettings && typeof siteSettings.professional_title === 'string'), 'SiteSettings stores client professional title');
 
   // Updating site settings should NOT change platform settings
   db.updateSiteSettings(testPortfolio.id, { title: 'Custom Showcase Title' }, testEmail);
   const updatedSite = db.getSiteSettings(testPortfolio.id);
   const currentPlatform = db.getPlatformSettings();
 
-  assert(updatedSite.title === 'Custom Showcase Title', 'Portfolio site settings updated');
+  assert(!!updatedSite && updatedSite.title === 'Custom Showcase Title', 'Portfolio site settings updated');
   assert(currentPlatform.platform_name === 'ULTIMATE TOMATO', 'Platform settings remained isolated');
 
   // ----------------------------------------------------
