@@ -72,6 +72,7 @@ export function Navbar({ portfolio, clientName = 'Omar Mohamed Fawzi', isPreview
               <img
                 src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
                 alt="Ultimate Tomato Logo"
+                style={{ width: '36px', height: '36px', objectFit: 'contain' }}
                 className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform duration-300 group-hover:scale-105"
               />
               <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#F52F3A]" />

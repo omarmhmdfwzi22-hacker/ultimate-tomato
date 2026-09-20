@@ -246,6 +246,7 @@ function AppContent() {
           <img
             src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
             alt="Ultimate Tomato"
+            style={{ width: '40px', height: '40px', objectFit: 'contain' }}
             className="w-10 h-10 object-contain"
           />
         </div>

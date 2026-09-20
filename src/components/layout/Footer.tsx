@@ -129,6 +129,7 @@ export function Footer({
             <img
               src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
               alt="Ultimate Tomato"
+              style={{ width: '16px', height: '16px', objectFit: 'contain' }}
               className="w-4 h-4 object-contain"
             />
             <span className="font-medium text-zinc-600 dark:text-zinc-400">
