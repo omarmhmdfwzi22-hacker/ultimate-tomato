@@ -127,6 +127,25 @@ export function ProjectDetailPage({ project, bundle }: ProjectDetailPageProps) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-6">
         {/* Main Content Body */}
         <div className="lg:col-span-8 space-y-10 text-left">
+          {project.project_url && (
+            <div className="p-6 sm:p-8 rounded-3xl bg-zinc-900 text-white dark:bg-white/[0.04] border border-black/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+              <div className="space-y-1 text-center sm:text-left">
+                <h3 className="text-xl font-bold">Experience Live Application</h3>
+                <p className="text-xs sm:text-sm text-zinc-400">
+                  Click to open the live deployed project directly in a new tab.
+                </p>
+              </div>
+              <a
+                href={formatExternalUrl(project.project_url)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 rounded-full bg-[#F52F3A] hover:bg-[#d9232d] text-white text-xs sm:text-sm font-semibold shadow-lg shadow-[#F52F3A]/25 flex items-center gap-2 flex-shrink-0 transition-all active:scale-95"
+              >
+                <span>Launch Live Project</span>
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          )}
           {project.full_description && (
             <div className="space-y-3">
               <h2 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
