@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { useRouter } from '../../lib/router';
-import { Search, ArrowUpRight, FolderGit2 } from 'lucide-react';
+import { useRouter, formatExternalUrl } from '../../lib/router';
+import { Search, ArrowUpRight, FolderGit2, ExternalLink } from 'lucide-react';
 import { PublicPortfolioBundle } from '../../types/portfolio';
 import { Badge } from '../../components/ui/Badge';
 
@@ -122,10 +122,23 @@ export function ProjectsPage({ bundle }: ProjectsPageProps) {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute top-4 right-4">
-                  <span className="p-2 rounded-full bg-black/60 backdrop-blur-md text-white group-hover:bg-[#F52F3A] transition-colors inline-flex items-center justify-center">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </span>
+                <div className="absolute top-4 right-4 z-10">
+                  {project.project_url ? (
+                    <a
+                      href={formatExternalUrl(project.project_url)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="p-2 rounded-full bg-black/60 backdrop-blur-md text-white hover:bg-[#F52F3A] transition-colors inline-flex items-center justify-center shadow-lg"
+                      title="Open Live Project URL"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  ) : (
+                    <span className="p-2 rounded-full bg-black/60 backdrop-blur-md text-white group-hover:bg-[#F52F3A] transition-colors inline-flex items-center justify-center">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </span>
+                  )}
                 </div>
                 {project.category && (
                   <div className="absolute bottom-4 left-4">
@@ -156,15 +169,30 @@ export function ProjectsPage({ bundle }: ProjectsPageProps) {
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {project.technologies.slice(0, 4).map((t, idx) => (
-                    <span
-                      key={idx}
-                      className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-white/5 text-zinc-600 dark:text-zinc-400"
+                <div className="flex items-center justify-between pt-2">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.technologies.slice(0, 4).map((t, idx) => (
+                      <span
+                        key={idx}
+                        className="text-[11px] font-mono px-2 py-0.5 rounded bg-zinc-100 dark:bg-white/5 text-zinc-600 dark:text-zinc-400"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {project.project_url && (
+                    <a
+                      href={formatExternalUrl(project.project_url)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-[#F52F3A] hover:underline flex-shrink-0"
                     >
-                      {t}
-                    </span>
-                  ))}
+                      <span>Live Project</span>
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useRouter } from '../../lib/router';
+import { useRouter, formatExternalUrl } from '../../lib/router';
 import { ArrowLeft, ExternalLink, Github, Calendar, Building, Sparkles, Maximize2 } from 'lucide-react';
 import { Project, PublicPortfolioBundle } from '../../types/portfolio';
 import { Badge } from '../../components/ui/Badge';
@@ -80,7 +80,7 @@ export function ProjectDetailPage({ project, bundle }: ProjectDetailPageProps) {
           <div className="col-span-2 sm:col-span-2 flex items-center justify-end gap-3">
             {project.project_url && (
               <a
-                href={project.project_url}
+                href={formatExternalUrl(project.project_url)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-[#F52F3A] hover:bg-[#d9232d] text-white text-xs font-semibold shadow-md shadow-[#F52F3A]/20 transition-all"
@@ -92,7 +92,7 @@ export function ProjectDetailPage({ project, bundle }: ProjectDetailPageProps) {
 
             {project.github_url && (
               <a
-                href={project.github_url}
+                href={formatExternalUrl(project.github_url)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-zinc-100 dark:hover:bg-white/10 text-zinc-900 dark:text-white text-xs font-semibold transition-all"

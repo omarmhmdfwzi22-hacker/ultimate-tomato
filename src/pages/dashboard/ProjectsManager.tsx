@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useRouter } from '../../lib/router';
+import { useRouter, formatExternalUrl } from '../../lib/router';
 import { projectsService, categoriesService } from '../../services/cmsServices';
 import { Project, Category } from '../../types/portfolio';
 import { GlassCard } from '../../components/ui/GlassCard';
@@ -209,15 +209,18 @@ export function ProjectsManager() {
                     key={project.id}
                     className="hover:bg-black/[0.01] dark:hover:bg-white/[0.02] transition-colors"
                   >
-                    <td className="px-5 py-4">
-                      <div className="flex items-center gap-3.5">
+                    <td
+                      className="px-5 py-4 cursor-pointer"
+                      onClick={() => navigate(`/dashboard/projects/${project.id}`)}
+                    >
+                      <div className="flex items-center gap-3.5 group">
                         <img
                           src={project.hero_image}
                           alt={project.title}
-                          className="w-12 h-12 rounded-xl object-cover bg-zinc-100 flex-shrink-0 border border-black/5 dark:border-white/10"
+                          className="w-12 h-12 rounded-xl object-cover bg-zinc-100 flex-shrink-0 border border-black/5 dark:border-white/10 group-hover:scale-105 transition-transform"
                         />
                         <div className="min-w-0">
-                          <h4 className="font-bold text-zinc-900 dark:text-white text-sm truncate">
+                          <h4 className="font-bold text-zinc-900 dark:text-white text-sm truncate group-hover:text-[#F52F3A] transition-colors">
                             {project.title}
                           </h4>
                           <span className="text-[11px] text-zinc-400 font-mono">
@@ -267,14 +270,27 @@ export function ProjectsManager() {
 
                     <td className="px-5 py-4 text-right">
                       <div className="flex items-center justify-end gap-1.5">
-                        {/* Draft Preview Button */}
+                        {/* Edit Button (Primary) */}
                         <button
-                          onClick={() => navigate(`/dashboard/projects/${project.id}/preview`)}
-                          className="p-2 rounded-xl text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                          title="Preview Case Study"
+                          onClick={() => navigate(`/dashboard/projects/${project.id}`)}
+                          className="p-2 rounded-xl text-zinc-400 hover:text-[#F52F3A] hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                          title="Edit Project"
                         >
-                          <Eye className="w-4 h-4" />
+                          <Edit2 className="w-4 h-4" />
                         </button>
+
+                        {/* Open Live Project Link (if available) */}
+                        {project.project_url && (
+                          <a
+                            href={formatExternalUrl(project.project_url)}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2 rounded-xl text-zinc-400 hover:text-[#F52F3A] hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+                            title="Open Live Project URL"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </a>
+                        )}
 
                         {/* Duplicate Button */}
                         <button
@@ -283,15 +299,6 @@ export function ProjectsManager() {
                           title="Duplicate Project"
                         >
                           <Copy className="w-4 h-4" />
-                        </button>
-
-                        {/* Edit Button */}
-                        <button
-                          onClick={() => navigate(`/dashboard/projects/${project.id}`)}
-                          className="p-2 rounded-xl text-zinc-400 hover:text-[#F52F3A] hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                          title="Edit Details"
-                        >
-                          <Edit2 className="w-4 h-4" />
                         </button>
 
                         {/* Soft Delete Button */}

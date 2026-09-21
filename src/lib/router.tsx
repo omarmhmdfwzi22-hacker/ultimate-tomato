@@ -50,6 +50,16 @@ export function getAssetUrl(path: string): string {
   return base ? `${base}${cleanPath}` : cleanPath;
 }
 
+export function formatExternalUrl(url?: string): string {
+  if (!url) return '';
+  const trimmed = url.trim();
+  if (!trimmed) return '';
+  if (/^[a-zA-Z][a-zA-Z\d+\-.]*?:/.test(trimmed)) {
+    return trimmed;
+  }
+  return `https://${trimmed}`;
+}
+
 function resolvePath(): string {
   try {
     const search = new URLSearchParams(window.location.search);

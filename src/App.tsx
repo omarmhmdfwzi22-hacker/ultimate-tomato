@@ -145,13 +145,7 @@ function AppContent() {
       dashboardView = <ProjectEditor />;
     } else if (matchRoute('/dashboard/projects/:id/preview', currentPath).match) {
       const { params } = matchRoute('/dashboard/projects/:id/preview', currentPath);
-      return (
-        <ProtectedDashboard>
-          <DashboardLayout>
-            <DraftProjectPreview projectId={params.id} />
-          </DashboardLayout>
-        </ProtectedDashboard>
-      );
+      dashboardView = <ProjectEditor projectId={params.id} />;
     } else if (matchRoute('/dashboard/projects/:id', currentPath).match) {
       const { params } = matchRoute('/dashboard/projects/:id', currentPath);
       dashboardView = <ProjectEditor projectId={params.id} />;

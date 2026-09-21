@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useRouter } from '../../lib/router';
+import { useRouter, formatExternalUrl } from '../../lib/router';
 import { projectsService, categoriesService } from '../../services/cmsServices';
 import { Project, Category } from '../../types/portfolio';
 import { localCMSStore } from '../../services/localCMSStore';
@@ -16,6 +16,7 @@ import {
   Clock,
   Sparkles,
   AlertTriangle,
+  ExternalLink,
 } from 'lucide-react';
 
 interface ProjectEditorProps {
@@ -211,6 +212,8 @@ export function ProjectEditor({ projectId }: ProjectEditorProps) {
         featured,
         published: publishStatus,
         hero_image: heroImage[0]?.url || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+        project_url: formatExternalUrl(projectUrl),
+        github_url: formatExternalUrl(githubUrl),
       };
 
       const imagesPayload = galleryImages.map((img, idx) => ({
@@ -237,7 +240,7 @@ export function ProjectEditor({ projectId }: ProjectEditorProps) {
       } else {
         showToast(
           publishStatus
-            ? `Project published live at /projects/${savedProject.slug}`
+            ? `Project published live!`
             : 'Project draft saved successfully!',
           'success'
         );
@@ -290,15 +293,17 @@ export function ProjectEditor({ projectId }: ProjectEditorProps) {
 
         {/* Action Buttons: Save Draft, Preview, Publish */}
         <div className="flex flex-wrap items-center gap-2.5">
-          {projectId && (
-            <button
-              type="button"
-              onClick={() => navigate(`/dashboard/projects/${projectId}/preview`)}
+          {projectUrl && (
+            <a
+              href={formatExternalUrl(projectUrl)}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-white dark:bg-white/5 border border-black/10 dark:border-white/10 hover:bg-zinc-100 dark:hover:bg-white/10 text-xs font-semibold text-zinc-800 dark:text-zinc-200 transition-all"
+              title="Test Live Project Link"
             >
-              <Eye className="w-4 h-4" />
-              <span>Draft Preview</span>
-            </button>
+              <ExternalLink className="w-4 h-4 text-[#F52F3A]" />
+              <span>Live Project URL</span>
+            </a>
           )}
 
           <button
