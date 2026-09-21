@@ -60,22 +60,11 @@ export const localCMSStore = {
   // ----------------------------------------------------
   getProjects(): Project[] {
     const list = getStored<Project[]>('projects', STATIC_OMAR_BUNDLE.projects);
-    return list.filter((p) => !p.deleted_at).map((p) => {
-      if ((!p.project_url || p.project_url.trim() === '') && p.title.toLowerCase().includes('fileshare')) {
-        return { ...p, project_url: 'https://github.com/omarmhmdfwzi22-hacker/quickdrop' };
-      }
-      return p;
-    });
+    return list.filter((p) => !p.deleted_at);
   },
 
   getAllProjects(): Project[] {
-    const list = getStored<Project[]>('projects', STATIC_OMAR_BUNDLE.projects);
-    return list.map((p) => {
-      if ((!p.project_url || p.project_url.trim() === '') && p.title.toLowerCase().includes('fileshare')) {
-        return { ...p, project_url: 'https://github.com/omarmhmdfwzi22-hacker/quickdrop' };
-      }
-      return p;
-    });
+    return getStored<Project[]>('projects', STATIC_OMAR_BUNDLE.projects);
   },
 
   createProject(project: Partial<Project>, images?: Array<{ url: string; alt?: string }>): Project {

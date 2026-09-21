@@ -121,8 +121,8 @@ export const STATIC_OMAR_BUNDLE: PublicPortfolioBundle = {
           updated_at: '2026-09-20T12:00:00.000Z',
         },
       ],
-      project_url: 'https://github.com/omarmhmdfwzi22-hacker',
-      github_url: 'https://github.com/omarmhmdfwzi22-hacker',
+      project_url: 'https://omarmhmdfwzi22-hacker.github.io/ultimate-tomato/',
+      github_url: 'https://github.com/omarmhmdfwzi22-hacker/ultimate-tomato',
       challenge:
         'Handling high-frequency metric streams while preserving a responsive, 60fps UI experience across dense monitoring grids.',
       solution:
@@ -150,8 +150,8 @@ export const STATIC_OMAR_BUNDLE: PublicPortfolioBundle = {
       published: true,
       hero_image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1400&q=80',
       images: [],
-      project_url: 'https://github.com/omarmhmdfwzi22-hacker/quickdrop',
-      github_url: 'https://github.com/omarmhmdfwzi22-hacker/quickdrop',
+      project_url: 'https://omarmhmdfwzi22-hacker.github.io/ultimate-tomato/',
+      github_url: 'https://github.com/omarmhmdfwzi22-hacker/ultimate-tomato',
       challenge:
         'Balancing heavy visual richness (backdrop blur, dynamic gradients, shadows) with strict Lighthouse 100 performance.',
       solution:
@@ -179,7 +179,8 @@ export const STATIC_OMAR_BUNDLE: PublicPortfolioBundle = {
       published: true,
       hero_image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1400&q=80',
       images: [],
-      project_url: 'https://github.com/omarmhmdfwzi22-hacker',
+      project_url: 'https://omarmhmdfwzi22-hacker.github.io/ultimate-tomato/',
+      github_url: 'https://github.com/omarmhmdfwzi22-hacker/ultimate-tomato',
       challenge:
         'Representing non-linear asynchronous agent execution trajectories clearly without overwhelming user attention.',
       solution:

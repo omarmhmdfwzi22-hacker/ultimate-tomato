@@ -112,13 +112,7 @@ export function ProjectsPage({ bundle }: ProjectsPageProps) {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              onClick={() => {
-                if (project.project_url) {
-                  window.open(formatExternalUrl(project.project_url), '_blank', 'noopener,noreferrer');
-                } else {
-                  navigate(`/projects/${project.slug}`);
-                }
-              }}
+              onClick={() => navigate(`/projects/${project.slug}`)}
               className="group cursor-pointer flex flex-col rounded-3xl bg-white dark:bg-[#111111] border border-black/[0.08] dark:border-white/[0.08] overflow-hidden hover:border-[#F52F3A]/40 transition-all duration-300 hover:shadow-xl hover:shadow-[#F52F3A]/5 hover:-translate-y-1"
             >
               {/* Project Image */}
