@@ -19,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Pre-load Branding & Theme Immediately (Prevents any flash of wrong color/theme) -->
+    <!-- Pre-load Branding & Theme Immediately -->
     <script>
       (function() {
         try {
@@ -112,9 +112,13 @@
         max-width: 100%;
         -webkit-text-size-adjust: 100%;
       }
-      html.light, html.light body {
-        background-color: #FAFAFA;
-        color: #09090B;
+      html.dark, html.dark body, html.dark #root {
+        background-color: #050505 !important;
+        color: #FFFFFF !important;
+      }
+      html.light, html.light body, html.light #root {
+        background-color: #FAFAFA !important;
+        color: #09090B !important;
       }
       #root {
         min-height: 100%;
@@ -127,102 +131,102 @@
         padding-bottom: env(safe-area-inset-bottom, 1rem);
       }
 
-      /* Dynamic Brand Utilities Overrides */
-      .text-\[\#F52F3A\], [class*="text-[#F52F3A]"] {
+      /* Exact Accent Utilities */
+      .text-\[\#F52F3A\] {
         color: var(--primary-brand) !important;
       }
-      .bg-\[\#F52F3A\], [class*="bg-[#F52F3A]"]:not([class*="/"]) {
+      .bg-\[\#F52F3A\] {
         background-color: var(--primary-brand) !important;
       }
-      .border-\[\#F52F3A\], [class*="border-[#F52F3A]"]:not([class*="/"]) {
+      .border-\[\#F52F3A\] {
         border-color: var(--primary-brand) !important;
       }
-      .bg-\[\#F52F3A\]\/5, [class*="bg-[#F52F3A]/5"] {
+      .bg-\[\#F52F3A\]\/5 {
         background-color: rgba(var(--primary-brand-rgb), 0.05) !important;
       }
-      .bg-\[\#F52F3A\]\/10, [class*="bg-[#F52F3A]/10"] {
+      .bg-\[\#F52F3A\]\/10 {
         background-color: rgba(var(--primary-brand-rgb), 0.10) !important;
       }
-      .bg-\[\#F52F3A\]\/20, [class*="bg-[#F52F3A]/20"] {
+      .bg-\[\#F52F3A\]\/20 {
         background-color: rgba(var(--primary-brand-rgb), 0.20) !important;
       }
-      .border-\[\#F52F3A\]\/20, [class*="border-[#F52F3A]/20"] {
+      .border-\[\#F52F3A\]\/20 {
         border-color: rgba(var(--primary-brand-rgb), 0.20) !important;
       }
-      .border-\[\#F52F3A\]\/25, [class*="border-[#F52F3A]/25"] {
+      .border-\[\#F52F3A\]\/25 {
         border-color: rgba(var(--primary-brand-rgb), 0.25) !important;
       }
-      .border-\[\#F52F3A\]\/30, [class*="border-[#F52F3A]/30"] {
+      .border-\[\#F52F3A\]\/30 {
         border-color: rgba(var(--primary-brand-rgb), 0.30) !important;
       }
-      .hover\:bg-\[\#F52F3A\]:hover, [class*="hover:bg-[#F52F3A]"]:hover:not([class*="/"]) {
+      .hover\:bg-\[\#F52F3A\]:hover {
         background-color: var(--primary-brand) !important;
       }
-      .hover\:bg-\[\#F52F3A\]\/10:hover, [class*="hover:bg-[#F52F3A]/10"]:hover {
+      .hover\:bg-\[\#F52F3A\]\/10:hover {
         background-color: rgba(var(--primary-brand-rgb), 0.10) !important;
       }
       .hover\:bg-\[\#d9232d\]:hover {
         background-color: var(--primary-brand-hover) !important;
       }
-      .hover\:text-\[\#F52F3A\]:hover, [class*="hover:text-[#F52F3A]"]:hover {
+      .hover\:text-\[\#F52F3A\]:hover {
         color: var(--primary-brand) !important;
       }
-      .hover\:border-\[\#F52F3A\]:hover, [class*="hover:border-[#F52F3A]"]:hover:not([class*="/"]) {
+      .hover\:border-\[\#F52F3A\]:hover {
         border-color: var(--primary-brand) !important;
       }
-      .hover\:border-\[\#F52F3A\]\/30:hover, [class*="hover:border-[#F52F3A]/30"]:hover {
+      .hover\:border-\[\#F52F3A\]\/30:hover {
         border-color: rgba(var(--primary-brand-rgb), 0.30) !important;
       }
-      .hover\:border-\[\#F52F3A\]\/40:hover, [class*="hover:border-[#F52F3A]/40"]:hover {
+      .hover\:border-\[\#F52F3A\]\/40:hover {
         border-color: rgba(var(--primary-brand-rgb), 0.40) !important;
       }
-      .group:hover .group-hover\:text-\[\#F52F3A\], [class*="group"]:hover [class*="group-hover:text-[#F52F3A]"] {
+      .group:hover .group-hover\:text-\[\#F52F3A\] {
         color: var(--primary-brand) !important;
       }
-      .group:hover .group-hover\:bg-\[\#F52F3A\], [class*="group"]:hover [class*="group-hover:bg-[#F52F3A]"] {
+      .group:hover .group-hover\:bg-\[\#F52F3A\] {
         background-color: var(--primary-brand) !important;
       }
-      .focus\:border-\[\#F52F3A\]:focus, [class*="focus:border-[#F52F3A]"]:focus,
-      .focus-within\:border-\[\#F52F3A\]:focus-within, [class*="focus-within:border-[#F52F3A]"]:focus-within {
+      .focus\:border-\[\#F52F3A\]:focus,
+      .focus-within\:border-\[\#F52F3A\]:focus-within {
         border-color: var(--primary-brand) !important;
       }
-      .focus\:ring-\[\#F52F3A\]:focus, [class*="focus:ring-[#F52F3A]"]:focus,
-      .focus-visible\:ring-\[\#F52F3A\]:focus-visible, [class*="focus-visible:ring-[#F52F3A]"]:focus-visible,
-      .ring-\[\#F52F3A\], [class*="ring-[#F52F3A]"] {
+      .focus\:ring-\[\#F52F3A\]:focus,
+      .focus-visible\:ring-\[\#F52F3A\]:focus-visible,
+      .ring-\[\#F52F3A\] {
         --tw-ring-color: var(--primary-brand) !important;
       }
-      .focus\:ring-\[\#F52F3A\]\/30:focus, [class*="focus:ring-[#F52F3A]/30"]:focus,
-      .focus-within\:ring-\[\#F52F3A\]\/30:focus-within, [class*="focus-within:ring-[#F52F3A]/30"]:focus-within {
+      .focus\:ring-\[\#F52F3A\]\/30:focus,
+      .focus-within\:ring-\[\#F52F3A\]\/30:focus-within {
         --tw-ring-color: rgba(var(--primary-brand-rgb), 0.30) !important;
       }
-      .shadow-\[\#F52F3A\], [class*="shadow-[#F52F3A]"]:not([class*="/"]) {
+      .shadow-\[\#F52F3A\] {
         --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.25) !important;
       }
-      .shadow-\[\#F52F3A\]\/20, [class*="shadow-[#F52F3A]/20"] {
+      .shadow-\[\#F52F3A\]\/20 {
         --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.20) !important;
         box-shadow: 0 10px 25px -5px rgba(var(--primary-brand-rgb), 0.20), 0 8px 10px -6px rgba(var(--primary-brand-rgb), 0.20) !important;
       }
-      .shadow-\[\#F52F3A\]\/25, [class*="shadow-[#F52F3A]/25"] {
+      .shadow-\[\#F52F3A\]\/25 {
         --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.25) !important;
         box-shadow: 0 12px 30px -5px rgba(var(--primary-brand-rgb), 0.25) !important;
       }
-      .shadow-\[\#F52F3A\]\/5, [class*="shadow-[#F52F3A]/5"],
-      .hover\:shadow-\[\#F52F3A\]\/5:hover, [class*="hover:shadow-[#F52F3A]/5"]:hover {
+      .shadow-\[\#F52F3A\]\/5,
+      .hover\:shadow-\[\#F52F3A\]\/5:hover {
         box-shadow: 0 10px 25px -5px rgba(var(--primary-brand-rgb), 0.08) !important;
       }
-      .hover\:shadow-\[\#F52F3A\]\/40:hover, [class*="hover:shadow-[#F52F3A]/40"]:hover {
+      .hover\:shadow-\[\#F52F3A\]\/40:hover {
         box-shadow: 0 15px 35px -5px rgba(var(--primary-brand-rgb), 0.40) !important;
       }
-      .via-\[\#F52F3A\], [class*="via-[#F52F3A]"], .dark\:via-\[\#F52F3A\] {
+      .via-\[\#F52F3A\], .dark\:via-\[\#F52F3A\] {
         --tw-gradient-stops: var(--tw-gradient-from), var(--primary-brand) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
       }
-      ::selection, .selection\:bg-\[\#F52F3A\]\/20::selection {
-        background-color: rgba(var(--primary-brand-rgb), 0.25) !important;
-        color: var(--primary-brand) !important;
+      ::selection {
+        background-color: rgba(var(--primary-brand-rgb), 0.35) !important;
+        color: #FFFFFF !important;
       }
     </style>
   </head>
-  <body class="bg-zinc-50 text-zinc-900 dark:bg-[#050505] dark:text-white min-h-screen transition-colors duration-200 antialiased selection:bg-[#F52F3A]/20 selection:text-[#F52F3A]">
+  <body class="bg-[#FAFAFA] text-zinc-900 dark:bg-[#050505] dark:text-white min-h-screen transition-colors duration-200 antialiased">
     <div id="root">
       <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050505;color:#ffffff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:24px;text-align:center;">
         <div style="width:64px;height:64px;border-radius:20px;background:rgba(var(--primary-brand-rgb, 245,47,58),0.1);border:1px solid rgba(var(--primary-brand-rgb, 245,47,58),0.25);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 32px rgba(var(--primary-brand-rgb, 245,47,58),0.25);">
@@ -232,6 +236,6 @@
         <div style="font-size:13px;color:#71717a;font-weight:500;">Loading portfolio experience...</div>
       </div>
     </div>
-    <script type="module" src="./app.js?v=1790523155702"></script>
+    <script type="module" src="./app.js?v=1790523588672"></script>
   </body>
 </html>

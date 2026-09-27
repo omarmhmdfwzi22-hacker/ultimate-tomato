@@ -374,7 +374,7 @@ function AppContent() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-50 dark:bg-[#050505] text-zinc-900 dark:text-white transition-colors selection:bg-[#F52F3A]/20 selection:text-[#F52F3A]">
+    <div className="min-h-screen flex flex-col bg-[#FAFAFA] dark:bg-[#050505] text-zinc-900 dark:text-white transition-colors duration-200">
       <Navbar
         portfolio={bundle.portfolio}
         clientName={bundle.client.name}

@@ -1,7 +1,7 @@
 /**
  * Ultimate Tomato Dynamic Brand & Theme Engine
- * Ensures custom accent colors (like Amber Gold #F59E0B) and default theme modes (light/dark)
- * apply dynamically across the entire application in real-time.
+ * Ensures custom accent colors apply strictly as accent highlights (buttons, badges, icons)
+ * while keeping the predominant background black (in dark mode) or white (in light mode).
  */
 
 export interface RgbColor {
@@ -52,116 +52,127 @@ export function generateBrandCSS(primaryHex: string): string {
   --primary: ${primaryHex};
 }
 
-/* Base Utility Overrides for #F52F3A */
-.text-\\[\\#F52F3A\\], [class*="text-[#F52F3A]"] {
+/* Enforce Predominant Background: Black in Dark Mode, White in Light Mode */
+html.dark, html.dark body, html.dark #root {
+  background-color: #050505 !important;
+  color: #FFFFFF !important;
+}
+
+html.light, html.light body, html.light #root {
+  background-color: #FAFAFA !important;
+  color: #09090B !important;
+}
+
+/* Exact Accent Utilities (Highlights Only - Never Page Backgrounds) */
+.text-\\[\\#F52F3A\\] {
   color: var(--primary-brand) !important;
 }
 
-.bg-\\[\\#F52F3A\\], [class*="bg-[#F52F3A]"]:not([class*="/"]) {
+.bg-\\[\\#F52F3A\\] {
   background-color: var(--primary-brand) !important;
 }
 
-.border-\\[\\#F52F3A\\], [class*="border-[#F52F3A]"]:not([class*="/"]) {
+.border-\\[\\#F52F3A\\] {
   border-color: var(--primary-brand) !important;
 }
 
-/* Opacity Background Overrides */
-.bg-\\[\\#F52F3A\\]\\/5, [class*="bg-[#F52F3A]/5"] {
+/* Accent Opacity Backgrounds */
+.bg-\\[\\#F52F3A\\]\\/5 {
   background-color: rgba(var(--primary-brand-rgb), 0.05) !important;
 }
-.bg-\\[\\#F52F3A\\]\\/10, [class*="bg-[#F52F3A]/10"] {
+.bg-\\[\\#F52F3A\\]\\/10 {
   background-color: rgba(var(--primary-brand-rgb), 0.10) !important;
 }
-.bg-\\[\\#F52F3A\\]\\/20, [class*="bg-[#F52F3A]/20"] {
+.bg-\\[\\#F52F3A\\]\\/20 {
   background-color: rgba(var(--primary-brand-rgb), 0.20) !important;
 }
 
-/* Opacity Border Overrides */
-.border-\\[\\#F52F3A\\]\\/20, [class*="border-[#F52F3A]/20"] {
+/* Accent Opacity Borders */
+.border-\\[\\#F52F3A\\]\\/20 {
   border-color: rgba(var(--primary-brand-rgb), 0.20) !important;
 }
-.border-\\[\\#F52F3A\\]\\/25, [class*="border-[#F52F3A]/25"] {
+.border-\\[\\#F52F3A\\]\\/25 {
   border-color: rgba(var(--primary-brand-rgb), 0.25) !important;
 }
-.border-\\[\\#F52F3A\\]\\/30, [class*="border-[#F52F3A]/30"] {
+.border-\\[\\#F52F3A\\]\\/30 {
   border-color: rgba(var(--primary-brand-rgb), 0.30) !important;
 }
 
-/* Hover Overrides */
-.hover\\:bg-\\[\\#F52F3A\\]:hover, [class*="hover:bg-[#F52F3A]"]:hover:not([class*="/"]) {
+/* Accent Hover States */
+.hover\\:bg-\\[\\#F52F3A\\]:hover {
   background-color: var(--primary-brand) !important;
 }
-.hover\\:bg-\\[\\#F52F3A\\]\\/10:hover, [class*="hover:bg-[#F52F3A]/10"]:hover {
+.hover\\:bg-\\[\\#F52F3A\\]\\/10:hover {
   background-color: rgba(var(--primary-brand-rgb), 0.10) !important;
 }
 .hover\\:bg-\\[\\#d9232d\\]:hover {
   background-color: var(--primary-brand-hover) !important;
 }
-.hover\\:text-\\[\\#F52F3A\\]:hover, [class*="hover:text-[#F52F3A]"]:hover {
+.hover\\:text-\\[\\#F52F3A\\]:hover {
   color: var(--primary-brand) !important;
 }
-.hover\\:border-\\[\\#F52F3A\\]:hover, [class*="hover:border-[#F52F3A]"]:hover:not([class*="/"]) {
+.hover\\:border-\\[\\#F52F3A\\]:hover {
   border-color: var(--primary-brand) !important;
 }
-.hover\\:border-\\[\\#F52F3A\\]\\/30:hover, [class*="hover:border-[#F52F3A]/30"]:hover {
+.hover\\:border-\\[\\#F52F3A\\]\\/30:hover {
   border-color: rgba(var(--primary-brand-rgb), 0.30) !important;
 }
-.hover\\:border-\\[\\#F52F3A\\]\\/40:hover, [class*="hover:border-[#F52F3A]/40"]:hover {
+.hover\\:border-\\[\\#F52F3A\\]\\/40:hover {
   border-color: rgba(var(--primary-brand-rgb), 0.40) !important;
 }
 
-/* Group Hover Overrides */
-.group:hover .group-hover\\:text-\\[\\#F52F3A\\], [class*="group"]:hover [class*="group-hover:text-[#F52F3A]"] {
+/* Group Hover */
+.group:hover .group-hover\\:text-\\[\\#F52F3A\\] {
   color: var(--primary-brand) !important;
 }
-.group:hover .group-hover\\:bg-\\[\\#F52F3A\\], [class*="group"]:hover [class*="group-hover:bg-[#F52F3A]"] {
+.group:hover .group-hover\\:bg-\\[\\#F52F3A\\] {
   background-color: var(--primary-brand) !important;
 }
 
 /* Focus and Ring States */
-.focus\\:border-\\[\\#F52F3A\\]:focus, [class*="focus:border-[#F52F3A]"]:focus,
-.focus-within\\:border-\\[\\#F52F3A\\]:focus-within, [class*="focus-within:border-[#F52F3A]"]:focus-within {
+.focus\\:border-\\[\\#F52F3A\\]:focus,
+.focus-within\\:border-\\[\\#F52F3A\\]:focus-within {
   border-color: var(--primary-brand) !important;
 }
-.focus\\:ring-\\[\\#F52F3A\\]:focus, [class*="focus:ring-[#F52F3A]"]:focus,
-.focus-visible\\:ring-\\[\\#F52F3A\\]:focus-visible, [class*="focus-visible:ring-[#F52F3A]"]:focus-visible,
-.ring-\\[\\#F52F3A\\], [class*="ring-[#F52F3A]"] {
+.focus\\:ring-\\[\\#F52F3A\\]:focus,
+.focus-visible\\:ring-\\[\\#F52F3A\\]:focus-visible,
+.ring-\\[\\#F52F3A\\] {
   --tw-ring-color: var(--primary-brand) !important;
 }
-.focus\\:ring-\\[\\#F52F3A\\]\\/30:focus, [class*="focus:ring-[#F52F3A]/30"]:focus,
-.focus-within\\:ring-\\[\\#F52F3A\\]\\/30:focus-within, [class*="focus-within:ring-[#F52F3A]/30"]:focus-within {
+.focus\\:ring-\\[\\#F52F3A\\]\\/30:focus,
+.focus-within\\:ring-\\[\\#F52F3A\\]\\/30:focus-within {
   --tw-ring-color: rgba(var(--primary-brand-rgb), 0.30) !important;
 }
 
-/* Shadows */
-.shadow-\\[\\#F52F3A\\], [class*="shadow-[#F52F3A]"]:not([class*="/"]) {
+/* Accent Shadows */
+.shadow-\\[\\#F52F3A\\] {
   --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.25) !important;
 }
-.shadow-\\[\\#F52F3A\\]\\/20, [class*="shadow-[#F52F3A]/20"] {
+.shadow-\\[\\#F52F3A\\]\\/20 {
   --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.20) !important;
   box-shadow: 0 10px 25px -5px rgba(var(--primary-brand-rgb), 0.20), 0 8px 10px -6px rgba(var(--primary-brand-rgb), 0.20) !important;
 }
-.shadow-\\[\\#F52F3A\\]\\/25, [class*="shadow-[#F52F3A]/25"] {
+.shadow-\\[\\#F52F3A\\]\\/25 {
   --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.25) !important;
   box-shadow: 0 12px 30px -5px rgba(var(--primary-brand-rgb), 0.25) !important;
 }
-.shadow-\\[\\#F52F3A\\]\\/5, [class*="shadow-[#F52F3A]/5"],
-.hover\\:shadow-\\[\\#F52F3A\\]\\/5:hover, [class*="hover:shadow-[#F52F3A]/5"]:hover {
+.shadow-\\[\\#F52F3A\\]\\/5,
+.hover\\:shadow-\\[\\#F52F3A\\]\\/5:hover {
   box-shadow: 0 10px 25px -5px rgba(var(--primary-brand-rgb), 0.08) !important;
 }
-.hover\\:shadow-\\[\\#F52F3A\\]\\/40:hover, [class*="hover:shadow-[#F52F3A]/40"]:hover {
+.hover\\:shadow-\\[\\#F52F3A\\]\\/40:hover {
   box-shadow: 0 15px 35px -5px rgba(var(--primary-brand-rgb), 0.40) !important;
 }
 
 /* Gradients */
-.via-\\[\\#F52F3A\\], [class*="via-[#F52F3A]"], .dark\\:via-\\[\\#F52F3A\\] {
+.via-\\[\\#F52F3A\\], .dark\\:via-\\[\\#F52F3A\\] {
   --tw-gradient-stops: var(--tw-gradient-from), var(--primary-brand) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
 }
 
-/* Selection */
-::selection, .selection\\:bg-\\[\\#F52F3A\\]\\/20::selection {
-  background-color: rgba(var(--primary-brand-rgb), 0.25) !important;
-  color: var(--primary-brand) !important;
+/* Text Selection */
+::selection {
+  background-color: rgba(var(--primary-brand-rgb), 0.35) !important;
+  color: #FFFFFF !important;
 }
 `;
 }
@@ -250,7 +261,6 @@ export function initBranding() {
         applyBrandColor(parsed.primary_color);
       }
       if (parsed.default_theme) {
-        // If ut_color_theme is not explicitly set, use default_theme
         const currentTheme = localStorage.getItem('ut_color_theme');
         if (!currentTheme) {
           applyDefaultTheme(parsed.default_theme);
