@@ -42,15 +42,13 @@ export function LoginPage() {
         {/* Brand Logo */}
         <div
           onClick={() => navigate('/')}
-          className="inline-flex items-center gap-3 p-2 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md cursor-pointer hover:bg-white/10 transition-all mb-2"
+          className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md cursor-pointer hover:bg-white/10 transition-all mb-2"
         >
-          <img
-            src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
-            alt="Ultimate Tomato Logo"
-            className="w-9 h-9 object-contain"
-          />
+          <div className="w-8 h-8 rounded-xl bg-white text-zinc-950 font-black flex items-center justify-center text-xs tracking-tight shadow-sm">
+            OF
+          </div>
           <span className="text-sm font-extrabold tracking-tight text-white">
-            ULTIMATE TOMATO
+            Omar Mohamed Fawzi
           </span>
         </div>
 

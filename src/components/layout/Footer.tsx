@@ -121,20 +121,15 @@ export function Footer({
           </div>
         </div>
 
-        {/* Bottom Bar with subtle Ultimate Tomato branding */}
+        {/* Bottom Bar */}
         <div className="pt-8 border-t border-black/[0.05] dark:border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-400">
           <p>© {currentYear} {clientName}. All rights reserved.</p>
 
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white dark:bg-white/5 border border-black/[0.06] dark:border-white/[0.08] shadow-sm">
-            <img
-              src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
-              alt="Ultimate Tomato"
-              style={{ width: '16px', height: '16px', objectFit: 'contain' }}
-              className="w-4 h-4 object-contain"
-            />
-            <span className="font-medium text-zinc-600 dark:text-zinc-400">
-              Built with <span className="text-[#F52F3A]">♥</span> by{' '}
-              <span className="font-bold text-zinc-900 dark:text-white">Ultimate Tomato</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="font-medium text-zinc-600 dark:text-zinc-400 text-xs">
+              Crafted with precision by{' '}
+              <span className="font-bold text-zinc-900 dark:text-white">{clientName}</span>
             </span>
           </div>
         </div>

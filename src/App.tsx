@@ -300,18 +300,13 @@ function AppContent() {
   if (isBundleLoading && !bundle) {
     return (
       <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center p-6 text-center">
-        <div className="w-16 h-16 rounded-2xl bg-[#F52F3A]/10 border border-[#F52F3A]/25 flex items-center justify-center mb-4 shadow-lg shadow-[#F52F3A]/20 animate-pulse">
-          <img
-            src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
-            alt="Ultimate Tomato"
-            style={{ width: '40px', height: '40px', objectFit: 'contain' }}
-            className="w-10 h-10 object-contain"
-          />
+        <div className="w-14 h-14 rounded-2xl bg-zinc-900 border border-white/10 flex items-center justify-center mb-4 shadow-xl">
+          <span className="text-lg font-black text-white">OF</span>
         </div>
-        <p className="text-sm font-semibold tracking-wider uppercase text-zinc-400">
-          ULTIMATE TOMATO
+        <p className="text-sm font-bold tracking-tight text-white uppercase tracking-wider">
+          Omar Mohamed Fawzi
         </p>
-        <p className="text-xs text-zinc-600 mt-1">Loading client portfolio...</p>
+        <p className="text-xs text-zinc-500 mt-1">Loading portfolio experience...</p>
       </div>
     );
   }

@@ -29,14 +29,14 @@ export const STATIC_OMAR_BUNDLE: PublicPortfolioBundle = {
     portfolio_id: 'omar-portfolio-001',
     title: 'Omar Mohamed Fawzi — Creative Developer & Digital Builder',
     description:
-      'Official portfolio of Omar Mohamed Fawzi, engineered by Ultimate Tomato. Specialized in high-performance web applications, modern SaaS interfaces, and creative engineering.',
+      'Official portfolio of Omar Mohamed Fawzi. Specialized in high-performance web applications, modern SaaS interfaces, and creative engineering.',
     logo: './assets/ultimate-tomato-logo.png',
     favicon: './assets/ultimate-tomato-logo.png',
     primary_color: '#F52F3A',
     default_theme: 'dark',
     seo_title: 'Omar Mohamed Fawzi | Creative Developer Portfolio',
     seo_description:
-      'Explore projects, case studies, and engineering craft by Omar Mohamed Fawzi. Built with Ultimate Tomato.',
+      'Explore projects, case studies, and engineering craft by Omar Mohamed Fawzi.',
     og_image: './assets/ultimate-tomato-logo.png',
     contact_email: 'omar@ultimatetomato.com',
     phone: '',

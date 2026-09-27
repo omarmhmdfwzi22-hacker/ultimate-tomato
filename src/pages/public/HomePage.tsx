@@ -173,8 +173,8 @@ export function HomePage({ bundle }: HomePageProps) {
                     <Layout className="w-4 h-4" />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-zinc-900 dark:text-white">Multi-Tenant CMS</div>
-                    <div className="text-[10px] text-zinc-400">Ultimate Tomato Platform</div>
+                    <div className="text-xs font-bold text-zinc-900 dark:text-white">Full-Stack SaaS</div>
+                    <div className="text-[10px] text-zinc-400">Production Architecture</div>
                   </div>
                 </div>
               </div>

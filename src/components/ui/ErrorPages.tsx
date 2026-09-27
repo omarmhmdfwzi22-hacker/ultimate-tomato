@@ -55,8 +55,10 @@ export function ErrorPage({ type, title, message, onRetry }: ErrorPageProps) {
       <div className="max-w-md w-full relative z-10 text-center">
         {/* Logo & Badge */}
         <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8">
-          <img src={getAssetUrl('/assets/ultimate-tomato-logo.png')} alt="Ultimate Tomato" className="w-5 h-5 object-contain" />
-          <span className="text-xs font-semibold tracking-wider uppercase text-zinc-400">Ultimate Tomato</span>
+          <div className="w-5 h-5 rounded-md bg-white text-zinc-950 font-black flex items-center justify-center text-[10px]">
+            OF
+          </div>
+          <span className="text-xs font-semibold tracking-wider uppercase text-zinc-400">Omar Mohamed Fawzi</span>
           <span className="w-1 h-1 rounded-full bg-[#F52F3A]" />
           <span className="text-xs font-mono font-bold text-[#F52F3A]">{current.code}</span>
         </div>
@@ -102,9 +104,9 @@ export function ErrorPage({ type, title, message, onRetry }: ErrorPageProps) {
       </div>
 
       <div className="mt-16 text-xs text-zinc-600 flex items-center gap-2">
-        <span>Built with</span>
+        <span>Portfolio Experience</span>
         <span className="text-[#F52F3A]">♥</span>
-        <span>by Ultimate Tomato Platform</span>
+        <span>Omar Mohamed Fawzi</span>
       </div>
     </div>
   );

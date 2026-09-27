@@ -23,7 +23,7 @@ import { localCMSStore } from '../../services/localCMSStore';
 import { applyBrandColor, applyDefaultTheme } from '../../lib/branding';
 
 const COLOR_PRESETS = [
-  { name: 'Tomato Red (Official)', hex: '#F52F3A' },
+  { name: 'Crimson Red', hex: '#F52F3A' },
   { name: 'Amber Gold', hex: '#F59E0B' },
   { name: 'Electric Violet', hex: '#8B5CF6' },
   { name: 'Cyber Cyan', hex: '#06B6D4' },

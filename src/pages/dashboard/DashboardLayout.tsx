@@ -109,17 +109,15 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             onClick={() => handleNavClick('/dashboard')}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <img
-              src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
-              alt="Ultimate Tomato"
-              className="w-8 h-8 object-contain"
-            />
+            <div className="w-8 h-8 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 font-black flex items-center justify-center text-xs tracking-tight shadow-sm border border-black/10 dark:border-white/20">
+              OF
+            </div>
             <div className="flex flex-col">
               <span className="text-[10px] font-mono uppercase tracking-widest text-[#F52F3A] font-bold">
-                Platform CMS
+                Portfolio CMS
               </span>
               <span className="text-sm font-extrabold tracking-tight text-zinc-900 dark:text-white">
-                ULTIMATE TOMATO
+                Omar Mohamed Fawzi
               </span>
             </div>
           </div>

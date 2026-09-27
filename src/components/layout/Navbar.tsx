@@ -68,21 +68,15 @@ export function Navbar({ portfolio, clientName = 'Omar Mohamed Fawzi', isPreview
             onClick={() => navigate('/')}
             className="flex items-center gap-3 cursor-pointer group select-none"
           >
-            <div className="relative">
-              <img
-                src={getAssetUrl('/assets/ultimate-tomato-logo.png')}
-                alt="Ultimate Tomato Logo"
-                style={{ width: '36px', height: '36px', objectFit: 'contain' }}
-                className="w-8 h-8 sm:w-9 sm:h-9 object-contain transition-transform duration-300 group-hover:scale-105"
-              />
-              <span className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#F52F3A]" />
+            <div className="w-9 h-9 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-950 font-black flex items-center justify-center text-sm tracking-tight shadow-md transition-transform duration-300 group-hover:scale-105 border border-black/10 dark:border-white/20">
+              OF
             </div>
             <div className="flex flex-col">
-              <span className="text-xs font-mono font-bold tracking-widest uppercase text-zinc-400 dark:text-zinc-500 text-[10px]">
-                Ultimate Tomato
-              </span>
-              <span className="text-sm sm:text-base font-bold tracking-tight text-zinc-900 dark:text-white leading-none">
+              <span className="text-sm sm:text-base font-extrabold tracking-tight text-zinc-900 dark:text-white leading-tight">
                 {clientName}
+              </span>
+              <span className="text-[10px] font-mono tracking-wider text-zinc-400 dark:text-zinc-500 uppercase">
+                Portfolio
               </span>
             </div>
           </div>
