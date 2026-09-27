@@ -19,6 +19,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
+    <!-- Pre-load Branding & Theme Immediately (Prevents any flash of wrong color/theme) -->
+    <script>
+      (function() {
+        try {
+          var raw = localStorage.getItem('ut_cms_site_settings');
+          var primary = '#F52F3A';
+          var defaultTheme = 'dark';
+          if (raw) {
+            var parsed = JSON.parse(raw);
+            if (parsed.primary_color) primary = parsed.primary_color;
+            if (parsed.default_theme) defaultTheme = parsed.default_theme;
+          }
+          var savedTheme = localStorage.getItem('ut_color_theme');
+          var finalTheme = savedTheme || defaultTheme;
+          var isDark = finalTheme === 'dark';
+          if (finalTheme === 'system') {
+            isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          }
+          var root = document.documentElement;
+          if (isDark) {
+            root.classList.add('dark');
+            root.classList.remove('light');
+          } else {
+            root.classList.add('light');
+            root.classList.remove('dark');
+          }
+
+          var clean = primary.replace('#', '').trim();
+          if (clean.length === 3) clean = clean.split('').map(function(c){return c+c;}).join('');
+          var num = parseInt(clean, 16);
+          var r = 245, g = 47, b = 58;
+          if (!isNaN(num) && clean.length === 6) {
+            r = (num >> 16) & 255;
+            g = (num >> 8) & 255;
+            b = num & 255;
+          }
+          root.style.setProperty('--primary-brand', primary);
+          root.style.setProperty('--primary-brand-rgb', r + ', ' + g + ', ' + b);
+          root.style.setProperty('--primary', primary);
+        } catch(e) {}
+      })();
+    </script>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -28,12 +71,12 @@
           extend: {
             colors: {
               tomato: {
-                DEFAULT: '#F52F3A',
-                50: '#FEEBED',
-                100: '#FDD8DB',
-                500: '#F52F3A',
-                600: '#DC1C27',
-                700: '#B0161F',
+                DEFAULT: 'var(--primary-brand, #F52F3A)',
+                50: 'rgba(var(--primary-brand-rgb, 245, 47, 58), 0.05)',
+                100: 'rgba(var(--primary-brand-rgb, 245, 47, 58), 0.10)',
+                500: 'var(--primary-brand, #F52F3A)',
+                600: 'var(--primary-brand, #F52F3A)',
+                700: 'var(--primary-brand, #F52F3A)',
               }
             },
             fontFamily: {
@@ -45,7 +88,14 @@
       };
     </script>
 
-    <style>
+    <style id="ut-dynamic-brand-style">
+      :root {
+        --primary-brand: #F52F3A;
+        --primary-brand-rgb: 245, 47, 58;
+        --primary-brand-hover: #d9232d;
+        --primary-brand-active: #b0161f;
+        --primary: #F52F3A;
+      }
       *, *::before, *::after {
         box-sizing: border-box;
       }
@@ -76,13 +126,107 @@
       .pb-safe {
         padding-bottom: env(safe-area-inset-bottom, 1rem);
       }
+
+      /* Dynamic Brand Utilities Overrides */
+      .text-\[\#F52F3A\], [class*="text-[#F52F3A]"] {
+        color: var(--primary-brand) !important;
+      }
+      .bg-\[\#F52F3A\], [class*="bg-[#F52F3A]"]:not([class*="/"]) {
+        background-color: var(--primary-brand) !important;
+      }
+      .border-\[\#F52F3A\], [class*="border-[#F52F3A]"]:not([class*="/"]) {
+        border-color: var(--primary-brand) !important;
+      }
+      .bg-\[\#F52F3A\]\/5, [class*="bg-[#F52F3A]/5"] {
+        background-color: rgba(var(--primary-brand-rgb), 0.05) !important;
+      }
+      .bg-\[\#F52F3A\]\/10, [class*="bg-[#F52F3A]/10"] {
+        background-color: rgba(var(--primary-brand-rgb), 0.10) !important;
+      }
+      .bg-\[\#F52F3A\]\/20, [class*="bg-[#F52F3A]/20"] {
+        background-color: rgba(var(--primary-brand-rgb), 0.20) !important;
+      }
+      .border-\[\#F52F3A\]\/20, [class*="border-[#F52F3A]/20"] {
+        border-color: rgba(var(--primary-brand-rgb), 0.20) !important;
+      }
+      .border-\[\#F52F3A\]\/25, [class*="border-[#F52F3A]/25"] {
+        border-color: rgba(var(--primary-brand-rgb), 0.25) !important;
+      }
+      .border-\[\#F52F3A\]\/30, [class*="border-[#F52F3A]/30"] {
+        border-color: rgba(var(--primary-brand-rgb), 0.30) !important;
+      }
+      .hover\:bg-\[\#F52F3A\]:hover, [class*="hover:bg-[#F52F3A]"]:hover:not([class*="/"]) {
+        background-color: var(--primary-brand) !important;
+      }
+      .hover\:bg-\[\#F52F3A\]\/10:hover, [class*="hover:bg-[#F52F3A]/10"]:hover {
+        background-color: rgba(var(--primary-brand-rgb), 0.10) !important;
+      }
+      .hover\:bg-\[\#d9232d\]:hover {
+        background-color: var(--primary-brand-hover) !important;
+      }
+      .hover\:text-\[\#F52F3A\]:hover, [class*="hover:text-[#F52F3A]"]:hover {
+        color: var(--primary-brand) !important;
+      }
+      .hover\:border-\[\#F52F3A\]:hover, [class*="hover:border-[#F52F3A]"]:hover:not([class*="/"]) {
+        border-color: var(--primary-brand) !important;
+      }
+      .hover\:border-\[\#F52F3A\]\/30:hover, [class*="hover:border-[#F52F3A]/30"]:hover {
+        border-color: rgba(var(--primary-brand-rgb), 0.30) !important;
+      }
+      .hover\:border-\[\#F52F3A\]\/40:hover, [class*="hover:border-[#F52F3A]/40"]:hover {
+        border-color: rgba(var(--primary-brand-rgb), 0.40) !important;
+      }
+      .group:hover .group-hover\:text-\[\#F52F3A\], [class*="group"]:hover [class*="group-hover:text-[#F52F3A]"] {
+        color: var(--primary-brand) !important;
+      }
+      .group:hover .group-hover\:bg-\[\#F52F3A\], [class*="group"]:hover [class*="group-hover:bg-[#F52F3A]"] {
+        background-color: var(--primary-brand) !important;
+      }
+      .focus\:border-\[\#F52F3A\]:focus, [class*="focus:border-[#F52F3A]"]:focus,
+      .focus-within\:border-\[\#F52F3A\]:focus-within, [class*="focus-within:border-[#F52F3A]"]:focus-within {
+        border-color: var(--primary-brand) !important;
+      }
+      .focus\:ring-\[\#F52F3A\]:focus, [class*="focus:ring-[#F52F3A]"]:focus,
+      .focus-visible\:ring-\[\#F52F3A\]:focus-visible, [class*="focus-visible:ring-[#F52F3A]"]:focus-visible,
+      .ring-\[\#F52F3A\], [class*="ring-[#F52F3A]"] {
+        --tw-ring-color: var(--primary-brand) !important;
+      }
+      .focus\:ring-\[\#F52F3A\]\/30:focus, [class*="focus:ring-[#F52F3A]/30"]:focus,
+      .focus-within\:ring-\[\#F52F3A\]\/30:focus-within, [class*="focus-within:ring-[#F52F3A]/30"]:focus-within {
+        --tw-ring-color: rgba(var(--primary-brand-rgb), 0.30) !important;
+      }
+      .shadow-\[\#F52F3A\], [class*="shadow-[#F52F3A]"]:not([class*="/"]) {
+        --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.25) !important;
+      }
+      .shadow-\[\#F52F3A\]\/20, [class*="shadow-[#F52F3A]/20"] {
+        --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.20) !important;
+        box-shadow: 0 10px 25px -5px rgba(var(--primary-brand-rgb), 0.20), 0 8px 10px -6px rgba(var(--primary-brand-rgb), 0.20) !important;
+      }
+      .shadow-\[\#F52F3A\]\/25, [class*="shadow-[#F52F3A]/25"] {
+        --tw-shadow-color: rgba(var(--primary-brand-rgb), 0.25) !important;
+        box-shadow: 0 12px 30px -5px rgba(var(--primary-brand-rgb), 0.25) !important;
+      }
+      .shadow-\[\#F52F3A\]\/5, [class*="shadow-[#F52F3A]/5"],
+      .hover\:shadow-\[\#F52F3A\]\/5:hover, [class*="hover:shadow-[#F52F3A]/5"]:hover {
+        box-shadow: 0 10px 25px -5px rgba(var(--primary-brand-rgb), 0.08) !important;
+      }
+      .hover\:shadow-\[\#F52F3A\]\/40:hover, [class*="hover:shadow-[#F52F3A]/40"]:hover {
+        box-shadow: 0 15px 35px -5px rgba(var(--primary-brand-rgb), 0.40) !important;
+      }
+      .via-\[\#F52F3A\], [class*="via-[#F52F3A]"], .dark\:via-\[\#F52F3A\] {
+        --tw-gradient-stops: var(--tw-gradient-from), var(--primary-brand) var(--tw-gradient-via-position), var(--tw-gradient-to) !important;
+      }
+      ::selection, .selection\:bg-\[\#F52F3A\]\/20::selection {
+        background-color: rgba(var(--primary-brand-rgb), 0.25) !important;
+        color: var(--primary-brand) !important;
+      }
     </style>
   </head>
   <body class="bg-zinc-50 text-zinc-900 dark:bg-[#050505] dark:text-white min-h-screen transition-colors duration-200 antialiased selection:bg-[#F52F3A]/20 selection:text-[#F52F3A]">
     <div id="root">
       <div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#050505;color:#ffffff;font-family:'Plus Jakarta Sans',system-ui,sans-serif;padding:24px;text-align:center;">
-        <div style="width:64px;height:64px;border-radius:20px;background:rgba(245,47,58,0.1);border:1px solid rgba(245,47,58,0.25);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 32px rgba(245,47,58,0.25);">
-          <img src="./assets/ultimate-tomato-logo.png" alt="Ultimate Tomato" style="width:40px;height:40px;object-contain:contain;" />
+        <div style="width:64px;height:64px;border-radius:20px;background:rgba(var(--primary-brand-rgb, 245,47,58),0.1);border:1px solid rgba(var(--primary-brand-rgb, 245,47,58),0.25);margin:0 auto 20px;display:flex;align-items:center;justify-content:center;box-shadow:0 12px 32px rgba(var(--primary-brand-rgb, 245,47,58),0.25);">
+          <img src="./assets/ultimate-tomato-logo.png" alt="Ultimate Tomato" style="width:40px;height:40px;object-fit:contain;" />
         </div>
         <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#ffffff;margin-bottom:8px;">ULTIMATE TOMATO</div>
         <div style="font-size:13px;color:#71717a;font-weight:500;">Loading portfolio experience...</div>

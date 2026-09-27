@@ -2,7 +2,11 @@ import React, { Component, ReactNode, StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { getAssetUrl } from './lib/router';
+import { initBranding } from './lib/branding';
 import './index.css';
+
+// Initialize branding immediately on startup
+initBranding();
 
 interface ErrorBoundaryProps {
   children: ReactNode;

@@ -13,24 +13,27 @@ import {
 import { SiteSettings, Portfolio } from '../../types/portfolio';
 import { settingsService } from '../../services/cmsServices';
 import { useAuth } from '../../context/AuthContext';
+import { useTheme } from '../../context/ThemeContext';
 import { GlassCard } from '../../components/ui/GlassCard';
 import { Button } from '../../components/ui/Button';
 import { ImageUploader } from '../../components/ui/ImageUploader';
 import { useToast } from '../../components/ui/Toast';
 import { Skeleton } from '../../components/ui/Skeletons';
 import { localCMSStore } from '../../services/localCMSStore';
+import { applyBrandColor, applyDefaultTheme } from '../../lib/branding';
 
 const COLOR_PRESETS = [
   { name: 'Tomato Red (Official)', hex: '#F52F3A' },
+  { name: 'Amber Gold', hex: '#F59E0B' },
   { name: 'Electric Violet', hex: '#8B5CF6' },
   { name: 'Cyber Cyan', hex: '#06B6D4' },
   { name: 'Emerald Green', hex: '#10B981' },
-  { name: 'Amber Gold', hex: '#F59E0B' },
   { name: 'Rose Pink', hex: '#EC4899' },
 ];
 
 export function PortfolioSettingsView() {
   const { portfolio } = useAuth();
+  const { setTheme } = useTheme();
   const { showToast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -48,7 +51,12 @@ export function PortfolioSettingsView() {
   const loadSettings = async () => {
     try {
       const data = await settingsService.getPortfolioSettings();
-      if (data) setSettings(data);
+      if (data) {
+        setSettings(data);
+        if (data.primary_color) {
+          applyBrandColor(data.primary_color);
+        }
+      }
       setHasUnsavedChanges(false);
     } catch (err: any) {
       console.warn('Settings load notice:', err?.message);
@@ -68,17 +76,46 @@ export function PortfolioSettingsView() {
     setHasUnsavedChanges(true);
   };
 
+  const handleColorChange = (hex: string) => {
+    if (!settings) return;
+    const cleanHex = hex.startsWith('#') ? hex : `#${hex}`;
+    setSettings({
+      ...settings,
+      primary_color: cleanHex,
+    });
+    applyBrandColor(cleanHex);
+    localCMSStore.updateSiteSettings({ primary_color: cleanHex });
+    setHasUnsavedChanges(true);
+    showToast(`Brand color updated to ${cleanHex}`, 'success');
+  };
+
+  const handleThemeModeChange = (themeMode: 'dark' | 'light' | 'system') => {
+    if (!settings) return;
+    setSettings({
+      ...settings,
+      default_theme: themeMode,
+    });
+    applyDefaultTheme(themeMode);
+    setTheme(themeMode);
+    localCMSStore.updateSiteSettings({ default_theme: themeMode });
+    setHasUnsavedChanges(true);
+    showToast(`Theme mode set to ${themeMode}`, 'success');
+  };
+
   const handleSave = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (!settings) return;
 
     setIsSaving(true);
     try {
+      const primaryHex = settings.primary_color || '#F52F3A';
+      const defaultTheme = settings.default_theme || 'dark';
+
       const updated = await settingsService.updatePortfolioSettings({
         title: settings.title,
         description: settings.description,
-        primary_color: settings.primary_color || '#F52F3A',
-        default_theme: settings.default_theme || 'dark',
+        primary_color: primaryHex,
+        default_theme: defaultTheme,
         seo_title: settings.seo_title,
         seo_description: settings.seo_description,
         og_image: settings.og_image,
@@ -88,7 +125,14 @@ export function PortfolioSettingsView() {
       });
       setSettings(updated);
       setHasUnsavedChanges(false);
-      showToast('Portfolio configuration saved successfully!', 'success');
+
+      // Instantly apply branding and notify other views
+      applyBrandColor(primaryHex);
+      applyDefaultTheme(defaultTheme);
+      setTheme(defaultTheme);
+      window.dispatchEvent(new CustomEvent('ut_cms_updated'));
+
+      showToast('Portfolio configuration saved and applied live!', 'success');
     } catch (err: any) {
       showToast(err.message || 'Failed to save settings', 'error');
     } finally {
@@ -215,34 +259,49 @@ export function PortfolioSettingsView() {
               </label>
               
               <div className="flex items-center gap-3">
-                <div
-                  className="w-10 h-10 rounded-xl border border-black/10 dark:border-white/20 shrink-0 shadow-inner"
-                  style={{ backgroundColor: settings.primary_color || '#F52F3A' }}
+                <input
+                  type="color"
+                  value={settings.primary_color || '#F52F3A'}
+                  onChange={(e) => handleColorChange(e.target.value)}
+                  className="w-10 h-10 rounded-xl border border-black/10 dark:border-white/20 shrink-0 cursor-pointer p-0.5 bg-transparent shadow-inner"
+                  title="Click to pick any custom color"
                 />
                 <input
                   type="text"
                   value={settings.primary_color || '#F52F3A'}
-                  onChange={(e) => handleFieldChange('primary_color', e.target.value)}
+                  onChange={(e) => handleColorChange(e.target.value)}
                   className="px-3 py-2 bg-zinc-100 dark:bg-white/[0.04] border border-black/10 dark:border-white/10 rounded-xl text-sm font-mono w-32 focus:outline-none focus:border-[#F52F3A]"
                 />
+                <span className="text-xs text-zinc-500 font-mono">
+                  Real-time
+                </span>
               </div>
 
               {/* Color Presets */}
               <div className="flex flex-wrap gap-2 pt-1">
-                {COLOR_PRESETS.map((preset) => (
-                  <button
-                    key={preset.hex}
-                    type="button"
-                    onClick={() => handleFieldChange('primary_color', preset.hex)}
-                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs bg-zinc-100 dark:bg-white/[0.04] border border-black/5 dark:border-white/5 hover:border-black/20 dark:hover:border-white/20 transition"
-                  >
-                    <span
-                      className="w-2.5 h-2.5 rounded-full"
-                      style={{ backgroundColor: preset.hex }}
-                    />
-                    <span className="text-zinc-600 dark:text-zinc-300">{preset.name}</span>
-                  </button>
-                ))}
+                {COLOR_PRESETS.map((preset) => {
+                  const isSelected = (settings.primary_color || '#F52F3A').toLowerCase() === preset.hex.toLowerCase();
+                  return (
+                    <button
+                      key={preset.hex}
+                      type="button"
+                      onClick={() => handleColorChange(preset.hex)}
+                      className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs border transition-all ${
+                        isSelected
+                          ? 'border-[#F52F3A] bg-[#F52F3A]/10 font-bold scale-105 shadow-sm'
+                          : 'bg-zinc-100 dark:bg-white/[0.04] border-black/5 dark:border-white/5 hover:border-black/20 dark:hover:border-white/20'
+                      }`}
+                    >
+                      <span
+                        className="w-3 h-3 rounded-full shadow-sm"
+                        style={{ backgroundColor: preset.hex }}
+                      />
+                      <span className={isSelected ? 'text-[#F52F3A]' : 'text-zinc-600 dark:text-zinc-300'}>
+                        {preset.name}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -252,23 +311,26 @@ export function PortfolioSettingsView() {
                 Default Theme Mode
               </label>
               <div className="grid grid-cols-3 gap-2">
-                {(['dark', 'light', 'system'] as const).map((theme) => (
-                  <button
-                    key={theme}
-                    type="button"
-                    onClick={() => handleFieldChange('default_theme', theme)}
-                    className={`py-3 px-2 rounded-xl text-xs font-semibold border transition text-center capitalize ${
-                      settings.default_theme === theme
-                        ? 'border-[#F52F3A] bg-[#F52F3A]/10 text-[#F52F3A]'
-                        : 'border-black/10 dark:border-white/10 bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
-                    }`}
-                  >
-                    {theme}
-                  </button>
-                ))}
+                {(['dark', 'light', 'system'] as const).map((theme) => {
+                  const isSelected = settings.default_theme === theme;
+                  return (
+                    <button
+                      key={theme}
+                      type="button"
+                      onClick={() => handleThemeModeChange(theme)}
+                      className={`py-3 px-2 rounded-xl text-xs font-semibold border transition-all text-center capitalize ${
+                        isSelected
+                          ? 'border-[#F52F3A] bg-[#F52F3A]/10 text-[#F52F3A] font-bold scale-[1.02] shadow-sm'
+                          : 'border-black/10 dark:border-white/10 bg-zinc-100 dark:bg-white/[0.04] text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
+                      }`}
+                    >
+                      {theme}
+                    </button>
+                  );
+                })}
               </div>
               <p className="text-[11px] text-zinc-500 mt-2">
-                Visitors can still toggle between light and dark anytime via the navbar switch.
+                Changes apply instantly. Visitors can still toggle between light and dark anytime via the navbar switch.
               </p>
             </div>
           </div>

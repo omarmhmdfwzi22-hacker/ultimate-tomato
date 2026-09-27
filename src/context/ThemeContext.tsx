@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-type Theme = 'dark' | 'light' | 'system';
-type ResolvedTheme = 'dark' | 'light';
+export type Theme = 'dark' | 'light' | 'system';
+export type ResolvedTheme = 'dark' | 'light';
 
 interface ThemeContextType {
   theme: Theme;
@@ -14,18 +14,39 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const THEME_STORAGE_KEY = 'ut_color_theme';
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    try {
-      const saved = localStorage.getItem(THEME_STORAGE_KEY);
-      if (saved === 'dark' || saved === 'light' || saved === 'system') {
-        return saved;
+function getStoredInitialTheme(): Theme {
+  try {
+    const saved = localStorage.getItem(THEME_STORAGE_KEY);
+    if (saved === 'dark' || saved === 'light' || saved === 'system') {
+      return saved;
+    }
+    const settingsRaw = localStorage.getItem('ut_cms_site_settings');
+    if (settingsRaw) {
+      const parsed = JSON.parse(settingsRaw);
+      if (parsed.default_theme === 'dark' || parsed.default_theme === 'light' || parsed.default_theme === 'system') {
+        return parsed.default_theme;
       }
-    } catch {}
-    return 'dark'; // Default to dark for Ultimate Tomato aesthetic
-  });
+    }
+  } catch {}
+  return 'dark'; // Default to dark for Ultimate Tomato aesthetic
+}
 
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setThemeState] = useState<Theme>(getStoredInitialTheme);
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>('dark');
+
+  // Synchronize on external theme changes (e.g. from PortfolioSettingsView)
+  useEffect(() => {
+    const handleThemeEvent = (e: any) => {
+      const newTheme = e.detail?.theme;
+      if (newTheme && (newTheme === 'dark' || newTheme === 'light' || newTheme === 'system')) {
+        setThemeState(newTheme);
+      }
+    };
+
+    window.addEventListener('ut_theme_changed', handleThemeEvent);
+    return () => window.removeEventListener('ut_theme_changed', handleThemeEvent);
+  }, []);
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
